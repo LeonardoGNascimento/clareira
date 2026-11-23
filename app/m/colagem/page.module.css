@@ -1,0 +1,862 @@
+/* Direção D · Colagem
+   Um mundo só: o muro laranja da Brasa (lobo-chama chapado, adesivos da marca) com as peças
+   do Cartaz coladas nele (papel rasgado, fita, tarja de marca-texto).
+   Regra do papel: a folha inclina, o texto não. O giro vai só na camada de fundo (.papel),
+   então o texto pequeno fica nítido. */
+
+.root {
+  --margem: 20px;
+  --padrao: #ff6a2e;
+  --fita: rgba(232, 226, 213, 0.84);
+  --papel: var(--linho);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-cola: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  font-family: var(--font-body);
+  color: var(--noite);
+  background: var(--brasa);
+  overflow-x: clip;
+}
+.root *,
+.root *::before,
+.root *::after {
+  font-synthesis: none;
+}
+
+/* ───────── peças genéricas ───────── */
+
+/* Camada do papel: linho multiplicado pela textura, rasgo por clip-path. Só ela gira. */
+.papel {
+  position: absolute;
+  inset: 0;
+  background-color: var(--papel);
+  background-image: url("/textures/papel.jpg");
+  background-size: cover;
+  background-blend-mode: multiply;
+  clip-path: var(--rasgo);
+}
+
+.fita {
+  position: absolute;
+  background: var(--fita);
+  clip-path: var(--rasgo);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Fundo chapado com o padrão do lobo-chama */
+.fundo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: clip;
+  pointer-events: none;
+}
+.padrao {
+  position: absolute;
+  width: auto;
+  max-width: none;
+  translate: calc(var(--px, 0) * -28px) calc(var(--py, 0) * -20px);
+}
+.padraoA {
+  height: 140%;
+  top: -30%;
+  right: -14%;
+}
+.padraoB {
+  height: 80%;
+  bottom: -40%;
+  left: -16%;
+  scale: -1 1;
+  translate: calc(var(--px, 0) * 20px) calc(var(--py, 0) * 14px);
+}
+.padraoC {
+  height: 130%;
+  top: -15%;
+  left: -18%;
+  scale: -1 1;
+  translate: 0 0;
+}
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  width: fit-content;
+  background: var(--noite);
+  color: var(--linho);
+  transition:
+    translate 160ms var(--ease-out),
+    background-color 160ms var(--ease-out);
+}
+.botao:active {
+  translate: 0 2px;
+}
+.botao:focus-visible,
+.marcaLink:focus-visible,
+.zap:focus-visible {
+  outline: 3px solid var(--noite);
+  outline-offset: 4px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .botao:hover {
+    background: #12263a;
+  }
+}
+
+/* Tarja de marca-texto (noite) com texto brasa: título do hero e da pergunta */
+.marca,
+.perguntaMarca,
+.servico {
+  position: relative;
+  display: inline-block;
+}
+.marcaFundo,
+.servicoFundo {
+  position: absolute;
+  inset: 0;
+  background: var(--noite);
+  clip-path: var(--rasgo);
+  transform-origin: left center;
+}
+
+/* adesivos (arrastáveis no ponteiro fino; no toque ficam parados) */
+.adesivo {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  transition:
+    scale 220ms var(--ease-cola),
+    rotate 220ms var(--ease-cola);
+}
+.adesivo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.adesivo[data-pego] {
+  cursor: grabbing;
+  z-index: 8;
+  scale: 1.08;
+  rotate: calc(var(--r, 0deg) + 4deg);
+}
+@media (pointer: coarse) {
+  .adesivo {
+    pointer-events: none;
+    touch-action: auto;
+  }
+}
+
+/* ───────── Hero ───────── */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding: 16px var(--margem) 72px;
+}
+
+/* A palavra gigante sai do quadro por baixo, atrás do papel e do lobo */
+.gigante {
+  position: absolute;
+  z-index: 1;
+  left: -3vw;
+  bottom: -6vw;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 34vw;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--noite);
+  pointer-events: none;
+  user-select: none;
+}
+
+.topo {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.marcaLink {
+  display: block;
+  line-height: 0;
+}
+.marcaImg {
+  width: 124px;
+  height: auto;
+}
+.zap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--noite);
+  text-decoration: none;
+  white-space: nowrap;
+  isolation: isolate;
+}
+.zapFundo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--linho);
+  clip-path: var(--rasgo);
+}
+
+/* folha de papel presa com fita */
+.folhaWrap {
+  position: relative;
+  z-index: 3;
+  margin: 28px 0 0;
+  filter: drop-shadow(0 12px 18px rgba(0, 14, 28, 0.38));
+  animation: cola 700ms var(--ease-out) both;
+}
+.folhaWrap .papel {
+  rotate: -1.2deg;
+}
+.folhaTxt {
+  position: relative;
+  padding: 36px 24px 32px;
+}
+
+.h1 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--noite);
+}
+.h1Linha {
+  display: block;
+}
+.marca {
+  margin: 12px 0 0 -10px;
+  padding: 4px 16px 8px 12px;
+}
+.marcaFundo {
+  animation: marca 620ms 480ms var(--ease-out) both;
+}
+.marcaTxt {
+  position: relative;
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--brasa);
+  white-space: nowrap;
+}
+.lide {
+  margin: 24px 0 24px;
+  max-width: 36ch;
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.fitaA {
+  top: -14px;
+  left: -12px;
+  width: 104px;
+  height: 30px;
+  rotate: -32deg;
+}
+.fitaB {
+  right: -16px;
+  bottom: 6px;
+  width: 96px;
+  height: 28px;
+  rotate: -32deg;
+}
+
+/* cursor colado na ponta da tarja */
+.cursor {
+  --r: 0deg;
+  right: -24px;
+  bottom: -28px;
+  width: 36px;
+  z-index: 5;
+}
+
+/* lobo */
+.palcoLobo {
+  position: relative;
+  z-index: 2;
+  align-self: flex-end;
+  width: min(86%, 360px);
+  margin: -12px -4px 0 0;
+}
+.lobo {
+  display: block;
+  width: 100%;
+  height: auto;
+  translate: calc(var(--px, 0) * 14px) calc(var(--py, 0) * 10px);
+}
+.balao {
+  --r: -8deg;
+  rotate: var(--r);
+  left: -6%;
+  top: 4%;
+  width: clamp(84px, 26vw, 120px);
+}
+.selo {
+  --r: 10deg;
+  rotate: var(--r);
+  z-index: 4;
+  right: 8px;
+  bottom: -28px;
+  width: 96px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lobo {
+    animation: sobe 700ms var(--ease-out) 60ms backwards;
+  }
+  .cursor,
+  .balao,
+  .selo {
+    animation: adesivar 520ms var(--ease-cola) backwards;
+  }
+  .cursor {
+    animation-delay: 700ms;
+  }
+  .balao {
+    animation-delay: 520ms;
+  }
+  .selo {
+    animation-delay: 660ms;
+  }
+}
+@keyframes sobe {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+@keyframes adesivar {
+  from {
+    opacity: 0;
+    scale: 1.4;
+    rotate: calc(var(--r, 0deg) - 16deg);
+  }
+}
+@keyframes cola {
+  from {
+    translate: 0 -24px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@keyframes marca {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ───────── Seção: pergunta → serviço ───────── */
+
+.trava {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: 72px var(--margem) 96px;
+}
+
+.quiz {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0;
+}
+
+/* Rádios nativos, escondidos só visualmente (teclado, setas e leitor de tela seguem). */
+.radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.perguntaWrap {
+  position: relative;
+  margin-right: 12px;
+  filter: drop-shadow(0 12px 18px rgba(0, 14, 28, 0.38));
+}
+.perguntaWrap .papel {
+  rotate: -1.2deg;
+}
+.perguntaTxt {
+  position: relative;
+  padding: 36px 16px 28px;
+}
+.pergunta {
+  margin: 0 8px;
+  font-weight: 400;
+}
+.perguntaA {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 26px;
+  text-wrap: balance;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--noite);
+}
+.perguntaMarca {
+  margin: 10px 0 0 -8px;
+  padding: 4px 14px 8px 10px;
+}
+.perguntaB {
+  position: relative;
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.04;
+  color: var(--brasa);
+  white-space: nowrap;
+}
+.dica {
+  margin: 20px 8px 8px;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.opcoes {
+  display: grid;
+  gap: 2px;
+}
+
+.opcao {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  column-gap: 8px;
+  min-height: 56px;
+  padding: 8px 16px 8px 12px;
+  cursor: pointer;
+  isolation: isolate;
+  color: var(--noite);
+  transition: color 200ms var(--ease-out);
+}
+/* A tarja entra da esquerda quando a alternativa é escolhida. */
+.opcao::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--noite);
+  clip-path: var(--rasgo);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 340ms var(--ease-out);
+}
+.letra {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--noite);
+  transition: color 200ms var(--ease-out);
+}
+.opcaoTxt {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.radio[value="a"]:checked ~ .perguntaWrap .opcao_a,
+.radio[value="b"]:checked ~ .perguntaWrap .opcao_b,
+.radio[value="c"]:checked ~ .perguntaWrap .opcao_c,
+.radio[value="d"]:checked ~ .perguntaWrap .opcao_d {
+  color: var(--linho);
+}
+.radio[value="a"]:checked ~ .perguntaWrap .opcao_a .letra,
+.radio[value="b"]:checked ~ .perguntaWrap .opcao_b .letra,
+.radio[value="c"]:checked ~ .perguntaWrap .opcao_c .letra,
+.radio[value="d"]:checked ~ .perguntaWrap .opcao_d .letra {
+  color: var(--brasa);
+}
+.radio[value="a"]:checked ~ .perguntaWrap .opcao_a::before,
+.radio[value="b"]:checked ~ .perguntaWrap .opcao_b::before,
+.radio[value="c"]:checked ~ .perguntaWrap .opcao_c::before,
+.radio[value="d"]:checked ~ .perguntaWrap .opcao_d::before {
+  transform: scaleX(1);
+}
+.radio[value="a"]:focus-visible ~ .perguntaWrap .opcao_a,
+.radio[value="b"]:focus-visible ~ .perguntaWrap .opcao_b,
+.radio[value="c"]:focus-visible ~ .perguntaWrap .opcao_c,
+.radio[value="d"]:focus-visible ~ .perguntaWrap .opcao_d {
+  outline: 3px solid var(--brasa);
+  outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .opcao:hover::before {
+    transform: scaleX(0.04);
+  }
+  .radio[value="a"]:checked ~ .perguntaWrap .opcao_a:hover::before,
+  .radio[value="b"]:checked ~ .perguntaWrap .opcao_b:hover::before,
+  .radio[value="c"]:checked ~ .perguntaWrap .opcao_c:hover::before,
+  .radio[value="d"]:checked ~ .perguntaWrap .opcao_d:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.fitaPergunta {
+  top: -12px;
+  right: 18%;
+  width: 104px;
+  height: 28px;
+  rotate: 4deg;
+}
+
+/* A peça colada com a resposta: foto da aplicação real + o serviço */
+.respostas {
+  position: relative;
+  z-index: 2;
+  margin: -4px 0 0 12px;
+}
+.pecaWrap {
+  position: relative;
+  filter: drop-shadow(0 14px 20px rgba(0, 14, 28, 0.42));
+}
+.pecaWrap .papel {
+  rotate: 1.1deg;
+}
+.resposta {
+  position: relative;
+  display: none;
+  padding: 28px 24px 28px;
+  color: var(--noite);
+}
+.radio[value="a"]:checked ~ .respostas .resp_a,
+.radio[value="b"]:checked ~ .respostas .resp_b,
+.radio[value="c"]:checked ~ .respostas .resp_c,
+.radio[value="d"]:checked ~ .respostas .resp_d {
+  display: block;
+  animation: resposta 420ms var(--ease-out) both;
+}
+@keyframes resposta {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.fotoWrap {
+  position: relative;
+}
+.foto {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--noite);
+  clip-path: var(--rasgo);
+}
+.respAdesivo {
+  --r: 0deg;
+  position: absolute;
+  top: -32px;
+  right: 8px;
+  width: 80px;
+  height: auto;
+  rotate: var(--r);
+  z-index: 2;
+}
+.respostaTitulo {
+  margin: 24px 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+.respostaTexto {
+  margin: 12px 0 0;
+  max-width: 46ch;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.respostaFim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+  margin-top: 24px;
+}
+.servico {
+  margin: 0;
+  padding: 10px 16px 12px 16px;
+  isolation: isolate;
+}
+.servicoFundo {
+  z-index: -1;
+}
+.servicoTxt {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--linho);
+}
+.servicoRot {
+  font-weight: 400;
+}
+.fitaPeca {
+  top: -12px;
+  left: 14%;
+  width: 104px;
+  height: 28px;
+  rotate: -5deg;
+}
+
+/* ───────── Telas largas: o muro cresce com a tela (900 → 2560) ───────── */
+
+@media (min-width: 900px) {
+  .root {
+    --margem: 4vw;
+  }
+
+  .botao {
+    min-height: max(48px, 3.4vw);
+    padding: 0 max(24px, 1.9vw);
+    font-size: max(16px, 1.15vw);
+  }
+
+  .hero {
+    display: block;
+    min-height: max(100svh, 54vw);
+    padding: 0;
+  }
+  .gigante {
+    left: -1.6vw;
+    bottom: -4.4vw;
+    font-size: 17vw;
+  }
+
+  .topo {
+    position: absolute;
+    top: 1.8vw;
+    left: var(--margem);
+    right: var(--margem);
+  }
+  .marcaImg {
+    width: max(124px, 9vw);
+  }
+  .zap {
+    min-height: max(44px, 3.2vw);
+    padding: 0 max(20px, 1.8vw);
+    font-size: max(15px, 1.1vw);
+  }
+
+  .folhaWrap {
+    position: absolute;
+    left: 4.4vw;
+    top: 9.6vw;
+    width: 53vw;
+    margin: 0;
+  }
+  .folhaWrap .papel {
+    rotate: -1.2deg;
+  }
+  .folhaTxt {
+    padding: 3.2vw 3.6vw 3vw;
+  }
+  .h1 {
+    font-size: 4.3vw;
+  }
+  .marca {
+    margin: 0.9vw 0 0 -1.2vw;
+    padding: 0.3vw 1.6vw 0.8vw 1.2vw;
+  }
+  .marcaTxt {
+    font-size: 5vw;
+  }
+  .lide {
+    margin: 1.8vw 0 1.8vw;
+    max-width: 44ch;
+    font-size: max(17px, 1.3vw);
+  }
+  .fitaA {
+    top: -1.1vw;
+    left: -1.6vw;
+    width: 9vw;
+    height: 2.5vw;
+  }
+  .fitaB {
+    right: -2vw;
+    bottom: 0.8vw;
+    width: 8.4vw;
+    height: 2.4vw;
+  }
+  .cursor {
+    right: -2.6vw;
+    bottom: -2.6vw;
+    width: 3.2vw;
+  }
+
+  .palcoLobo {
+    position: absolute;
+    right: 2.4vw;
+    top: 5.6vw;
+    width: 38vw;
+    margin: 0;
+  }
+  .balao {
+    left: -4%;
+    top: 12%;
+    width: 11vw;
+  }
+  .selo {
+    right: 1.6vw;
+    bottom: 12vw;
+    width: 9vw;
+  }
+
+  .trava {
+    min-height: max(100svh, 52vw);
+    display: grid;
+    align-items: center;
+    padding: 7vw var(--margem);
+  }
+  .quiz {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 0;
+    align-items: center;
+  }
+  .perguntaWrap {
+    grid-column: 1 / 7;
+    grid-row: 1;
+    margin: 0;
+    z-index: 1;
+    filter: drop-shadow(0 1.2vw 1.6vw rgba(0, 14, 28, 0.38));
+  }
+  .perguntaTxt {
+    padding: 3.4vw 2vw 2.6vw 2.6vw;
+  }
+  .pergunta {
+    margin: 0 0.6vw;
+  }
+  .perguntaA {
+    font-size: 2.7vw;
+  }
+  .perguntaMarca {
+    margin: 0.7vw 0 0 -0.8vw;
+    padding: 0.3vw 1.2vw 0.6vw 0.8vw;
+  }
+  .perguntaB {
+    font-size: 3.8vw;
+  }
+  .dica {
+    margin: 1.6vw 0.6vw 0.6vw;
+    font-size: max(15px, 1.05vw);
+  }
+  .opcoes {
+    gap: 0.2vw;
+  }
+  .opcao {
+    grid-template-columns: 3.2vw 1fr;
+    min-height: max(56px, 4.4vw);
+    padding: 0.5vw 1.6vw 0.5vw 1vw;
+  }
+  .letra {
+    font-size: 2.6vw;
+  }
+  .opcaoTxt {
+    font-size: max(17px, 1.6vw);
+  }
+  .fitaPergunta {
+    top: -1vw;
+    width: 8.6vw;
+    height: 2.4vw;
+  }
+
+  .respostas {
+    grid-column: 7 / 13;
+    grid-row: 1;
+    margin: 0 0 0 0.6vw;
+  }
+  .pecaWrap {
+    filter: drop-shadow(0 1.2vw 1.8vw rgba(0, 14, 28, 0.42));
+  }
+  .resposta {
+    padding: 2.4vw 2.6vw 2.6vw;
+  }
+  .respAdesivo {
+    top: -3.2vw;
+    right: 0.6vw;
+    width: 7.4vw;
+  }
+  .respostaTitulo {
+    margin-top: 1.8vw;
+    font-size: 2.7vw;
+  }
+  .respostaTexto {
+    margin-top: 0.8vw;
+    max-width: 46ch;
+    font-size: max(17px, 1.2vw);
+  }
+  .respostaFim {
+    gap: 1vw 1.4vw;
+    margin-top: 1.6vw;
+  }
+  .servico {
+    padding: 0.7vw 1.2vw 0.8vw 1vw;
+  }
+  .servicoTxt {
+    font-size: max(15px, 1.05vw);
+  }
+  .fitaPeca {
+    top: -1vw;
+    width: 8.6vw;
+    height: 2.4vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folhaWrap,
+  .marcaFundo {
+    animation: none;
+  }
+}

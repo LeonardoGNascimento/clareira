@@ -5,6 +5,7 @@ const direcoes = [
   { href: "/m/clareira", nome: "A · Clareira", nota: "a luz atravessando a floresta" },
   { href: "/m/cartaz", nome: "B · Cartaz", nota: "a linguagem dos posts: papel, fita, lobo em meio-tom" },
   { href: "/m/brasa", nome: "C · Brasa", nota: "laranja chapado, lobo-chama e os adesivos da marca" },
+  { href: "/m/colagem", nome: "D · Colagem", nota: "cartaz + brasa: papel e fita sobre o laranja do lobo" },
 ];
 
 export default function Home() {

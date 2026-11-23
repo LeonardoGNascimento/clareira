@@ -1,0 +1,550 @@
+/* Direção C, Brasa: a marca como objeto. Laranja chapado, lobo-chama, adesivos. */
+.root {
+  --margem: clamp(20px, 4vw, 112px);
+  --padrao: #ff6a2e;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-cola: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-cola: 520ms;
+
+  background: var(--linho);
+  color: var(--noite);
+  font-family: var(--font-body);
+  overflow-x: clip;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-inline: var(--margem);
+  background: var(--brasa);
+}
+
+.fundo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: clip;
+  pointer-events: none;
+}
+.padrao {
+  position: absolute;
+  width: auto;
+  max-width: none;
+  translate: calc(var(--px, 0) * -28px) calc(var(--py, 0) * -20px);
+}
+.padraoA {
+  height: 140%;
+  top: -30%;
+  right: -12%;
+}
+.padraoB {
+  height: 80%;
+  bottom: -40%;
+  left: -16%;
+  scale: -1 1;
+  translate: calc(var(--px, 0) * 20px) calc(var(--py, 0) * 14px);
+}
+
+/* topo */
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 20px;
+}
+.marca {
+  display: block;
+  line-height: 0;
+  border-radius: 8px;
+}
+.marcaImg {
+  width: clamp(120px, 9vw, 240px);
+  height: auto;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 56px);
+}
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: clamp(14px, 1.1vw, 22px);
+  color: var(--noite);
+  text-decoration: none;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .navLink:hover {
+    text-decoration-line: underline;
+  }
+}
+.navLink:focus-visible,
+.marca:focus-visible,
+.link:focus-visible,
+.botao:focus-visible {
+  outline: 3px solid var(--noite);
+  outline-offset: 4px;
+}
+
+/* corpo */
+.principal {
+  display: grid;
+  grid-template-columns: minmax(0, 6.6fr) minmax(0, 5.4fr);
+  align-items: center;
+  gap: var(--margem);
+  padding-block: 8px 24px;
+}
+.titulo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(34px, 6.4vw, 176px);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  color: var(--noite);
+}
+.linha {
+  display: block;
+  white-space: nowrap;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.apoio {
+  margin: clamp(20px, 2.4vw, 56px) 0 0;
+  max-width: 34ch;
+  font-size: clamp(17px, 1.5vw, 34px);
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--noite);
+}
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px clamp(20px, 2vw, 48px);
+  margin-top: clamp(24px, 2.4vw, 56px);
+}
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 28px;
+  border-radius: 12px;
+  background: var(--noite);
+  color: var(--linho);
+  font-weight: 600;
+  font-size: clamp(16px, 1.15vw, 24px);
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    scale 160ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .botao:hover {
+    background: var(--linho);
+    color: var(--noite);
+  }
+}
+.botao:active {
+  scale: 0.97;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: clamp(16px, 1.15vw, 24px);
+  color: var(--noite);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+/* palco do lobo */
+.palcoLobo {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.lobo {
+  width: 100%;
+  max-width: calc(76svh * 0.873);
+  height: auto;
+  translate: calc(var(--px, 0) * 14px) calc(var(--py, 0) * 10px);
+}
+
+/* adesivos */
+.adesivo {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  transition:
+    scale 220ms var(--ease-cola),
+    rotate 220ms var(--ease-cola);
+}
+.adesivo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.adesivo[data-pego] {
+  cursor: grabbing;
+  z-index: 6;
+  scale: 1.08;
+  rotate: calc(var(--r, 0deg) + 4deg);
+}
+@media (pointer: coarse) {
+  .adesivo {
+    pointer-events: none;
+    touch-action: auto;
+  }
+}
+
+.cursor {
+  --r: 0deg;
+  position: relative;
+  display: inline-block;
+  width: 0.62em;
+  vertical-align: -0.1em;
+  margin-left: 0.04em;
+}
+.balao {
+  --r: -8deg;
+  rotate: var(--r);
+  left: -2%;
+  top: 14%;
+  width: clamp(88px, 11vw, 300px);
+}
+.selo {
+  --r: 10deg;
+  rotate: var(--r);
+  right: calc(var(--margem) + 2vw);
+  bottom: calc(clamp(112px, 12vw, 320px) * -0.42);
+  width: clamp(112px, 12vw, 320px);
+  z-index: 3;
+}
+
+/* entrada: os adesivos são colados, um a um (só com movimento permitido) */
+@media (prefers-reduced-motion: no-preference) {
+  .lobo {
+    animation: sobe 700ms var(--ease-out) 60ms backwards;
+  }
+  .cursor,
+  .balao,
+  .selo {
+    animation: cola var(--dur-cola) var(--ease-cola) backwards;
+  }
+  .cursor {
+    animation-delay: 380ms;
+  }
+  .balao {
+    animation-delay: 520ms;
+  }
+  .selo {
+    animation-delay: 660ms;
+  }
+}
+@keyframes sobe {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+@keyframes cola {
+  from {
+    opacity: 0;
+    scale: 1.4;
+    rotate: calc(var(--r, 0deg) - 16deg);
+  }
+}
+
+/* pilares */
+.pilares {
+  display: flex;
+  gap: clamp(20px, 3vw, 72px);
+  list-style: none;
+  margin: 0;
+  padding: 16px 0 24px;
+  border-top: 2px solid rgb(0 14 28 / 0.9);
+  font-weight: 600;
+  font-size: clamp(14px, 1.1vw, 22px);
+}
+
+/* ---------- Serviços ---------- */
+.serv {
+  position: relative;
+  z-index: 0;
+  padding-top: clamp(96px, 9vw, 240px);
+}
+.servTopo {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: end;
+  padding-inline: var(--margem);
+  padding-bottom: clamp(32px, 4vw, 96px);
+}
+.rotulo {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(16px, 1.2vw, 24px);
+  grid-column: 1;
+  align-self: start;
+  padding-top: 12px;
+}
+.servTitulo {
+  grid-column: 2;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(48px, 7.6vw, 208px);
+  line-height: 0.96;
+  letter-spacing: -0.015em;
+  color: var(--noite);
+}
+
+.servGrade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline: var(--margem);
+}
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-block: 40px;
+  border-top: 2px solid rgb(0 14 28 / 0.9);
+}
+.num {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.4vw, 64px);
+  line-height: 1;
+  color: var(--brasa);
+}
+.itemTitulo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(36px, 4vw, 112px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.itemTexto {
+  margin: 8px 0 0;
+  max-width: 36ch;
+  font-size: clamp(17px, 1.3vw, 28px);
+  line-height: 1.55;
+  color: var(--noite);
+}
+.fim {
+  padding-block: 40px 96px;
+  border-top: 2px solid rgb(0 14 28 / 0.9);
+}
+
+/* aplicação dentro do item (telas estreitas / sem JS) */
+.dentro {
+  position: relative;
+  margin: 24px 0 0;
+}
+.dentroFoto {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--brasa);
+}
+.dentroAdesivo {
+  --r: 0deg;
+  position: absolute;
+  top: -20px;
+  right: 12px;
+  width: 80px;
+  height: auto;
+  rotate: var(--r);
+}
+.legenda {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* palco fixo (só desktop) */
+.palco,
+.palcoPadrao,
+.palcoMiolo,
+.palcoLegenda,
+.palcoAdesivo {
+  display: none;
+}
+
+/* ---------- Telas largas ---------- */
+@media (max-width: 1023px) {
+  .principal {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+  .palcoLobo {
+    justify-items: end;
+    padding-top: 8px;
+  }
+  .lobo {
+    width: min(86%, 380px);
+  }
+  .balao {
+    left: 0;
+    top: 6%;
+    width: clamp(88px, 24vw, 140px);
+  }
+  .selo {
+    right: var(--margem);
+    bottom: -44px;
+    width: 104px;
+  }
+  .pilares {
+    padding-bottom: 72px;
+  }
+  .servTopo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .servTitulo {
+    grid-column: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .servGrade {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    padding-right: 0;
+  }
+  .lista {
+    padding-right: var(--margem);
+  }
+  .item {
+    min-height: 74svh;
+    justify-content: center;
+    transition: opacity 200ms ease;
+  }
+  .servGrade[data-pronto="true"] .item[data-ativo="false"] {
+    opacity: 0.4;
+  }
+  .dentro {
+    display: none;
+  }
+
+  .palco {
+    display: block;
+    position: relative;
+    overflow: clip;
+    background: var(--brasa);
+  }
+  .palcoPadrao {
+    display: block;
+    position: absolute;
+    height: 120%;
+    width: auto;
+    max-width: none;
+    right: -22%;
+    top: -10%;
+  }
+  .palcoMiolo {
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    padding: clamp(24px, 3vw, 80px);
+    padding-bottom: clamp(64px, 5vw, 120px);
+  }
+  .moldura {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 78svh;
+    margin-block: auto;
+    border: clamp(6px, 0.6vw, 14px) solid var(--linho);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--linho);
+  }
+  .foto {
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+  .foto[data-on="true"] {
+    opacity: 1;
+  }
+  .palcoAdesivo {
+    --r: 0deg;
+    display: block;
+    position: absolute;
+    top: clamp(4px, 1vw, 40px);
+    left: clamp(4px, 1vw, 40px);
+    width: clamp(88px, 8vw, 220px);
+    height: auto;
+    opacity: 0;
+    scale: 0.85;
+    rotate: calc(var(--r) - 10deg);
+    transition:
+      opacity 200ms ease,
+      scale 260ms var(--ease-cola),
+      rotate 260ms var(--ease-cola);
+  }
+  .palcoAdesivo[data-on="true"] {
+    opacity: 1;
+    scale: 1;
+    rotate: var(--r);
+  }
+  .palcoLegenda {
+    display: block;
+    position: absolute;
+    left: clamp(24px, 3vw, 80px);
+    right: clamp(24px, 3vw, 80px);
+    bottom: clamp(20px, 2vw, 56px);
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(14px, 1vw, 22px);
+    color: var(--noite);
+  }
+  .palcoMiolo {
+    display: flex;
+    flex-direction: column;
+  }
+  .palcoLegenda {
+    position: absolute;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .palcoAdesivo {
+    transition: opacity 200ms ease;
+    scale: 1;
+    rotate: var(--r);
+  }
+}

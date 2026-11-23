@@ -1,0 +1,509 @@
+.root {
+  --margem: clamp(20px, 3vw, 96px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--linho);
+  color: var(--noite);
+}
+
+/* ---------- Hero: a clareira se abre ---------- */
+.hero {
+  --r: 17vmin; /* raio inicial sem JS; o JS troca por px */
+  --p: 0;
+  --cx: 50%;
+  --cy: 27%;
+  --borda: 22vmin; /* queda suave da luz */
+  position: relative;
+  height: 260svh;
+  background: var(--noite);
+}
+
+.palco {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip;
+  isolation: isolate;
+}
+
+.luz,
+.mata {
+  position: absolute;
+  inset: 0;
+}
+
+.luzImg {
+  object-fit: cover;
+  object-position: 50% 20%;
+  transform: scale(calc(1.14 - var(--p) * 0.14));
+  transform-origin: var(--cx) var(--cy);
+}
+
+.mata {
+  background: var(--noite);
+  -webkit-mask-image: radial-gradient(
+    circle at var(--cx) var(--cy),
+    transparent var(--r),
+    #000 calc(var(--r) + var(--borda))
+  );
+  mask-image: radial-gradient(
+    circle at var(--cx) var(--cy),
+    transparent var(--r),
+    #000 calc(var(--r) + var(--borda))
+  );
+}
+
+.mata::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 14 28 / 0.5);
+}
+
+.mataImg {
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+
+/* contorno da clareira: o ponto de atenção em brasa */
+.anel {
+  position: absolute;
+  left: var(--cx);
+  top: var(--cy);
+  width: calc(var(--r) * 2);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border: 1.5px solid var(--brasa);
+  border-radius: 50%;
+  opacity: calc(1 - var(--p) * 1.25);
+  pointer-events: none;
+}
+
+/* piso escuro para o texto sempre ter contraste, aberto ou fechado */
+.chao {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 64%;
+  background: linear-gradient(
+    to top,
+    rgb(0 14 28 / 0.94) 0%,
+    rgb(0 14 28 / 0.78) 38%,
+    rgb(0 14 28 / 0) 100%
+  );
+  pointer-events: none;
+}
+
+.topo {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: clamp(16px, 1.6vw, 40px) var(--margem) 0;
+}
+
+.marca {
+  display: block;
+  width: clamp(72px, 6vw, 144px);
+  border-radius: 4px;
+}
+
+.marca img {
+  width: 100%;
+  height: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 40px);
+  padding-top: clamp(8px, 1vw, 24px);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: clamp(15px, 0.9vw + 4px, 20px);
+  font-weight: 500;
+  color: var(--linho);
+  text-decoration: none;
+  text-shadow: 0 1px 12px rgb(0 14 28 / 0.6);
+}
+
+.botaoPeq,
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--brasa);
+  color: var(--noite);
+  font-weight: 600;
+  font-size: clamp(15px, 0.9vw + 4px, 22px);
+  text-decoration: none;
+  transition: background-color 160ms ease-out, transform 160ms ease-out;
+}
+
+.botao {
+  min-height: 56px;
+  padding: 0 32px;
+}
+
+.link:focus-visible,
+.botaoPeq:focus-visible,
+.botao:focus-visible,
+.descer:focus-visible,
+.marca:focus-visible {
+  outline: 3px solid var(--linho);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .botaoPeq:hover,
+  .botao:hover {
+    background: #ff5a24;
+  }
+  .link:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+}
+
+.botaoPeq:active,
+.botao:active {
+  transform: scale(0.97);
+}
+
+/* leitura lateral: em que ponto da abertura estamos */
+.fase {
+  position: absolute;
+  z-index: 2;
+  right: var(--margem);
+  top: 50%;
+  translate: 0 -50%;
+  margin: 0;
+  writing-mode: vertical-rl;
+  font-size: clamp(13px, 0.7vw + 3px, 18px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--linho);
+  mix-blend-mode: difference;
+  display: grid;
+}
+
+.fase span {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+.hero[data-fase="0"] .fase [data-f="0"],
+.hero[data-fase="1"] .fase [data-f="1"],
+.hero[data-fase="2"] .fase [data-f="2"] {
+  opacity: 1;
+}
+
+.base {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 1.6vw, 48px);
+  row-gap: 24px;
+  align-items: end;
+  padding: 0 var(--margem) clamp(28px, 3.4vw, 96px);
+}
+
+.titulo {
+  grid-column: 1 / 9;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 8.4vw, 215px);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  color: var(--linho);
+  text-wrap: balance;
+}
+
+.titulo span {
+  color: var(--brasa);
+}
+
+.apoio {
+  grid-column: 9 / 13;
+  display: grid;
+  gap: 24px;
+  padding-bottom: 0.6vw;
+}
+
+.texto {
+  margin: 0;
+  max-width: 34ch;
+  font-size: clamp(16px, 0.9vw + 4px, 24px);
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--linho);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+.descer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: clamp(15px, 0.9vw + 4px, 20px);
+  font-weight: 500;
+  color: var(--linho);
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    --cy: 24%;
+    --r: 22vmin;
+    --borda: 30vmin;
+  }
+  .base {
+    grid-template-columns: 1fr;
+  }
+  .titulo,
+  .apoio {
+    grid-column: 1;
+  }
+  .texto {
+    font-size: 15px;
+    max-width: 38ch;
+  }
+  .fase {
+    display: none;
+  }
+  .chao {
+    height: 72%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: 100svh;
+  }
+}
+
+/* ---------- Método: a trilha sobe até a luz ---------- */
+.metodo {
+  padding: clamp(96px, 11vw, 280px) var(--margem) clamp(96px, 10vw, 240px);
+}
+
+.metodoTopo {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 1.6vw, 48px);
+  row-gap: 16px;
+  margin-bottom: clamp(48px, 6vw, 160px);
+}
+
+.rotulo {
+  grid-column: 1 / 4;
+  margin: 0.9em 0 0;
+  font-size: clamp(14px, 0.7vw + 4px, 20px);
+  font-weight: 600;
+  color: var(--floresta);
+}
+
+.h2 {
+  grid-column: 4 / 13;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 6.2vw, 160px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.passos {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 1.6vw, 48px);
+  align-items: start;
+}
+
+.passos [data-palco] {
+  grid-column: 1 / 6;
+  position: sticky;
+  top: max(24px, calc((100svh - 68svh - 56px) / 2));
+}
+
+.arco {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: 68svh;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 999px 999px 0 0; /* o arco: a janela de luz da clareira */
+  background: var(--noite);
+}
+
+.arcoImg {
+  object-fit: cover;
+  object-position: 50% 100%;
+  filter: brightness(0.62) saturate(0.8);
+  transition: object-position 1200ms var(--ease), filter 1200ms var(--ease);
+}
+
+.passos[data-ativo="1"] .arcoImg {
+  object-position: 50% 52%;
+  filter: brightness(0.82) saturate(0.95);
+}
+
+.passos[data-ativo="2"] .arcoImg {
+  object-position: 50% 6%;
+  filter: brightness(1) saturate(1.05);
+}
+
+/* sem JS a foto fica no estado final, iluminada */
+.passos[data-js="0"] .arcoImg {
+  object-position: 50% 6%;
+  filter: none;
+}
+
+.passos [data-contagem] {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 16px 0 0;
+  padding-top: 12px;
+  font-size: clamp(13px, 0.7vw + 3px, 18px);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  border-top: 1px solid rgb(0 14 28 / 0.2);
+}
+
+.passos [data-contagem] span {
+  font-family: var(--font-display);
+  font-size: 1.9em;
+  color: var(--noite);
+}
+
+.passos [data-trilho] {
+  position: absolute;
+  inset: -1px auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: var(--brasa);
+  transform-origin: left;
+  transform: scaleX(var(--fim, 0.33));
+  transition: transform 700ms var(--ease);
+}
+
+.passos [data-lista] {
+  grid-column: 7 / 13;
+}
+
+.passo {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  min-height: 82svh;
+  padding-block: 32px;
+  border-top: 1px solid rgb(0 14 28 / 0.2);
+}
+
+.passo:last-child {
+  min-height: 70svh;
+}
+
+.num {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.4vw, 64px);
+  color: var(--brasa);
+  font-variant-numeric: tabular-nums;
+}
+
+.nome {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 6.2vw, 160px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  transition: opacity 500ms ease-out;
+}
+
+.passos[data-js="1"] .passo .nome,
+.passos[data-js="1"] .passo .num {
+  opacity: 0.5;
+}
+
+.passos[data-js="1"][data-ativo="0"] .passo[data-passo="0"] :is(.nome, .num),
+.passos[data-js="1"][data-ativo="1"] .passo[data-passo="1"] :is(.nome, .num),
+.passos[data-js="1"][data-ativo="2"] .passo[data-passo="2"] :is(.nome, .num) {
+  opacity: 1;
+}
+
+.corpo {
+  margin: 8px 0 0;
+  max-width: 36ch;
+  font-size: clamp(17px, 1vw + 5px, 28px);
+  line-height: 1.55;
+}
+
+.entrega {
+  margin: 0;
+  max-width: 40ch;
+  font-size: clamp(14px, 0.7vw + 4px, 20px);
+  font-weight: 600;
+  color: var(--floresta);
+}
+
+@media (max-width: 900px) {
+  .metodoTopo {
+    display: block;
+  }
+  .rotulo {
+    margin: 0 0 12px;
+  }
+  .passos {
+    display: block;
+  }
+  .passos [data-palco] {
+    top: 8px;
+    z-index: 3;
+    padding: 8px 0 12px;
+    background: var(--linho);
+  }
+  .arco {
+    max-height: 30svh;
+    margin-inline: auto;
+    width: min(100%, 52svh);
+    border-radius: 999px 999px 0 0;
+    aspect-ratio: 3 / 2;
+  }
+  .passo,
+  .passo:last-child {
+    min-height: 62svh;
+    align-content: start;
+    padding-top: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcoImg,
+  .passos [data-trilho],
+  .nome,
+  .fase span {
+    transition-duration: 0.01ms;
+  }
+}

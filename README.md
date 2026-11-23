@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Studio Clareira: landing page (direções para escolher)
 
-## Getting Started
+Três direções para a primeira dobra da landing page do Studio Clareira. Cada uma tem o hero e uma seção, e todas
+foram construídas a partir do manual de marca: Chunk + Poppins, paleta oficial, lobo e elementos de apoio.
+**Ainda não é o site completo.** Escolhida a direção (ou uma mistura), a página inteira é construída sobre ela.
 
-First, run the development server:
+## A · Clareira: `/m/clareira`
+A metáfora do manual levada ao pé da letra. Ao rolar, a mata escura se abre num círculo de luz até a tela ficar
+clara. A seção seguinte é o método (compreender, planejar, construir), com a foto da trilha subindo do chão até o sol.
 
+| Desktop | Celular | Seção 2 |
+|---|---|---|
+| ![](prints/clareira-desk-1.jpg) | ![](prints/clareira-phone-1.jpg) | ![](prints/clareira-secao2.jpg) |
+
+## B · Cartaz: `/m/cartaz`
+O site fala a mesma língua dos posts do estúdio: papel rasgado, fita, o lobo em meio-tom com a lua laranja e
+"LEMBRADO" gigante. A seção seguinte é o post "O que pode travar seu perfil?" em versão interativa: você escolhe
+a alternativa e o estúdio responde.
+
+| Desktop | Celular | Seção 2 |
+|---|---|---|
+| ![](prints/cartaz-desk-1.jpg) | ![](prints/cartaz-phone-1.jpg) | ![](prints/cartaz-secao2.jpg) |
+
+## C · Brasa: `/m/brasa`
+A marca como objeto: laranja chapado, o lobo-chama grande e os adesivos do manual (cursor, balão, selo). Os adesivos
+podem ser arrastados e o lobo acompanha o mouse. A seção seguinte são os serviços, mostrados com as aplicações reais
+da marca (cartão, caneca, tablet).
+
+| Desktop | Celular | Seção 2 |
+|---|---|---|
+| ![](prints/brasa-desk-1.jpg) | ![](prints/brasa-phone-1.jpg) | ![](prints/brasa-secao2.jpg) |
+
+## O que precisa de confirmação
+- **Serviços.** Tirei do material três: identidade visual; conteúdo e redes sociais; posicionamento e presença
+  digital. Estão marcados `RASCUNHO` no código.
+- **Textos de apoio.** Saíram dos posts e do manual. As respostas do quiz (B) e os textos do método (A) são rascunho.
+- **Contato.** Só o WhatsApp 41 98407-9112, que aparece nos posts. Faltam Instagram e e-mail.
+- **Fotos de floresta.** São as da apresentação da marca. Origem e licença a confirmar antes de publicar.
+- **Clientes.** Versátil Dedetizadora, Granja Aluy e Terreiro Temox só entram como cases com autorização.
+
+## Rodar localmente
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000, com as direções em /m/clareira, /m/cartaz e /m/brasa
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feito em Next 16 (App Router) com CSS Modules, sem biblioteca de UI. O briefing usado pelos designers está em
+[`BRIEFING.md`](BRIEFING.md).

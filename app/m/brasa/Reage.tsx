@@ -10,9 +10,11 @@ import { useEffect, useRef, type ReactNode } from "react";
 export default function Reage({
   children,
   className,
+  id,
 }: {
   children: ReactNode;
   className?: string;
+  id?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -66,7 +68,7 @@ export default function Reage({
   }, []);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} id={id} className={className}>
       {children}
     </div>
   );

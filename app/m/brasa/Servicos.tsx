@@ -7,10 +7,8 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 const nada = () => () => {};
 const useHidratado = () => useSyncExternalStore(nada, () => true, () => false);
 import s from "./page.module.css";
+import { FONE, WHATS } from "./dados";
 
-const WHATS =
-  "https://wa.me/5541984079112?text=" +
-  encodeURIComponent("Olá! Vim pelo site do Studio Clareira.");
 
 /* RASCUNHO: confirmar serviços (deduzidos do material da marca) */
 const SERVICOS = [
@@ -18,7 +16,15 @@ const SERVICOS = [
     n: "01",
     titulo: "Identidade visual",
     texto:
-      "Símbolo, logotipo, paleta, tipografia e manual de marca. Depois, a marca aplicada: caneca, cartão, tela.",
+      "Uma marca que dá para reconhecer de longe e que funciona em qualquer lugar.",
+    entregas: [
+      "Diagnóstico da marca",
+      "Símbolo e logotipo, com versões principal, horizontal e só o símbolo",
+      "Paleta e tipografia",
+      "Elementos de apoio",
+      "Manual de marca",
+      "Aplicações (redes, papelaria, embalagem)"
+    ],
     foto: "/posts/mockup-5.jpg",
     w: 2000,
     h: 1500,
@@ -32,7 +38,14 @@ const SERVICOS = [
     n: "02",
     titulo: "Conteúdo e redes sociais",
     texto:
-      "Estratégia de conteúdo, posts e constância. Frequência enche o feed; estratégia enche a memória do cliente.",
+      "Constância com intenção: cada post sabe o que está fazendo no feed.",
+    entregas: [
+      "Estratégia e linha editorial",
+      "Calendário de publicações",
+      "Criação das peças (feed, carrossel, stories)",
+      "Textos e legendas",
+      "Produção contínua, para o perfil não parar quando falta tempo"
+    ],
     foto: "/posts/mockup-1.jpg",
     w: 2000,
     h: 1116,
@@ -46,7 +59,13 @@ const SERVICOS = [
     n: "03",
     titulo: "Posicionamento e presença digital",
     texto:
-      "Como a marca se apresenta e como é encontrada. Uma ponte entre quem você é e quem precisa te encontrar.",
+      "Uma ponte entre quem você é e quem precisa te encontrar.",
+    entregas: [
+      "Leitura de como a marca é percebida hoje",
+      "Mensagem e tom de voz",
+      "Perfil organizado (bio, destaques, links)",
+      "Direção para que identidade e conteúdo digam a mesma coisa"
+    ],
     foto: "/posts/mockup-2.jpg",
     w: 2000,
     h: 1333,
@@ -82,7 +101,14 @@ export default function Servicos() {
   return (
     <section id="servicos" className={s.serv} aria-labelledby="serv-titulo">
       <header className={s.servTopo}>
-        <p className={s.rotulo}>Serviços</p>
+        <div className={s.servEsq}>
+          <p className={s.rotulo}>Serviços</p>
+          {/* RASCUNHO: abertura da seção */}
+          <p className={s.servAbertura}>
+            Três frentes que trabalham juntas. Dá para começar por uma e somar as outras quando
+            fizer sentido.
+          </p>
+        </div>
         <h2 id="serv-titulo" className={s.servTitulo}>
           Do símbolo
           <br />
@@ -106,6 +132,12 @@ export default function Servicos() {
               <span className={s.num}>{x.n}</span>
               <h3 className={s.itemTitulo}>{x.titulo}</h3>
               <p className={s.itemTexto}>{x.texto}</p>
+              {/* RASCUNHO: entregas (deduzidas do material da marca) */}
+              <ul className={s.entregas}>
+                {x.entregas.map((e) => (
+                  <li key={e}>{e}</li>
+                ))}
+              </ul>
 
               {/* telas estreitas e sem JS: a aplicação vem dentro do item */}
               <figure className={s.dentro}>
@@ -137,7 +169,7 @@ export default function Servicos() {
               Falar no WhatsApp
             </a>
             <a className={s.fimFone} href={WHATS} target="_blank" rel="noopener noreferrer">
-              41 98407-9112
+              {FONE}
             </a>
           </li>
         </ol>

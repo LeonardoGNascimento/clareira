@@ -74,6 +74,8 @@
 .navLink {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 44px;
   min-height: 44px;
   font-weight: 600;
   font-size: clamp(14px, 1.1vw, 22px);
@@ -87,6 +89,32 @@
     text-decoration-line: underline;
   }
 }
+.navZap {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 12px;
+  background: var(--noite);
+  color: var(--linho);
+  font-weight: 600;
+  font-size: clamp(14px, 1.1vw, 22px);
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    scale 160ms var(--ease-out);
+}
+.navZap:active {
+  scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+  .navZap:hover {
+    background: var(--linho);
+    color: var(--noite);
+  }
+}
+.navZap:focus-visible,
 .navLink:focus-visible,
 .marca:focus-visible,
 .link:focus-visible,
@@ -347,6 +375,44 @@
   padding-inline: var(--margem);
   padding-bottom: clamp(32px, 4vw, 96px);
 }
+.servEsq {
+  grid-column: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+.servAbertura {
+  margin: 0;
+  max-width: 30ch;
+  font-size: clamp(17px, 1.3vw, 28px);
+  line-height: 1.55;
+}
+.entregas {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  max-width: 44ch;
+  display: grid;
+  gap: 8px;
+  font-size: clamp(16px, 1.1vw, 24px);
+  line-height: 1.45;
+}
+.entregas li {
+  position: relative;
+  padding-left: 28px;
+}
+.entregas li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 10px;
+  height: 10px;
+  background: var(--brasa);
+  rotate: 45deg;
+}
 .rotulo {
   margin: 0;
   font-weight: 600;
@@ -480,9 +546,21 @@
   }
   .servTopo {
     grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
+    gap: 24px;
   }
   .servTitulo {
+    grid-column: 1;
+    order: 1;
+  }
+  .servEsq {
+    display: contents;
+  }
+  .servEsq .rotulo {
+    order: 0;
+    grid-column: 1;
+  }
+  .servAbertura {
+    order: 2;
     grid-column: 1;
   }
 }
@@ -501,7 +579,7 @@
     transition: opacity 200ms ease;
   }
   .servGrade[data-pronto="true"] .item[data-ativo="false"] {
-    opacity: 0.4;
+    opacity: 0.62;
   }
   .dentro {
     display: none;
@@ -760,9 +838,13 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     column-gap: 32px;
-    grid-template-rows: 1fr auto auto auto 1fr;
+    grid-template-rows: 1fr auto auto auto auto 1fr;
     align-items: center;
     padding-block: 56px;
+  }
+  .entregas {
+    grid-column: 1;
+    grid-row: 5;
   }
   .num {
     grid-column: 1;
@@ -781,7 +863,7 @@
   }
   .dentro {
     grid-column: 2;
-    grid-row: 1 / span 5;
+    grid-row: 1 / span 6;
     margin: 0;
   }
   .dentroAdesivo {

@@ -1,8 +1,44 @@
-# Studio Clareira: landing page (direções para escolher)
+# Studio Clareira: landing page
 
-Quatro direções para a primeira dobra da landing page do Studio Clareira. Cada uma tem o hero e uma seção, e todas
-foram construídas a partir do manual de marca: Chunk + Poppins, paleta oficial, lobo e elementos de apoio.
-**Ainda não é o site completo.** Escolhida a direção (ou uma mistura), a página inteira é construída sobre ela.
+Todas as direções foram construídas a partir do manual de marca: Chunk + Poppins, paleta oficial, lobo e elementos de apoio.
+**B · Cartaz, C · Brasa e D · Colagem já são landing pages completas.** A · Clareira ficou só na primeira dobra.
+
+## Páginas completas: B, C e D
+As três têm as mesmas seções e o mesmo texto ([`CONTEUDO.md`](CONTEUDO.md)), cada uma com o seu visual:
+
+- topo com âncoras
+- hero
+- "o que trava o seu perfil?"
+- serviços, com o que cada um entrega
+- método: conversa, compreender, planejar e construir
+- a marca e o feed do estúdio na prática
+- sobre: o conceito clareira/lobo e o Alisson
+- perguntas frequentes
+- chamada final da "ponte"
+- rodapé
+- WhatsApp flutuante no celular
+
+As três foram conferidas em 1440, 2560 e em 8 tamanhos de celular e tablet. Nenhuma tem rolagem lateral. As âncoras e o
+acordeão foram testados no navegador, e a página fica legível sem JavaScript.
+
+| | Desktop (página inteira, de cima para baixo e da esquerda para a direita) | Celular |
+|---|---|---|
+| **B · Cartaz** `/m/cartaz` | ![](prints/lp-cartaz-desktop.jpg) | ![](prints/lp-cartaz-celular.jpg) |
+| **C · Brasa** `/m/brasa` | ![](prints/lp-brasa-desktop.jpg) | ![](prints/lp-brasa-celular.jpg) |
+| **D · Colagem** `/m/colagem` | ![](prints/lp-colagem-desktop.jpg) | ![](prints/lp-colagem-celular.jpg) |
+
+**Antes de publicar, o Alisson precisa confirmar:**
+- quais serviços ele oferece hoje;
+- se o estúdio tem Instagram e e-mail;
+- se atende fora de Curitiba;
+- uma foto dele para a seção "Sobre".
+
+Até lá, as entregas dos serviços, as respostas das perguntas e o texto sobre ele ficam como rascunho, marcados `RASCUNHO`
+no código.
+
+---
+
+## As primeiras dobras (como as direções nasceram)
 
 ## A · Clareira: `/m/clareira`
 A metáfora do manual levada ao pé da letra. Ao rolar, a mata escura se abre num círculo de luz até a tela ficar

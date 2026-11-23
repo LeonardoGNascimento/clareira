@@ -1,6 +1,11 @@
 "use client";
 
-import { useRef, type CSSProperties, type PointerEvent, type ReactNode } from "react";
+import {
+  useRef,
+  type CSSProperties,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 
 /**
  * Adesivo que se deixa arrastar (mouse e caneta). No toque fica parado, para
@@ -16,7 +21,17 @@ export default function Adesivo({
   style?: CSSProperties;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const est = useRef({ x: 0, y: 0, ox: 0, oy: 0, minX: 0, maxX: 0, minY: 0, maxY: 0, ativo: false });
+  const est = useRef({
+    x: 0,
+    y: 0,
+    ox: 0,
+    oy: 0,
+    minX: 0,
+    maxX: 0,
+    minY: 0,
+    maxY: 0,
+    ativo: false,
+  });
 
   const baixar = (e: PointerEvent<HTMLSpanElement>) => {
     if (e.pointerType === "touch" || e.button !== 0) return;

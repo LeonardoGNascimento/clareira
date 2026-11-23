@@ -1,47 +1,25 @@
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Adesivo from "./Adesivo";
 import Quiz from "./Quiz";
 import Reage from "./Reage";
-import { rasgo } from "./rasgo";
+import Servicos from "./Servicos";
+import Metodo from "./Metodo";
+import Pratica from "./Pratica";
+import Sobre from "./Sobre";
+import Perguntas from "./Perguntas";
+import Final from "./Final";
+import Rodape from "./Rodape";
+import Flutuante from "./Flutuante";
+import { Fita, R, WHATS, v } from "./pecas";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Studio Clareira · Direção D, Colagem",
+  description:
+    "Studio Clareira, de Curitiba (PR): identidade visual, conteúdo e redes sociais, posicionamento e presença digital para marcas que querem ser lembradas.",
   robots: { index: false },
 };
-
-const WHATS =
-  "https://wa.me/5541984079112?text=" +
-  encodeURIComponent("Olá! Vim pelo site do Studio Clareira.");
-
-/* Rasgos fixos (seed = identidade da peça), calculados uma vez. */
-const R = {
-  folha: rasgo(3, { t: 1.8, b: 1.6, l: 0.5, r: 0.5, sx: 1.4, sy: 9 }),
-  marca: rasgo(7, { t: 7, b: 7, l: 2.4, r: 2.4, sx: 3, sy: 25 }),
-  zap: rasgo(13, { t: 6, b: 6, l: 3, r: 3, sx: 8, sy: 30 }),
-  fitaA: rasgo(23, { l: 7, r: 7, sx: 50, sy: 12.5 }),
-  fitaB: rasgo(29, { l: 7, r: 7, sx: 50, sy: 12.5 }),
-  fitaC: rasgo(31, { l: 7, r: 7, sx: 50, sy: 12.5 }),
-  pergunta: rasgo(41, { t: 1.6, b: 1.8, l: 0.8, r: 0.8, sx: 1.6, sy: 8 }),
-  tarjaPergunta: rasgo(47, { t: 7, b: 7, l: 2.4, r: 2.4, sx: 3, sy: 25 }),
-  peca: rasgo(43, { t: 1.4, b: 1.6, l: 0.8, r: 0.8, sx: 1.6, sy: 8 }),
-  foto: rasgo(19, { t: 1.4, b: 1.4, l: 1.2, r: 1.2, sx: 2.5, sy: 6 }),
-  servico: rasgo(61, { t: 9, b: 9, l: 2.4, r: 2.4, sx: 4, sy: 25 }),
-};
-const OPCOES = [
-  rasgo(51, { t: 9, b: 9, l: 2.4, r: 2.4, sx: 4, sy: 25 }),
-  rasgo(53, { t: 9, b: 9, l: 2.4, r: 2.4, sx: 4, sy: 25 }),
-  rasgo(59, { t: 9, b: 9, l: 2.4, r: 2.4, sx: 4, sy: 25 }),
-  rasgo(67, { t: 9, b: 9, l: 2.4, r: 2.4, sx: 4, sy: 25 }),
-];
-
-const v = (name: string, value: string) => ({ [name]: value }) as CSSProperties;
-
-function Fita({ rasgoCss, className }: { rasgoCss: string; className: string }) {
-  return <span aria-hidden className={`${s.fita} ${className}`} style={v("--rasgo", rasgoCss)} />;
-}
 
 /* RASCUNHO: confirmar serviços e as respostas com o dono.
    Mapa: A constância e D tempo → Conteúdo e redes sociais; B estratégia → Posicionamento e
@@ -120,198 +98,303 @@ const ALTERNATIVAS = [
 
 export default function Colagem() {
   return (
-    <main className={s.root}>
-      {/* ───────── Hero: o muro laranja, o papel e o lobo ───────── */}
-      <Reage className={s.hero}>
-        <div className={s.fundo} aria-hidden="true">
+    <div className={s.root}>
+      <a className={s.pula} href="#conteudo">
+        Pular para o conteúdo
+      </a>
+
+      <header className={s.topo}>
+        <a
+          className={s.marcaLink}
+          href="#titulo"
+          aria-label="Studio Clareira, início"
+        >
           <Image
-            src="/brand/brasa-lobo-chama.svg"
-            alt=""
-            width={719}
-            height={824}
+            src="/brand/brasa-wordmark.svg"
+            alt="Studio Clareira"
+            width={822}
+            height={350}
             priority
-            className={`${s.padrao} ${s.padraoA}`}
+            className={s.marcaImg}
           />
-          <Image
-            src="/brand/brasa-lobo-chama.svg"
-            alt=""
-            width={719}
-            height={824}
-            className={`${s.padrao} ${s.padraoB}`}
+        </a>
+        <nav className={s.nav} aria-label="Principal">
+          <ul>
+            <li>
+              <a href="#servicos">Serviços</a>
+            </li>
+            <li>
+              <a href="#metodo">Método</a>
+            </li>
+            <li>
+              <a href="#sobre">Sobre</a>
+            </li>
+            <li>
+              <a href="#perguntas">Perguntas</a>
+            </li>
+          </ul>
+        </nav>
+        <a
+          className={s.zap}
+          href={WHATS}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span
+            className={s.zapFundo}
+            style={v("--rasgo", R.zap)}
+            aria-hidden
           />
-        </div>
+          <span className={s.zapTxt}>WhatsApp</span>
+        </a>
+      </header>
 
-        <p className={s.gigante} aria-hidden>
-          Lembrado
-        </p>
-
-        <header className={s.topo}>
-          <a className={s.marcaLink} href="#titulo" aria-label="Studio Clareira, início">
+      <main id="conteudo" tabIndex={-1} className={s.principal}>
+        {/* ───────── Hero: o muro laranja, o papel e o lobo ───────── */}
+        <Reage className={s.hero} data-zap-esconde>
+          <div className={s.fundo} aria-hidden="true">
             <Image
-              src="/brand/brasa-wordmark.svg"
-              alt="Studio Clareira"
-              width={822}
-              height={350}
+              src="/brand/brasa-lobo-chama.svg"
+              alt=""
+              width={719}
+              height={824}
               priority
-              className={s.marcaImg}
+              className={`${s.padrao} ${s.padraoA}`}
             />
-          </a>
-          <a className={s.zap} href={WHATS} target="_blank" rel="noopener noreferrer">
-            <span className={s.zapFundo} style={v("--rasgo", R.zap)} aria-hidden />
-            <span className={s.zapTxt}>41 98407-9112</span>
-          </a>
-        </header>
+            <Image
+              src="/brand/brasa-lobo-chama.svg"
+              alt=""
+              width={719}
+              height={824}
+              className={`${s.padrao} ${s.padraoB}`}
+            />
+          </div>
 
-        <div className={s.folhaWrap}>
-          <div className={s.papel} style={v("--rasgo", R.folha)} aria-hidden />
-          <div className={s.folhaTxt}>
-            <h1 id="titulo" className={s.h1}>
-              <span className={s.h1Linha}>Presença</span>
-              <span className={s.h1Linha}>não é só postar,</span>
-              <span className={s.marca}>
-                <span className={s.marcaFundo} style={v("--rasgo", R.marca)} aria-hidden />
-                <span className={s.marcaTxt}>é ser lembrado</span>
-                <Adesivo className={`${s.adesivo} ${s.cursor}`}>
-                  <Image
-                    src="/brand/brasa-cursor.svg"
-                    alt=""
-                    width={100}
-                    height={125}
-                    draggable={false}
-                    priority
+          <p className={s.gigante} aria-hidden>
+            Lembrado
+          </p>
+
+          <div className={s.folhaWrap}>
+            <div
+              className={s.papel}
+              style={v("--rasgo", R.folha)}
+              aria-hidden
+            />
+            <div className={s.folhaTxt}>
+              <h1 id="titulo" className={s.h1}>
+                <span className={s.h1Linha}>Presença</span>
+                <span className={s.h1Linha}>não é só postar,</span>
+                <span className={s.marca}>
+                  <span
+                    className={s.marcaFundo}
+                    style={v("--rasgo", R.marca)}
+                    aria-hidden
                   />
-                </Adesivo>
-              </span>
-            </h1>
-            <p className={s.lide}>
-              Frequência enche o feed. Estratégia enche a memória do cliente. Nosso trabalho começa na
-              diferença entre as duas.
-            </p>
-            <a className={s.botao} href={WHATS} target="_blank" rel="noopener noreferrer">
-              Conversar sobre a sua marca
-            </a>
-          </div>
-          <Fita rasgoCss={R.fitaA} className={s.fitaA} />
-          <Fita rasgoCss={R.fitaB} className={s.fitaB} />
-        </div>
-
-        <div className={s.palcoLobo}>
-          <Image
-            src="/brand/brasa-lobo.svg"
-            alt="Lobo-chama, símbolo do Studio Clareira"
-            width={719}
-            height={824}
-            priority
-            className={s.lobo}
-          />
-          <Adesivo className={`${s.adesivo} ${s.balao}`}>
-            <Image src="/brand/brasa-balao.svg" alt="" width={160} height={160} draggable={false} priority />
-          </Adesivo>
-        </div>
-
-        <Adesivo className={`${s.adesivo} ${s.selo}`}>
-          <Image src="/brand/brasa-selo.svg" alt="" width={200} height={200} draggable={false} priority />
-        </Adesivo>
-      </Reage>
-
-      {/* ───────── Seção: o que trava o perfil → o serviço que resolve ───────── */}
-      <section className={s.trava} aria-labelledby="pergunta">
-        <div className={s.fundo} aria-hidden="true">
-          <Image
-            src="/brand/brasa-lobo-chama.svg"
-            alt=""
-            width={719}
-            height={824}
-            className={`${s.padrao} ${s.padraoC}`}
-          />
-        </div>
-
-        <Quiz className={s.quiz}>
-          {ALTERNATIVAS.map((a) => (
-            <input
-              key={a.id}
-              className={s.radio}
-              type="radio"
-              name="trava"
-              id={`t-${a.id}`}
-              value={a.id}
-              defaultChecked={a.id === "b"}
-            />
-          ))}
-
-          <div className={s.perguntaWrap}>
-            <div className={s.papel} style={v("--rasgo", R.pergunta)} aria-hidden />
-            <div className={s.perguntaTxt}>
-              <h2 id="pergunta" className={s.pergunta}>
-                <span className={s.perguntaA}>O que você acha que pode</span>
-                <span className={s.perguntaMarca}>
-                  <span className={s.marcaFundo} style={v("--rasgo", R.tarjaPergunta)} aria-hidden />
-                  <span className={s.perguntaB}>travar seu perfil?</span>
+                  <span className={s.marcaTxt}>é ser lembrado</span>
+                  <Adesivo className={`${s.adesivo} ${s.cursor}`}>
+                    <Image
+                      src="/brand/brasa-cursor.svg"
+                      alt=""
+                      width={100}
+                      height={125}
+                      draggable={false}
+                      priority
+                    />
+                  </Adesivo>
                 </span>
-              </h2>
-              <p className={s.dica}>Escolha uma alternativa e veja o serviço que resolve.</p>
-              <div className={s.opcoes}>
-                {ALTERNATIVAS.map((a, i) => (
-                  <label
-                    key={a.id}
-                    htmlFor={`t-${a.id}`}
-                    className={`${s.opcao} ${s[`opcao_${a.id}` as keyof typeof s]}`}
-                    style={v("--rasgo", OPCOES[i])}
-                  >
-                    <span className={s.letra}>{a.letra}.</span>
-                    <span className={s.opcaoTxt}>{a.rotulo}</span>
-                  </label>
-                ))}
-              </div>
+              </h1>
+              <p className={s.lide}>
+                Frequência enche o feed. Estratégia enche a memória do cliente.
+                Nosso trabalho começa na diferença entre as duas.
+              </p>
+              <a
+                className={s.botao}
+                href={WHATS}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Conversar sobre a sua marca
+              </a>
             </div>
-            <Fita rasgoCss={R.fitaC} className={s.fitaPergunta} />
+            <Fita rasgoCss={R.fitaA} className={s.fitaA} />
+            <Fita rasgoCss={R.fitaB} className={s.fitaB} />
           </div>
 
-          <div className={s.respostas} aria-live="polite" data-resposta>
-            <div className={s.pecaWrap}>
-              <div className={s.papel} style={v("--rasgo", R.peca)} aria-hidden />
-              {ALTERNATIVAS.map((a) => (
-                <article key={a.id} className={`${s.resposta} ${s[`resp_${a.id}` as keyof typeof s]}`}>
-                  <div className={s.fotoWrap}>
-                    <div className={s.foto} style={v("--rasgo", R.foto)}>
+          <div className={s.palcoLobo}>
+            <Image
+              src="/brand/brasa-lobo.svg"
+              alt="Lobo-chama, símbolo do Studio Clareira"
+              width={719}
+              height={824}
+              priority
+              className={s.lobo}
+            />
+            <Adesivo className={`${s.adesivo} ${s.balao}`}>
+              <Image
+                src="/brand/brasa-balao.svg"
+                alt=""
+                width={160}
+                height={160}
+                draggable={false}
+                priority
+              />
+            </Adesivo>
+          </div>
+
+          <Adesivo className={`${s.adesivo} ${s.selo}`}>
+            <Image
+              src="/brand/brasa-selo.svg"
+              alt=""
+              width={200}
+              height={200}
+              draggable={false}
+              priority
+            />
+          </Adesivo>
+        </Reage>
+
+        {/* ───────── Seção: o que trava o perfil → o serviço que resolve ───────── */}
+        <section
+          className={s.trava}
+          aria-labelledby="pergunta"
+          data-zap-esconde
+        >
+          <div className={s.fundo} aria-hidden="true">
+            <Image
+              src="/brand/brasa-lobo-chama.svg"
+              alt=""
+              width={719}
+              height={824}
+              className={`${s.padrao} ${s.padraoC}`}
+            />
+          </div>
+
+          <Quiz className={s.quiz}>
+            {ALTERNATIVAS.map((a) => (
+              <input
+                key={a.id}
+                className={s.radio}
+                type="radio"
+                name="trava"
+                id={`t-${a.id}`}
+                value={a.id}
+                defaultChecked={a.id === "b"}
+              />
+            ))}
+
+            <div className={s.perguntaWrap}>
+              <div
+                className={s.papel}
+                style={v("--rasgo", R.pergunta)}
+                aria-hidden
+              />
+              <div className={s.perguntaTxt}>
+                <h2 id="pergunta" className={s.pergunta}>
+                  <span className={s.perguntaA}>O que você acha que pode</span>
+                  <span className={s.perguntaMarca}>
+                    <span
+                      className={s.marcaFundo}
+                      style={v("--rasgo", R.tarjaPergunta)}
+                      aria-hidden
+                    />
+                    <span className={s.perguntaB}>travar seu perfil?</span>
+                  </span>
+                </h2>
+                <p className={s.dica}>
+                  Escolha uma alternativa e veja o serviço que resolve.
+                </p>
+                <div className={s.opcoes}>
+                  {ALTERNATIVAS.map((a, i) => (
+                    <label
+                      key={a.id}
+                      htmlFor={`t-${a.id}`}
+                      className={`${s.opcao} ${s[`opcao_${a.id}` as keyof typeof s]}`}
+                      style={v("--rasgo", R.opcoes[i])}
+                    >
+                      <span className={s.letra}>{a.letra}.</span>
+                      <span className={s.opcaoTxt}>{a.rotulo}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <Fita rasgoCss={R.fitaC} className={s.fitaPergunta} />
+            </div>
+
+            <div className={s.respostas} aria-live="polite" data-resposta>
+              <div className={s.pecaWrap}>
+                <div
+                  className={s.papel}
+                  style={v("--rasgo", R.peca)}
+                  aria-hidden
+                />
+                {ALTERNATIVAS.map((a) => (
+                  <article
+                    key={a.id}
+                    className={`${s.resposta} ${s[`resp_${a.id}` as keyof typeof s]}`}
+                  >
+                    <div className={s.fotoWrap}>
+                      <div className={s.foto} style={v("--rasgo", R.foto)}>
+                        <Image
+                          src={a.servico.foto}
+                          alt={a.servico.alt}
+                          fill
+                          sizes="(min-width: 900px) 40vw, 90vw"
+                          style={{
+                            objectFit: "cover",
+                            objectPosition: a.servico.pos,
+                          }}
+                        />
+                      </div>
                       <Image
-                        src={a.servico.foto}
-                        alt={a.servico.alt}
-                        fill
-                        sizes="(min-width: 900px) 40vw, 90vw"
-                        style={{ objectFit: "cover", objectPosition: a.servico.pos }}
+                        src={a.servico.adesivo}
+                        alt=""
+                        width={160}
+                        height={160}
+                        className={s.respAdesivo}
+                        style={v("--r", `${a.servico.giro}deg`)}
                       />
                     </div>
-                    <Image
-                      src={a.servico.adesivo}
-                      alt=""
-                      width={160}
-                      height={160}
-                      className={s.respAdesivo}
-                      style={v("--r", `${a.servico.giro}deg`)}
-                    />
-                  </div>
-                  <h3 className={s.respostaTitulo}>{a.titulo}</h3>
-                  <p className={s.respostaTexto}>{a.texto}</p>
-                  <div className={s.respostaFim}>
-                    <p className={s.servico}>
-                      <span className={s.servicoFundo} style={v("--rasgo", R.servico)} aria-hidden />
-                      <span className={s.servicoTxt}>
-                        <span className={s.servicoRot}>Serviço: </span>
-                        {a.servico.nome}
-                      </span>
-                    </p>
-                    <a className={s.botao} href={WHATS} target="_blank" rel="noopener noreferrer">
-                      Falar com o estúdio
-                    </a>
-                  </div>
-                </article>
-              ))}
-              <Fita rasgoCss={R.fitaA} className={s.fitaPeca} />
+                    <h3 className={s.respostaTitulo}>{a.titulo}</h3>
+                    <p className={s.respostaTexto}>{a.texto}</p>
+                    <div className={s.respostaFim}>
+                      <p className={s.servico}>
+                        <span
+                          className={s.servicoFundo}
+                          style={v("--rasgo", R.servico)}
+                          aria-hidden
+                        />
+                        <span className={s.servicoTxt}>
+                          <span className={s.servicoRot}>Serviço: </span>
+                          {a.servico.nome}
+                        </span>
+                      </p>
+                      <a
+                        className={s.botao}
+                        href={WHATS}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Falar com o estúdio
+                      </a>
+                    </div>
+                  </article>
+                ))}
+                <Fita rasgoCss={R.fitaA} className={s.fitaPeca} />
+              </div>
             </div>
-          </div>
-        </Quiz>
-      </section>
-    </main>
+          </Quiz>
+        </section>
+
+        <Servicos />
+        <Metodo />
+        <Pratica />
+        <Sobre />
+        <Perguntas />
+        <Final />
+      </main>
+
+      <Rodape />
+      <Flutuante href={WHATS} />
+    </div>
   );
 }

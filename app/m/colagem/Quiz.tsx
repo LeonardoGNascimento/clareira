@@ -7,7 +7,13 @@ import { useRef, type ReactNode } from "react";
  * ao escolher, se ela ficou longe do toque (abaixo de 60% da tela), rola só o necessário
  * para o título da resposta ficar à vista.
  */
-export default function Quiz({ children, className }: { children: ReactNode; className?: string }) {
+export default function Quiz({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   const aoEscolher = () => {
@@ -18,12 +24,22 @@ export default function Quiz({ children, className }: { children: ReactNode; cla
     requestAnimationFrame(() => {
       const limite = window.innerHeight * 0.6;
       const topo = alvo.getBoundingClientRect().top;
-      if (topo > limite) window.scrollBy({ top: topo - limite, behavior: reduz ? "auto" : "smooth" });
+      if (topo > limite)
+        window.scrollBy({
+          top: topo - limite,
+          behavior: reduz ? "auto" : "smooth",
+        });
     });
   };
 
   return (
-    <div ref={ref} className={className} role="radiogroup" aria-labelledby="pergunta" onChange={aoEscolher}>
+    <div
+      ref={ref}
+      className={className}
+      role="radiogroup"
+      aria-labelledby="pergunta"
+      onChange={aoEscolher}
+    >
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type HTMLAttributes } from "react";
 
 /**
  * Faz o lobo reagir ao ponteiro: grava --px/--py (-1..1) no elemento, com
@@ -10,10 +10,8 @@ import { useEffect, useRef, type ReactNode } from "react";
 export default function Reage({
   children,
   className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+  ...resto
+}: HTMLAttributes<HTMLDivElement>) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,8 +44,14 @@ export default function Reage({
     const mover = (e: PointerEvent) => {
       if (e.pointerType === "touch") return; // toque não move o lobo
       const r = el.getBoundingClientRect();
-      alvoX = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2));
-      alvoY = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height - 0.5) * 2));
+      alvoX = Math.max(
+        -1,
+        Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2),
+      );
+      alvoY = Math.max(
+        -1,
+        Math.min(1, ((e.clientY - r.top) / r.height - 0.5) * 2),
+      );
       acorda();
     };
     const sair = () => {
@@ -66,7 +70,7 @@ export default function Reage({
   }, []);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} {...resto}>
       {children}
     </div>
   );

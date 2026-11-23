@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { Fragment, type CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -184,15 +184,29 @@ export default function Cartaz() {
               <div className={styles.opcoes} style={v("--rasgo", R.opcoes)}>
                 <p className={styles.dica}>Escolha uma alternativa e veja como o estúdio resolve.</p>
                 {ALTERNATIVAS.map((a, i) => (
-                  <label
-                    key={a.id}
-                    htmlFor={`t-${a.id}`}
-                    className={`${styles.opcao} ${styles[`opcao_${a.id}` as keyof typeof styles]}`}
-                    style={v("--rasgo", OPCOES[i])}
-                  >
-                    <span className={styles.letra}>{a.letra}.</span>
-                    <span className={styles.opcaoTxt}>{a.rotulo}</span>
-                  </label>
+                  <Fragment key={a.id}>
+                    <label
+                      htmlFor={`t-${a.id}`}
+                      className={`${styles.opcao} ${styles[`opcao_${a.id}` as keyof typeof styles]}`}
+                      style={v("--rasgo", OPCOES[i])}
+                    >
+                      <span className={styles.letra}>{a.letra}.</span>
+                      <span className={styles.opcaoTxt}>{a.rotulo}</span>
+                    </label>
+                    {/* Celular: a resposta abre logo abaixo da alternativa tocada (no desktop fica a folha ao lado). */}
+                    <div className={styles.inlineWrap}>
+                      <div
+                        className={`${styles.inline} ${styles[`inl_${a.id}` as keyof typeof styles]}`}
+                        style={v("--rasgo", R.resposta)}
+                      >
+                        <h3 className={styles.inlineTitulo}>{a.titulo}</h3>
+                        <p className={styles.inlineTexto}>{a.texto}</p>
+                        <a className={styles.botao} href={WHATS}>
+                          Falar com o estúdio
+                        </a>
+                      </div>
+                    </div>
+                  </Fragment>
                 ))}
               </div>
               <Fita rasgoCss={R.fitaA} className={styles.fitaOpcoes} />

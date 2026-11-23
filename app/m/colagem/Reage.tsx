@@ -44,6 +44,7 @@ export default function Reage({
       if (!raf) raf = requestAnimationFrame(passo);
     };
     const mover = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return; // toque não move o lobo
       const r = el.getBoundingClientRect();
       alvoX = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2));
       alvoY = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height - 0.5) * 2));

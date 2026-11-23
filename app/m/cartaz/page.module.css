@@ -544,9 +544,263 @@
   }
 }
 
+/* ───────── Celular e tablet (< 900px): composição própria ───────── */
+
+.inlineWrap {
+  display: none;
+}
+
+@media (max-width: 899px), (orientation: landscape) and (max-height: 500px) {
+  .root {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Hero em fluxo: nav, palavra gigante, folha, lobo, serviços. A palavra cabe inteira (não é cortada). */
+  .nav {
+    order: -1;
+  }
+  .gigante {
+    position: relative;
+    z-index: 1;
+    top: auto;
+    left: auto;
+    order: 0;
+    margin: 12px 0 -0.12em;
+    /* a palavra ocupa exatamente a largura entre as margens (≈ 5,2 em) */
+    font-size: calc((100vw - 2 * var(--margem)) / 5.2);
+    letter-spacing: -0.02em;
+  }
+  .folhaWrap {
+    margin: 0 4px;
+    rotate: none; /* o texto fica reto; só o papel inclina (::before) */
+  }
+  .folha {
+    position: relative;
+    isolation: isolate;
+    background: none;
+    clip-path: none;
+    padding: 36px 24px;
+  }
+  .folha::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--papel);
+    background-image: url("/textures/papel.jpg");
+    background-size: cover;
+    background-blend-mode: multiply;
+    clip-path: var(--rasgo);
+    rotate: -1.2deg;
+  }
+
+  .h1 {
+    font-size: min(34px, calc((100vw - 100px) / 7.8));
+  }
+  /* A tarja acompanha a largura da folha: nunca passa da borda. */
+  .marcaTxt {
+    font-size: min(40px, calc((100vw - 122px) / 7.4));
+  }
+  .botao {
+    white-space: normal;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 20px;
+    line-height: 1.2;
+    text-wrap: balance;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .botaoClaro {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .printWrap {
+    margin-top: -16px;
+  }
+  /* No celular a palavra gigante encosta na folha: a fita de cima cobria o "E". Vai para o canto de baixo. */
+  .fitaFolhaA {
+    top: auto;
+    bottom: 4px;
+    left: -18px;
+    rotate: 32deg;
+  }
+
+  /* Serviços: três linhas alinhadas, como um índice de cartaz. */
+  .servicos {
+    display: grid;
+    gap: 0;
+    margin-top: 28px;
+    padding: 0;
+    border-top: 2px solid var(--noite);
+    font-size: 16px;
+  }
+  .servicos li {
+    padding: 12px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--noite) 40%, transparent);
+  }
+  .servicos li:last-child {
+    border-bottom: 0;
+  }
+
+  .gigante {
+    pointer-events: none;
+  }
+
+  /* Pergunta e alternativas: a logo da pergunta fica livre, a folha de baixo cobre só a margem. */
+  .card {
+    padding-bottom: 64px;
+  }
+  .quiz {
+    margin-top: -24px;
+  }
+
+  /* A resposta abre logo abaixo da alternativa tocada. */
+  .respostas {
+    display: none;
+  }
+  .inlineWrap {
+    display: block;
+  }
+  .inline {
+    display: none;
+    margin: 8px -4px 12px;
+    padding: 24px 20px 24px;
+    background-color: var(--brasa);
+    background-image: url("/textures/papel.jpg");
+    background-size: cover;
+    background-blend-mode: multiply;
+    clip-path: var(--rasgo);
+    color: var(--noite);
+  }
+  .radio[value="a"]:checked ~ .opcoesWrap .inl_a,
+  .radio[value="b"]:checked ~ .opcoesWrap .inl_b,
+  .radio[value="c"]:checked ~ .opcoesWrap .inl_c,
+  .radio[value="d"]:checked ~ .opcoesWrap .inl_d {
+    display: block;
+    animation: resposta 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .inlineTitulo {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+  .inlineTexto {
+    margin: 12px 0 20px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .opcao:active {
+    translate: 0 1px;
+  }
+}
+
+/* Tablet em pé e celular deitado: folha à esquerda, lobo à direita, serviços no pé. */
+@media (max-width: 899px) and (min-width: 600px),
+  (orientation: landscape) and (max-height: 500px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    align-content: start;
+  }
+  .nav {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .gigante {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .folhaWrap {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: start; /* sem isso a folha estica até a altura do lobo e as fitas ficam soltas */
+    margin: 0 0 0 4px;
+  }
+  .printWrap {
+    grid-column: 2;
+    grid-row: 3;
+    align-self: start;
+    width: auto;
+    margin: 28px 4px 0 -28px;
+  }
+  .servicos {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 24px;
+    margin-top: 32px;
+  }
+  .servicos li {
+    border-bottom: 0;
+    padding: 14px 0 0;
+  }
+  .h1 {
+    font-size: 5.2vw;
+  }
+  .marcaTxt {
+    font-size: 5.7vw;
+  }
+  .lide {
+    font-size: 18px;
+    max-width: 38ch;
+  }
+  .botao {
+    width: fit-content;
+    white-space: nowrap;
+    padding: 0 24px;
+  }
+}
+
+/* Celular deitado: o hero é dimensionado pela altura, título + tarja + botão cabem na primeira tela. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) min(26vw, 220px);
+    padding-top: 8px;
+  }
+  .tag {
+    width: 120px;
+    padding: 8px 12px;
+  }
+  .gigante {
+    margin-top: 12px;
+    font-size: 21svh;
+  }
+  .folha {
+    padding: 20px 24px 20px;
+  }
+  .h1 {
+    font-size: min(30px, 7.6svh);
+  }
+  .h1Linha {
+    display: inline;
+  }
+  .h1Linha:first-child::after {
+    content: " ";
+  }
+  .marca {
+    margin-top: 8px;
+  }
+  .marcaTxt {
+    font-size: min(36px, 9svh);
+  }
+  .lide {
+    margin: 12px 0 14px;
+    font-size: 16px;
+    line-height: 1.45;
+    max-width: 52ch;
+  }
+  .printWrap {
+    margin-top: 12px;
+  }
+}
+
 /* ───────── Telas largas: o cartaz cresce com a tela (1440 → 2560) ───────── */
 
-@media (min-width: 900px) {
+@media (min-width: 900px) and (min-height: 501px) {
   .root {
     --margem: 4vw;
   }
@@ -748,7 +1002,7 @@
 
 /* Movimento só onde o navegador sabe ligar à rolagem e a pessoa aceita movimento. */
 @supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (min-width: 900px) and (min-height: 501px) and (prefers-reduced-motion: no-preference) {
     .gigante {
       animation: foge linear both;
       animation-timeline: scroll(root);

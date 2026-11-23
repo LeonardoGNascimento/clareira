@@ -268,28 +268,115 @@
   text-decoration: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px), (max-height: 500px) and (orientation: landscape) {
   .hero {
-    --cy: 24%;
-    --r: 22vmin;
-    --borda: 30vmin;
+    --cy: 27%;
+    --r: 28vmin;
+    --borda: 26vmin;
+    height: 170svh;
+  }
+  .topo {
+    padding: max(16px, env(safe-area-inset-top)) max(var(--margem), env(safe-area-inset-right)) 0
+      max(var(--margem), env(safe-area-inset-left));
+  }
+  .marca {
+    width: clamp(104px, 14vw, 136px);
+  }
+  .nav {
+    gap: 12px;
+    padding-top: 6px;
   }
   .base {
     grid-template-columns: 1fr;
+    row-gap: 20px;
+    padding: 0 max(var(--margem), env(safe-area-inset-right))
+      max(28px, calc(env(safe-area-inset-bottom) + 20px)) max(var(--margem), env(safe-area-inset-left));
   }
   .titulo,
   .apoio {
     grid-column: 1;
   }
+  .titulo {
+    /* 6,9em = largura de "Onde a marca" em Chunk: cabe em 2 linhas de 320px a 900px */
+    font-size: min(calc((100vw - 2 * var(--margem)) / 6.9), 15.5svh);
+  }
+  .titulo,
   .texto {
-    font-size: 15px;
-    max-width: 38ch;
+    text-shadow: 0 2px 20px rgb(0 14 28 / 0.55);
+  }
+  .apoio {
+    gap: 20px;
+    padding-bottom: 0;
+  }
+  .texto {
+    font-size: clamp(16px, 2.2vw, 22px);
+    max-width: 36ch;
   }
   .fase {
     display: none;
   }
   .chao {
-    height: 72%;
+    height: 78%;
+    background: linear-gradient(
+      to top,
+      rgb(0 14 28 / 0.96) 0%,
+      rgb(0 14 28 / 0.84) 44%,
+      rgb(0 14 28 / 0) 100%
+    );
+  }
+}
+
+@media (max-width: 360px) {
+  .botaoPeq {
+    padding: 0 16px;
+  }
+  .nav {
+    gap: 8px;
+  }
+}
+
+/* celular em pé e baixo (iPhone SE, 320x568): sem o "Ver o método" (o nav já leva ao método) */
+@media (max-width: 900px) and (max-height: 640px) and (orientation: portrait) {
+  .descer {
+    display: none;
+  }
+  .hero {
+    --r: 24vmin;
+  }
+  .base {
+    row-gap: 16px;
+  }
+  .apoio {
+    gap: 16px;
+  }
+}
+
+/* celular deitado: título à esquerda, texto e botão à direita, o círculo livre no meio-alto */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero {
+    --r: 25vmin;
+  }
+  .marca {
+    width: 96px;
+  }
+  .base {
+    grid-template-columns: repeat(12, 1fr);
+    align-items: end;
+    row-gap: 0;
+  }
+  .titulo {
+    grid-column: 1 / 8;
+    font-size: min(calc((100vw - 2 * var(--margem)) / 9), 15svh);
+  }
+  .apoio {
+    grid-column: 8 / 13;
+    gap: 16px;
+  }
+  .texto {
+    max-width: none;
+  }
+  .descer {
+    display: none;
   }
 }
 
@@ -468,34 +555,128 @@
   color: var(--floresta);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px), (max-height: 500px) and (orientation: landscape) {
+  .metodo {
+    padding-block: clamp(64px, 14vw, 120px) clamp(48px, 10vw, 96px);
+  }
   .metodoTopo {
     display: block;
+    margin-bottom: 32px;
   }
   .rotulo {
     margin: 0 0 12px;
   }
+  .h2 {
+    font-size: max(34px, 8vw);
+  }
   .passos {
     display: block;
   }
+  /* barra fixa: a foto em arco (pequena) + o contador; os passos rolam por baixo */
   .passos [data-palco] {
-    top: 8px;
+    position: sticky;
+    top: 0;
     z-index: 3;
-    padding: 8px 0 12px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: end;
+    column-gap: 20px;
+    margin-inline: calc(var(--margem) * -1);
+    padding: max(12px, env(safe-area-inset-top)) var(--margem) 14px;
     background: var(--linho);
+    box-shadow: 0 1px 0 rgb(0 14 28 / 0.14);
   }
   .arco {
-    max-height: 30svh;
-    margin-inline: auto;
-    width: min(100%, 52svh);
-    border-radius: 999px 999px 0 0;
-    aspect-ratio: 3 / 2;
+    height: min(34svh, 280px);
+    width: auto;
+    max-height: none;
+    aspect-ratio: 4 / 5;
+  }
+  .passos [data-contagem] {
+    white-space: nowrap;
+    margin: 0;
+    padding-top: 12px;
+    font-size: 15px;
+  }
+  .passos [data-contagem] span {
+    font-size: clamp(40px, 11vw, 56px);
+    line-height: 1;
   }
   .passo,
   .passo:last-child {
-    min-height: 62svh;
+    min-height: 0;
     align-content: start;
-    padding-top: 32px;
+    gap: 12px;
+    padding-block: 36px 40px;
+  }
+  .passo:first-child {
+    border-top: 0;
+  }
+  .nome {
+    font-size: min(calc((100vw - 2 * var(--margem)) / 6.6), 92px);
+  }
+  .corpo {
+    font-size: 17px;
+    max-width: 40ch;
+  }
+  .entrega {
+    font-size: 15px;
+  }
+  /* no celular todos os passos em cor plena; quem muda é a foto e o contador */
+  .passos[data-js="1"] .passo .nome,
+  .passos[data-js="1"] .passo .num {
+    opacity: 1;
+  }
+}
+
+/* celular deitado: foto fixa à esquerda, passos à direita (a barra em cima não cabe em 390px de altura) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .metodo {
+    padding-block: 64px 48px;
+  }
+  .h2 {
+    font-size: min(8vw, 12svh);
+  }
+  .passos {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    column-gap: 32px;
+    align-items: start;
+  }
+  .passos [data-palco] {
+    display: block;
+    top: 0;
+    margin-inline: 0;
+    padding: max(16px, env(safe-area-inset-top)) 0 16px;
+    background: transparent;
+    box-shadow: none;
+  }
+  .arco {
+    height: 62svh;
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    margin-inline: auto;
+  }
+  .passos [data-contagem] {
+    margin-top: 12px;
+  }
+  .passos [data-contagem] span {
+    font-size: 40px;
+  }
+  .passo,
+  .passo:last-child {
+    min-height: 0;
+    padding-block: 28px 32px;
+  }
+  .passo:first-child {
+    padding-top: 16px;
+  }
+  .passo:last-child {
+    min-height: 70svh;
+  }
+  .nome {
+    font-size: min(calc((100vw - 2 * var(--margem)) / 12), 15svh);
   }
 }
 

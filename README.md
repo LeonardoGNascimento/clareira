@@ -40,6 +40,34 @@ mostra o serviço que resolve aquele problema, com a foto de aplicação da marc
 |---|---|---|
 | ![](prints/colagem-desk-1.jpg) | ![](prints/colagem-phone-1.jpg) | ![](prints/colagem-secao2.jpg) |
 
+## No celular
+Revisadas em 8 tamanhos: 320, 360, 390, 430, tablet 768, celular deitado 844×390 e 932×430, e tablet deitado 1024×768.
+Nas quatro direções não há rolagem lateral, elemento vazando, alvo de toque menor que 44 px, texto menor que 14 px nem erro.
+Cada direção tem uma composição própria para o celular, que não é o desktop empilhado. Com o celular deitado, o título e o
+botão cabem na primeira tela. No toque, os adesivos não atrapalham a rolagem. O desktop não mudou.
+
+Página inteira em 390 px (da esquerda para a direita, de cima para baixo):
+
+**A · Clareira**
+![](prints/clareira-celular.jpg)
+
+**B · Cartaz**
+![](prints/cartaz-celular.jpg)
+
+**C · Brasa**
+![](prints/brasa-celular.jpg)
+
+**D · Colagem**
+![](prints/colagem-celular.jpg)
+
+Celular deitado (844×390):
+
+| A · Clareira | B · Cartaz |
+|---|---|
+| ![](prints/clareira-deitado.jpg) | ![](prints/cartaz-deitado.jpg) |
+| **C · Brasa** | **D · Colagem** |
+| ![](prints/brasa-deitado.jpg) | ![](prints/colagem-deitado.jpg) |
+
 ## O que precisa de confirmação
 - **Serviços.** Tirei do material três: identidade visual; conteúdo e redes sociais; posicionamento e presença
   digital. Estão marcados `RASCUNHO` no código.

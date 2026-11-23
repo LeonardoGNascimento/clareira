@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Adesivo from "./Adesivo";
+import Quiz from "./Quiz";
 import Reage from "./Reage";
 import { rasgo } from "./rasgo";
 import s from "./page.module.css";
@@ -225,7 +226,7 @@ export default function Colagem() {
           />
         </div>
 
-        <div className={s.quiz} role="radiogroup" aria-labelledby="pergunta">
+        <Quiz className={s.quiz}>
           {ALTERNATIVAS.map((a) => (
             <input
               key={a.id}
@@ -266,7 +267,7 @@ export default function Colagem() {
             <Fita rasgoCss={R.fitaC} className={s.fitaPergunta} />
           </div>
 
-          <div className={s.respostas} aria-live="polite">
+          <div className={s.respostas} aria-live="polite" data-resposta>
             <div className={s.pecaWrap}>
               <div className={s.papel} style={v("--rasgo", R.peca)} aria-hidden />
               {ALTERNATIVAS.map((a) => (
@@ -309,7 +310,7 @@ export default function Colagem() {
               <Fita rasgoCss={R.fitaA} className={s.fitaPeca} />
             </div>
           </div>
-        </div>
+        </Quiz>
       </section>
     </main>
   );

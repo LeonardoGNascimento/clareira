@@ -136,6 +136,9 @@ export default function Servicos() {
             <a className={s.botao} href={WHATS} target="_blank" rel="noopener noreferrer">
               Falar no WhatsApp
             </a>
+            <a className={s.fimFone} href={WHATS} target="_blank" rel="noopener noreferrer">
+              41 98407-9112
+            </a>
           </li>
         </ol>
 

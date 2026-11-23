@@ -95,6 +95,47 @@
   outline-offset: 4px;
 }
 
+/* WhatsApp só ícone (celular) e telefone no rodapé do hero: escondidos no desktop */
+.zap,
+.fone {
+  display: none;
+}
+.rodape {
+  display: contents;
+}
+.zap {
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--noite);
+  color: var(--linho);
+  transition: scale 160ms var(--ease-out);
+}
+.zap:active {
+  scale: 0.94;
+}
+.zap:focus-visible,
+.fone:focus-visible,
+.fimFone:focus-visible {
+  outline: 3px solid var(--noite);
+  outline-offset: 4px;
+}
+.fone,
+.fimFone {
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--noite);
+  text-decoration: none;
+}
+.fimFone {
+  display: none;
+}
+
 /* corpo */
 .principal {
   display: grid;
@@ -195,7 +236,6 @@
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: none;
   transition:
     scale 220ms var(--ease-cola),
     rotate 220ms var(--ease-cola);
@@ -206,6 +246,11 @@
   height: auto;
   pointer-events: none;
 }
+@media (hover: hover) and (pointer: fine) {
+  .adesivo {
+    touch-action: none;
+  }
+}
 .adesivo[data-pego] {
   cursor: grabbing;
   z-index: 6;
@@ -215,7 +260,7 @@
 @media (pointer: coarse) {
   .adesivo {
     pointer-events: none;
-    touch-action: auto;
+    cursor: default;
   }
 }
 
@@ -363,6 +408,9 @@
   color: var(--noite);
 }
 .fim {
+  display: block;
+  flex-wrap: wrap;
+  align-items: center;
   padding-block: 40px 96px;
   border-top: 2px solid rgb(0 14 28 / 0.9);
 }
@@ -546,5 +594,298 @@
     transition: opacity 200ms ease;
     scale: 1;
     rotate: var(--r);
+  }
+}
+
+
+/* ---------- Celular em pé (< 700px) ---------- */
+@media (max-width: 699px) {
+  .topo {
+    padding-block: 16px 8px;
+  }
+  .nav {
+    display: none;
+  }
+  .zap {
+    display: inline-flex;
+  }
+  .principal {
+    grid-template-rows: auto 1fr;
+    padding-block: 12px 8px;
+    gap: 0;
+  }
+  .titulo {
+    font-size: clamp(32px, 11.4vw, 56px);
+  }
+  .apoio {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.45;
+    max-width: 32ch;
+  }
+  .acoes {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    margin-top: 20px;
+  }
+  .botao {
+    width: 100%;
+  }
+  .link {
+    align-self: flex-start;
+  }
+  .palcoLobo {
+    align-items: end;
+    padding-top: 12px;
+  }
+  .lobo {
+    width: clamp(216px, calc(34svh * 0.873), min(78%, 330px));
+  }
+  .balao {
+    top: 8%;
+    left: 0;
+    width: clamp(84px, 24vw, 120px);
+  }
+  .selo {
+    right: var(--margem);
+    bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+    width: clamp(84px, 24vw, 104px);
+  }
+  .rodape {
+    display: block;
+    border-top: 2px solid rgb(0 14 28 / 0.9);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .pilares {
+    border-top: 0;
+    padding: 12px 0 0;
+    gap: 20px;
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+  .fone {
+    display: inline-flex;
+    margin-top: 4px;
+  }
+  .servTitulo {
+    font-size: clamp(48px, 15vw, 96px);
+  }
+  .itemTitulo {
+    font-size: clamp(32px, 9.2vw, 56px);
+  }
+  .dentroAdesivo {
+    top: auto;
+    bottom: -22px;
+    right: 8px;
+    width: 72px;
+  }
+  .legenda {
+    margin-top: 14px;
+    max-width: calc(100% - 88px);
+    font-size: 15px;
+  }
+  .fim {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  .fim .botao {
+    width: 100%;
+  }
+  .fimFone {
+    display: inline-flex;
+    margin-top: 8px;
+  }
+}
+
+/* ---------- Tablet em pé (700 a 1023px) ---------- */
+@media (min-width: 700px) and (max-width: 1023px) and (min-height: 501px) {
+  .principal {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: var(--margem);
+    row-gap: 0;
+    align-items: start;
+    padding-block: 8px 32px;
+  }
+  .texto {
+    display: contents;
+  }
+  .titulo {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: clamp(56px, min(12vw, 13svh), 128px);
+  }
+  .apoio {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 32px;
+    font-size: 20px;
+    max-width: 30ch;
+  }
+  .acoes {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 28px;
+  }
+  .palcoLobo {
+    grid-column: 1 / -1;
+    grid-row: 2 / 5;
+    align-self: stretch;
+    align-items: end;
+    justify-items: end;
+    padding-top: 0;
+  }
+  .lobo {
+    width: min(58%, calc((100svh - 380px) * 0.873));
+    min-width: 320px;
+  }
+  .balao {
+    left: 0;
+    top: auto;
+    bottom: 4%;
+    width: 148px;
+  }
+  .selo {
+    right: var(--margem);
+    bottom: 88px;
+    width: 128px;
+  }
+  .pilares {
+    padding-bottom: 32px;
+  }
+  .servTitulo {
+    font-size: clamp(72px, 15vw, 128px);
+  }
+  .item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 32px;
+    grid-template-rows: 1fr auto auto auto 1fr;
+    align-items: center;
+    padding-block: 56px;
+  }
+  .num {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .itemTitulo {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .itemTexto {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  .itemTitulo {
+    font-size: clamp(32px, 4.6vw, 56px);
+  }
+  .dentro {
+    grid-column: 2;
+    grid-row: 1 / span 5;
+    margin: 0;
+  }
+  .dentroAdesivo {
+    top: auto;
+    bottom: -24px;
+    right: 12px;
+    width: 88px;
+  }
+  .legenda {
+    max-width: calc(100% - 104px);
+  }
+}
+
+/* ---------- Celular deitado: hero dimensionado pela altura ---------- */
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 1023px) {
+  .hero {
+    padding-left: max(var(--margem), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--margem), env(safe-area-inset-right, 0px));
+  }
+  .topo {
+    padding-block: 8px 6px;
+  }
+  .marca {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .marcaImg {
+    width: 92px;
+  }
+  .nav {
+    display: none;
+  }
+  .zap {
+    display: inline-flex;
+  }
+  .principal {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    gap: 24px;
+    padding-block: 0;
+  }
+  .titulo {
+    font-size: clamp(30px, 12svh, 56px);
+  }
+  .apoio {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.4;
+    max-width: 44ch;
+  }
+  .acoes {
+    flex-direction: row;
+    margin-top: 12px;
+  }
+  .botao {
+    width: auto;
+    min-height: 48px;
+  }
+  .link {
+    display: none;
+  }
+  .palcoLobo {
+    align-items: center;
+    justify-items: center;
+    padding-top: 0;
+  }
+  .lobo {
+    width: min(100%, calc(60svh * 0.873));
+    min-width: 0;
+  }
+  .balao {
+    top: 0;
+    left: 0;
+    width: 72px;
+  }
+  .selo {
+    right: max(var(--margem), env(safe-area-inset-right, 0px));
+    bottom: 60px;
+    width: 72px;
+  }
+  .rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+    border-top: 2px solid rgb(0 14 28 / 0.9);
+    padding-bottom: 0;
+  }
+  .pilares {
+    border-top: 0;
+    padding: 0;
+    gap: 20px;
+  }
+  .fone {
+    display: inline-flex;
+    margin-top: 0;
+  }
+  .servTitulo {
+    font-size: clamp(48px, 9vw, 96px);
+  }
+  .itemTitulo {
+    font-size: clamp(32px, 5vw, 48px);
   }
 }

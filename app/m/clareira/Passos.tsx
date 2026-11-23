@@ -29,16 +29,35 @@ export default function Passos({
     const el = raiz.current;
     if (!el) return;
     const itens = Array.from(el.querySelectorAll<HTMLElement>("[data-passo]"));
-    const io = new IntersectionObserver(
-      (es) => {
-        for (const e of es) {
-          if (e.isIntersecting) setAtivo(Number((e.target as HTMLElement).dataset.passo));
-        }
-      },
-      { rootMargin: "-42% 0px -42% 0px" },
-    );
-    itens.forEach((i) => io.observe(i));
-    return () => io.disconnect();
+    const palco = el.querySelector<HTMLElement>("[data-palco]");
+    const empilhado = window.matchMedia("(max-width: 900px) and (min-height: 501px)");
+    let quadro = 0;
+    // Ativo = último passo cujo topo já passou da linha de leitura: no celular, logo abaixo da barra fixa da foto;
+    // no desktop, o meio da tela.
+    const aplica = () => {
+      quadro = 0;
+      const linha = empilhado.matches && palco
+        ? palco.getBoundingClientRect().bottom + 48
+        : window.innerHeight * 0.5;
+      let i = 0;
+      itens.forEach((it, n) => {
+        if (it.getBoundingClientRect().top <= linha) i = n;
+      });
+      // fim da página: o último passo nunca chega à linha sem folga, então vale como ativo
+      const fim = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+      setAtivo(fim && empilhado.matches ? itens.length - 1 : i);
+    };
+    const pede = () => {
+      if (!quadro) quadro = requestAnimationFrame(aplica);
+    };
+    aplica();
+    window.addEventListener("scroll", pede, { passive: true });
+    window.addEventListener("resize", pede);
+    return () => {
+      window.removeEventListener("scroll", pede);
+      window.removeEventListener("resize", pede);
+      if (quadro) cancelAnimationFrame(quadro);
+    };
   }, []);
 
   return (

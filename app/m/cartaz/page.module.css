@@ -485,19 +485,22 @@
 .radio[value="a"]:checked ~ .opcoesWrap .opcao_a,
 .radio[value="b"]:checked ~ .opcoesWrap .opcao_b,
 .radio[value="c"]:checked ~ .opcoesWrap .opcao_c,
-.radio[value="d"]:checked ~ .opcoesWrap .opcao_d {
+.radio[value="d"]:checked ~ .opcoesWrap .opcao_d,
+.radio[value="e"]:checked ~ .opcoesWrap .opcao_e {
   color: var(--linho);
 }
 .radio[value="a"]:checked ~ .opcoesWrap .opcao_a::before,
 .radio[value="b"]:checked ~ .opcoesWrap .opcao_b::before,
 .radio[value="c"]:checked ~ .opcoesWrap .opcao_c::before,
-.radio[value="d"]:checked ~ .opcoesWrap .opcao_d::before {
+.radio[value="d"]:checked ~ .opcoesWrap .opcao_d::before,
+.radio[value="e"]:checked ~ .opcoesWrap .opcao_e::before {
   transform: scaleX(1);
 }
 .radio[value="a"]:focus-visible ~ .opcoesWrap .opcao_a,
 .radio[value="b"]:focus-visible ~ .opcoesWrap .opcao_b,
 .radio[value="c"]:focus-visible ~ .opcoesWrap .opcao_c,
-.radio[value="d"]:focus-visible ~ .opcoesWrap .opcao_d {
+.radio[value="d"]:focus-visible ~ .opcoesWrap .opcao_d,
+.radio[value="e"]:focus-visible ~ .opcoesWrap .opcao_e {
   outline: 3px solid var(--brasa);
   outline-offset: 3px;
 }
@@ -508,7 +511,8 @@
   .radio[value="a"]:checked ~ .opcoesWrap .opcao_a:hover::before,
   .radio[value="b"]:checked ~ .opcoesWrap .opcao_b:hover::before,
   .radio[value="c"]:checked ~ .opcoesWrap .opcao_c:hover::before,
-  .radio[value="d"]:checked ~ .opcoesWrap .opcao_d:hover::before {
+  .radio[value="d"]:checked ~ .opcoesWrap .opcao_d:hover::before,
+  .radio[value="e"]:checked ~ .opcoesWrap .opcao_e:hover::before {
     transform: scaleX(1);
   }
 }
@@ -534,7 +538,8 @@
 .radio[value="a"]:checked ~ .respostas .resp_a,
 .radio[value="b"]:checked ~ .respostas .resp_b,
 .radio[value="c"]:checked ~ .respostas .resp_c,
-.radio[value="d"]:checked ~ .respostas .resp_d {
+.radio[value="d"]:checked ~ .respostas .resp_d,
+.radio[value="e"]:checked ~ .respostas .resp_e {
   display: block;
   animation: resposta 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -698,7 +703,8 @@
   .radio[value="a"]:checked ~ .opcoesWrap .inl_a,
   .radio[value="b"]:checked ~ .opcoesWrap .inl_b,
   .radio[value="c"]:checked ~ .opcoesWrap .inl_c,
-  .radio[value="d"]:checked ~ .opcoesWrap .inl_d {
+  .radio[value="d"]:checked ~ .opcoesWrap .inl_d,
+  .radio[value="e"]:checked ~ .opcoesWrap .inl_e {
     display: block;
     animation: resposta 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
@@ -3098,5 +3104,426 @@
   .zap,
   .zapOculto {
     transition-duration: 0.01ms;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   Revisão de persuasão (R1–R9)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* R1: microtexto do botão do hero */
+.micro {
+  margin: 12px 0 0;
+  max-width: 34ch;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* R2: adesivo cursor na resposta da alternativa E */
+.resposta,
+.inline {
+  position: relative;
+}
+.respAdesivo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 46px;
+  rotate: 8deg;
+  filter: drop-shadow(0 3px 4px rgb(0 14 28 / 0.3));
+  pointer-events: none;
+}
+.inl_e .inlineTitulo,
+.resp_e .respostaTitulo {
+  padding-right: 52px;
+}
+
+/* R6: o que o cliente recebe em cada etapa (destaque de tipo, não de cor) */
+.voce {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 2px solid color-mix(in srgb, currentColor 30%, transparent);
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+.voce strong {
+  display: block;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+/* R3: link do feed */
+.prIg {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--linho);
+  text-decoration: underline;
+  text-decoration-color: var(--brasa);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+.prIg:focus-visible {
+  outline: 3px solid var(--linho);
+  outline-offset: 4px;
+}
+
+/* R5: Sobre sem foto = o lobo; com foto = retrato no quadro */
+.sbRetrato {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  clip-path: var(--rasgo);
+  overflow: hidden;
+}
+.sbRetrato img {
+  object-fit: cover;
+}
+.sbLobo {
+  position: relative;
+  z-index: 2;
+  width: 44%;
+  margin: -24px 4% 0 auto;
+  opacity: 0.92;
+}
+.sbLobo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.sbP1 strong {
+  font-weight: 700;
+}
+
+/* R8: diagnóstico gratuito */
+.dg {
+  padding-top: 88px;
+  padding-bottom: 64px;
+}
+.dgFolha {
+  position: relative;
+  max-width: 640px;
+  padding: 32px 24px 36px;
+  background-color: var(--papel);
+  background-image: url("/textures/papel.jpg");
+  background-size: cover;
+  background-blend-mode: multiply;
+  color: var(--noite);
+  clip-path: var(--rasgo);
+  rotate: -1deg;
+}
+.dgH {
+  margin: 0;
+  font-family: var(--font-display) !important;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+.dgTexto {
+  margin: 16px 0 24px;
+  max-width: 40ch;
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+.dgFita {
+  top: 74px;
+  left: calc(var(--m2) - 12px);
+  width: 104px;
+  height: 30px;
+  rotate: -28deg;
+  z-index: 2;
+}
+.dgAdesivo {
+  position: absolute;
+  right: calc(var(--m2) - 4px);
+  bottom: 20px;
+  z-index: 2;
+  width: 76px;
+  rotate: 8deg;
+  filter: drop-shadow(0 4px 6px rgb(0 14 28 / 0.32));
+}
+
+/* R4: projetos (cases reais) */
+.pj {
+  padding-top: 96px;
+  padding-bottom: 80px;
+}
+.pjH {
+  font-family: var(--font-display) !important;
+  font-size: calc((100vw - 2 * var(--m2)) / 5);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+.pjLista {
+  display: grid;
+  gap: 56px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pjItem {
+  position: relative;
+}
+.pjFoto {
+  position: relative;
+  margin: 0;
+  rotate: -1.2deg;
+  filter: drop-shadow(0 12px 16px rgb(0 14 28 / 0.3));
+}
+.pjPar .pjFoto {
+  rotate: 1deg;
+}
+.pjPapel {
+  padding: 10px;
+  background-color: var(--papel);
+  background-image: url("/textures/papel.jpg");
+  background-size: cover;
+  background-blend-mode: multiply;
+  clip-path: var(--rasgo);
+}
+.pjImg {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+.pjImg img {
+  object-fit: cover;
+}
+.pjFita {
+  top: -12px;
+  left: 34%;
+  width: 104px;
+  height: 28px;
+  rotate: -4deg;
+}
+.pjFolha {
+  position: relative;
+  z-index: 2;
+  margin: -28px 8px 0 20px;
+  padding: 24px 22px 26px;
+  background-color: var(--brasa);
+  background-image: url("/textures/papel.jpg");
+  background-size: cover;
+  background-blend-mode: multiply;
+  color: var(--noite);
+  clip-path: var(--rasgo);
+  rotate: 0.8deg;
+}
+.pjCliente {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.pjSegmento {
+  margin: 6px 0 0;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.pjChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pjChips li {
+  padding: 6px 12px 7px;
+  background: var(--noite);
+  color: var(--linho);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.pjFeito {
+  margin: 14px 0 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.pjResultado {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .pjItem {
+    max-width: 640px;
+  }
+  .pjPar {
+    margin-left: auto;
+  }
+  .dgH {
+    font-size: 38px;
+  }
+  .sbLobo {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    width: 70%;
+    margin: 40px auto 0;
+  }
+}
+
+@media (min-width: 900px) and (min-height: 501px) {
+  .micro {
+    margin-top: 0.9vw;
+    max-width: none;
+    font-size: max(14px, 1.02vw);
+  }
+  .respAdesivo {
+    width: 4.6vw;
+  }
+  .inl_e .inlineTitulo,
+  .resp_e .respostaTitulo {
+    padding-right: 5.6vw;
+  }
+
+  .voce {
+    margin-top: 0.9vw;
+    padding-top: 0.8vw;
+    font-size: max(16px, 1.1vw);
+  }
+  .voce strong {
+    font-size: max(15px, 1vw);
+  }
+
+  .prIg {
+    margin-top: 1vw;
+    min-height: max(44px, 3vw);
+    font-size: max(16px, 1.25vw);
+  }
+
+  .sbLobo {
+    grid-column: 8 / 13;
+    grid-row: 1 / span 3;
+    align-self: start;
+    width: 78%;
+    margin: 4vw 0 0 auto;
+  }
+
+  .dg {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 2vw;
+    align-items: center;
+    padding-top: 9vw;
+    padding-bottom: 6vw;
+  }
+  .dgFolha {
+    grid-column: 2 / 9;
+    max-width: none;
+    padding: 3.2vw 3.8vw 3.4vw;
+  }
+  .dgH {
+    font-size: 3.7vw;
+  }
+  .dgTexto {
+    margin: 1.4vw 0 2vw;
+    max-width: 44ch;
+    font-size: max(17px, 1.3vw);
+  }
+  .dgFita {
+    top: 7.6vw;
+    left: calc(var(--m2) + 1vw);
+    width: 8.4vw;
+    height: 2.4vw;
+  }
+  .dgAdesivo {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    grid-column: 9 / 12;
+    grid-row: 1;
+    width: 13vw;
+    justify-self: center;
+  }
+
+  .pj {
+    padding-top: 10vw;
+    padding-bottom: 8vw;
+  }
+  .pjH {
+    font-size: 8.4vw;
+  }
+  .pjLista {
+    gap: 7vw;
+    margin-top: 3vw;
+  }
+  .pjItem {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 2vw;
+    align-items: center;
+  }
+  .pjFoto {
+    grid-column: 1 / 8;
+    grid-row: 1;
+    filter: drop-shadow(0 1.2vw 1.6vw rgb(0 14 28 / 0.3));
+  }
+  .pjPapel {
+    padding: 0.9vw;
+  }
+  .pjFita {
+    top: -1vw;
+    width: 8.8vw;
+    height: 2.4vw;
+  }
+  .pjFolha {
+    grid-column: 7 / 13;
+    grid-row: 1;
+    margin: 0;
+    padding: 2.4vw 2.6vw 2.6vw;
+  }
+  .pjPar .pjFoto {
+    grid-column: 6 / 13;
+  }
+  .pjPar .pjFolha {
+    grid-column: 1 / 7;
+  }
+  .pjCliente {
+    font-size: 3.2vw;
+  }
+  .pjSegmento {
+    margin-top: 0.5vw;
+    font-size: max(15px, 1.1vw);
+  }
+  .pjChips {
+    gap: 0.5vw;
+    margin-top: 1.2vw;
+  }
+  .pjChips li {
+    padding: 0.5vw 1vw 0.6vw;
+    font-size: max(14px, 1vw);
+  }
+  .pjFeito,
+  .pjResultado {
+    margin-top: 1.2vw;
+    font-size: max(16px, 1.2vw);
+  }
+}
+
+.lide {
+  text-wrap: balance;
+}
+
+/* Perguntas longas (R7): a tarja rasgada come ~14% por borda; mais ar em cima e embaixo. */
+.pgResumo {
+  padding-block: 22px;
+}
+@media (min-width: 900px) and (min-height: 501px) {
+  .pgResumo {
+    padding-block: 1.5vw;
   }
 }

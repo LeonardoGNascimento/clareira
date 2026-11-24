@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FONE, WHATS } from "./dados";
+import { agencia, FONE, WHATS } from "./dados";
 import x from "./secoes.module.css";
 
 export default function Rodape() {
@@ -29,12 +29,20 @@ export default function Rodape() {
                 WhatsApp {FONE}
               </a>
             </li>
-            <li>
-              {/* RASCUNHO: Instagram ainda não existe, link a confirmar */}
-              <a className={x.rodLink} href="#" aria-label="Instagram (a confirmar)">
-                Instagram [a confirmar]
-              </a>
-            </li>
+            {agencia.instagram ? (
+              <li>
+                <a className={x.rodLink} href={agencia.instagram} target="_blank" rel="noopener noreferrer">
+                  Instagram {agencia.instagramArroba ?? ""}
+                </a>
+              </li>
+            ) : null}
+            {agencia.email ? (
+              <li>
+                <a className={x.rodLink} href={`mailto:${agencia.email}`}>
+                  {agencia.email}
+                </a>
+              </li>
+            ) : null}
           </ul>
         </div>
 

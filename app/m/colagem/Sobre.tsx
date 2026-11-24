@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Fita, Padrao, Peca, R, v } from "./pecas";
+import { Fita, Padrao, Peca, R, agencia, v } from "./pecas";
 import s from "./page.module.css";
 
 const PILARES = ["Estratégia", "Criatividade", "Clareza"];
@@ -11,7 +11,7 @@ export default function Sobre() {
         <Padrao className={s.padraoSobre} />
       </div>
 
-      <div className={s.sobreGrade}>
+      <div className={`${s.sobreGrade} ${agencia.fotoAlisson ? "" : s.semFoto}`}>
         <div className={s.sFolha}>
           <div className={s.papel} style={v("--rasgo", R.sobre)} aria-hidden />
           <div className={s.sTxt}>
@@ -26,25 +26,19 @@ export default function Sobre() {
                 <span className={s.sMarcaTxt}>Quem somos?</span>
               </span>
             </h2>
+            {/* RASCUNHO: texto do Sobre, benefício em vez de mitologia (R5) */}
             <p className={s.sP}>
-              O Studio Clareira nasce da metáfora da clareira na floresta: um
-              espaço onde a luz atravessa as árvores, a visão se amplia e o
-              caminho se torna claro. A agência existe para transformar a
-              complexidade do mercado em estratégia, direção e crescimento para
-              as marcas.
+              <strong>Clareira é o momento em que o caminho fica claro.</strong>{" "}
+              É isso que a agência entrega: clareza sobre o que a sua marca diz,
+              para quem e onde. O lobo é o nosso jeito de trabalhar: observar o
+              cenário antes de agir.
             </p>
-            <p className={s.sP}>
-              O lobo é a nossa essência: inteligência, percepção e planejamento.
-              Mais do que força, a capacidade de entender o cenário, encontrar o
-              melhor caminho e agir com precisão.
-            </p>
-            {/* RASCUNHO: apresentação do Alisson (CONTEUDO.md, seção 6) */}
             <p className={s.sP}>
               À frente da agência está <strong>Alisson Barros Narloch</strong>.
-              O Studio Clareira junta marketing digital, design gráfico e
-              landing pages num lugar só, para a marca do cliente crescer com
-              direção.
             </p>
+            {agencia.historiaAlisson ? (
+              <p className={s.sP}>{agencia.historiaAlisson}</p>
+            ) : null}
             <ul className={s.pilares} aria-label="Pilares da agência">
               {PILARES.map((p, i) => (
                 <li key={p} className={s.pilar}>
@@ -61,35 +55,33 @@ export default function Sobre() {
           <Fita rasgoCss={R.fitaE} className={s.fitaSobre} />
         </div>
 
-        {/* Espaço marcado: ainda não temos a foto do Alisson */}
-        <figure className={s.moldura}>
-          <div className={s.molduraFolha}>
-            <div
-              className={s.papel}
-              style={v("--rasgo", R.moldura)}
-              aria-hidden
-            />
-            <div className={s.molduraDentro}>
+        {/* Só existe com foto real (agencia.fotoAlisson): sem foto, nada de moldura vazia */}
+        {agencia.fotoAlisson ? (
+          <figure className={s.moldura}>
+            <div className={s.molduraFolha}>
               <div
-                className={s.molduraVazio}
-                role="img"
-                aria-label="Espaço reservado para a foto do Alisson Barros Narloch, a confirmar"
-              >
-                <Image
-                  src="/brand/brasa-lobo.svg"
-                  alt=""
-                  width={719}
-                  height={824}
-                  className={s.molduraLobo}
-                />
+                className={s.papel}
+                style={v("--rasgo", R.moldura)}
+                aria-hidden
+              />
+              <div className={s.molduraDentro}>
+                <div className={s.molduraFoto}>
+                  <Image
+                    src={agencia.fotoAlisson}
+                    alt="Alisson Barros Narloch, à frente do Studio Clareira"
+                    fill
+                    sizes="(min-width: 900px) 20vw, 44vw"
+                    style={{ objectFit: "cover", objectPosition: "50% 30%" }}
+                  />
+                </div>
+                <figcaption className={s.molduraLegenda}>
+                  Alisson Barros Narloch
+                </figcaption>
               </div>
-              <figcaption className={s.molduraLegenda}>
-                Foto do Alisson [a confirmar]
-              </figcaption>
+              <Fita rasgoCss={R.fitaF} className={s.fitaMoldura} />
             </div>
-            <Fita rasgoCss={R.fitaF} className={s.fitaMoldura} />
-          </div>
-        </figure>
+          </figure>
+        ) : null}
 
         <Peca
           className={`${s.lua} ${s.cola}`}

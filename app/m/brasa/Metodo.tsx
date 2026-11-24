@@ -8,16 +8,19 @@ const PASSOS = [
     n: "01",
     t: "Compreender",
     p: "Ler o cenário antes de desenhar: quem é a marca, para quem ela fala e onde precisa ser encontrada.",
+    recebe: "o diagnóstico da marca e do perfil.",
   },
   {
     n: "02",
     t: "Planejar",
     p: "Escolher o caminho. Posicionamento, direção visual e o que a marca diz, antes de produzir qualquer peça.",
+    recebe: "a proposta com a estratégia, o calendário e o que vai ser produzido.",
   },
   {
     n: "03",
     t: "Construir",
     p: "Identidade, conteúdo e presença no mesmo fio, para a marca ser encontrada e lembrada.",
+    recebe: "as peças, os posts e a página no ar.",
   },
 ] as const;
 
@@ -61,6 +64,11 @@ export default function Metodo() {
           <p className={x.passoTexto}>
             Pelo WhatsApp. Você conta o momento da marca e a gente entende se e como pode ajudar.
           </p>
+          {/* RASCUNHO: o que o cliente recebe (R6) */}
+          <p className={x.recebe}>
+            <strong>Você sai com:</strong> uma leitura do que trava a sua marca e se faz sentido
+            seguir.
+          </p>
         </li>
         {PASSOS.map((p, i) => (
           <li key={p.n} className={x.passo} style={{ ["--i" as string]: i + 1 }}>
@@ -72,6 +80,10 @@ export default function Metodo() {
               {p.t}
             </h3>
             <p className={x.passoTexto}>{p.p}</p>
+            {/* RASCUNHO: o que o cliente recebe (R6) */}
+            <p className={x.recebe}>
+              <strong>Você recebe:</strong> {p.recebe}
+            </p>
           </li>
         ))}
       </ol>

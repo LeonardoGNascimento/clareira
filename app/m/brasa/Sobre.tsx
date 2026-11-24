@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Adesivo from "./Adesivo";
+import { agencia } from "./dados";
 import s from "./page.module.css";
 import x from "./secoes.module.css";
 
@@ -14,7 +15,7 @@ export default function Sobre() {
           </h2>
         </header>
 
-        <div className={x.sobreFig}>
+        <div className={x.sobreFig} data-foto={agencia.fotoAlisson ? "true" : "false"}>
           <Image
             src="/posts/lobo-lua.jpg"
             alt="Lobo em meio-tom, com olhos laranja, diante de uma lua laranja"
@@ -32,35 +33,33 @@ export default function Sobre() {
               draggable={false}
             />
           </Adesivo>
-          <figure className={x.alisson}>
-            <Image
-              src="/brand/brasa-lobo.svg"
-              alt="Símbolo do lobo no lugar da foto do Alisson, que ainda não temos"
-              width={719}
-              height={824}
-              sizes="20vw"
-              className={x.alissonLobo}
-            />
-            <figcaption className={x.alissonCap}>Foto do Alisson [a confirmar]</figcaption>
-          </figure>
+          {agencia.fotoAlisson ? (
+            <figure className={x.alisson}>
+              <Image
+                src={agencia.fotoAlisson}
+                alt="Alisson Barros Narloch, à frente do Studio Clareira"
+                width={600}
+                height={750}
+                sizes="(min-width: 1024px) 20vw, 40vw"
+                className={x.alissonFoto}
+              />
+            </figure>
+          ) : null}
         </div>
 
         <div className={x.sobreTexto}>
+          {/* RASCUNHO: texto do Sobre (R5) */}
           <p className={x.sobreLide}>
-            O Studio Clareira nasce da metáfora da clareira na floresta: um espaço onde a luz
-            atravessa as árvores, a visão se amplia e o caminho se torna claro. A agência existe
-            para transformar a complexidade do mercado em estratégia, direção e crescimento para
-            as marcas.
+            <strong>Clareira é o momento em que o caminho fica claro.</strong> É isso que a agência
+            entrega: clareza sobre o que a sua marca diz, para quem e onde.
           </p>
           <p className={x.sobreP}>
-            O lobo é a nossa essência: inteligência, percepção e planejamento. Mais do que força,
-            a capacidade de entender o cenário, encontrar o melhor caminho e agir com precisão.
+            O lobo é o nosso jeito de trabalhar: observar o cenário antes de agir.
           </p>
           {/* RASCUNHO: parágrafo sobre o Alisson */}
           <p className={`${x.sobreP} ${x.sobrePessoa}`}>
-            À frente da agência está <strong>Alisson Barros Narloch</strong>. O Studio Clareira
-            junta marketing digital, design gráfico e landing pages num lugar só, para a marca do
-            cliente crescer com direção.
+            À frente da agência está <strong>Alisson Barros Narloch</strong>.
+            {agencia.historiaAlisson ? ` ${agencia.historiaAlisson}` : ""}
           </p>
         </div>
 

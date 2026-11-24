@@ -3,23 +3,28 @@ import Adesivo from "./Adesivo";
 import { Fita, Padrao, R, v } from "./pecas";
 import s from "./page.module.css";
 
+/* RASCUNHO: linha "Você recebe" de cada etapa (R6) */
 const PASSOS = [
   {
     n: "01",
     t: "Compreender",
     d: "Ler o cenário antes de desenhar: quem é a marca, para quem ela fala e onde precisa ser encontrada.",
+    recebe: "Você recebe: o diagnóstico da marca e do perfil.",
     rasgo: R.passo1,
   },
   {
     n: "02",
     t: "Planejar",
     d: "Escolher o caminho. Posicionamento, direção visual e o que a marca diz, antes de produzir qualquer peça.",
+    recebe:
+      "Você recebe: a proposta com a estratégia, o calendário e o que vai ser produzido.",
     rasgo: R.passo2,
   },
   {
     n: "03",
     t: "Construir",
     d: "Identidade, conteúdo e presença no mesmo fio, para a marca ser encontrada e lembrada.",
+    recebe: "Você recebe: as peças, os posts e a página no ar.",
     rasgo: R.passo3,
   },
 ];
@@ -69,6 +74,11 @@ export default function Metodo() {
               Pelo WhatsApp. Você conta o momento da marca e a gente entende se
               e como pode ajudar.
             </p>
+            {/* RASCUNHO: o que sai da conversa (R6) */}
+            <p className={s.recebe}>
+              <strong>Você sai com:</strong> uma leitura do que trava a sua
+              marca e se faz sentido seguir.
+            </p>
           </div>
           <Fita rasgoCss={R.fitaA} className={s.fitaConversa} />
           <Adesivo className={`${s.adesivo} ${s.stBalao}`}>
@@ -100,6 +110,10 @@ export default function Metodo() {
                 <div className={s.pTxt}>
                   <h3 className={s.pTitulo}>{p.t}</h3>
                   <p className={s.pTexto}>{p.d}</p>
+                  <p className={s.recebe}>
+                    <strong>{p.recebe.split(":")[0]}:</strong>
+                    {p.recebe.slice(p.recebe.indexOf(":") + 1)}
+                  </p>
                 </div>
               </div>
             </li>

@@ -7,12 +7,14 @@ import Identifica from "./Identifica";
 import Metodo from "./Metodo";
 import NaPratica from "./NaPratica";
 import Sobre from "./Sobre";
+import Diagnostico from "./Diagnostico";
+import Projetos from "./Projetos";
 import Perguntas from "./Perguntas";
 import Final from "./Final";
 import Rodape from "./Rodape";
 import ZapFlutuante from "./ZapFlutuante";
 import ZapIcon from "./ZapIcon";
-import { FONE, WHATS } from "./dados";
+import { agencia, FONE, WHATS } from "./dados";
 import s from "./page.module.css";
 import x from "./secoes.module.css";
 
@@ -91,7 +93,10 @@ export default function Brasa() {
 
         <div id="inicio" className={s.principal}>
           <div className={s.texto}>
-            <p className={s.kicker}>Agência de marketing digital em Curitiba</p>
+            <p className={s.kicker}>
+              Agência de marketing digital em Curitiba
+              {agencia.publico ? ` para ${agencia.publico}` : ""}
+            </p>
             <h1 className={s.titulo}>
               <span className={s.linha}>Presença não é</span>
               <span className={s.linha}>só postar, é</span>
@@ -110,16 +115,19 @@ export default function Brasa() {
               </span>
             </h1>
             <p className={s.apoio}>
-              Agência de marketing digital: estratégia, design gráfico e landing pages para a sua
-              marca ser encontrada e lembrada.
+              {/* RASCUNHO: promessa do hero (R1) */}
+              Marketing digital, design gráfico e landing pages para a sua marca ser encontrada e
+              para quem encontrar, chamar.
             </p>
             <div className={s.acoes}>
               <a className={s.botao} href={WHATS} target="_blank" rel="noopener noreferrer">
-                Falar no WhatsApp
+                Conversar sobre a sua marca
               </a>
               <a className={s.link} href="#servicos">
                 Ver o que entregamos
               </a>
+              {/* RASCUNHO: confirmar com o dono que a primeira conversa não tem custo */}
+              <p className={s.micro}>A primeira conversa é pelo WhatsApp e não tem custo.</p>
             </div>
           </div>
 
@@ -171,7 +179,9 @@ export default function Brasa() {
       <Identifica />
       <Servicos />
       <Metodo />
+      <Diagnostico />
       <NaPratica />
+      <Projetos />
       <Sobre />
       <Perguntas />
       <Final />

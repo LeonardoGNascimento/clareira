@@ -3,11 +3,12 @@ import Image from "next/image";
 import { rasgo } from "./rasgo";
 import s from "./page.module.css";
 
-export const WHATS =
-  "https://wa.me/5541984079112?text=" +
-  encodeURIComponent(
-    "Olá, vim pelo site do Studio Clareira e quero conversar sobre a minha marca.",
-  );
+import { agencia as agenciaBase, quiz, waLink } from "../_comum/agencia";
+
+/* Única porta de entrada dos dados da agência nesta direção. */
+export const agencia = agenciaBase;
+export { quiz, waLink };
+export const WHATS = waLink();
 export const FONE = "41 98407-9112";
 export const TEL = "tel:+5541984079112";
 
@@ -55,8 +56,15 @@ export const R = {
   perguntas: rasgo(181, { t: 1, b: 1.2, l: 0.5, r: 0.5, sx: 1.4, sy: 6 }),
   campo: rasgo(191, { t: 3.4, sx: 1.1, sy: 25 }),
   linhaFaq: rasgo(193, { t: 14, b: 14, l: 0, r: 0, sx: 2, sy: 50 }),
-  opcoes: [51, 53, 59, 67].map((n) => rasgo(n, tarja)),
+  opcoes: [51, 53, 59, 67, 71].map((n) => rasgo(n, tarja)),
   tira: [197, 199, 211, 223, 227, 229].map((n) => rasgo(n, tarja)),
+  chip: [251, 257, 263].map((n) =>
+    rasgo(n, { t: 8, b: 8, l: 2, r: 2, sx: 3.4, sy: 25 }),
+  ),
+  caso: [269, 271].map((n) => rasgo(n, folhaB)),
+  casoFoto: [277, 281].map((n) => rasgo(n, fotoB)),
+  diag: rasgo(283, { t: 1.8, b: 1.8, l: 0.6, r: 0.6, sx: 1.5, sy: 8 }),
+  resultado: rasgo(293, tarja),
   pilar: [233, 239, 241].map((n) =>
     rasgo(n, { t: 8, b: 8, l: 2, r: 2, sx: 3.4, sy: 25 }),
   ),
@@ -149,6 +157,44 @@ export function Peca({
       ) : null}
       {children}
     </figure>
+  );
+}
+
+/** Moldura de navegador desenhada em CSS. O endereço só mostra domínio se ele existir em agencia.ts. */
+export function Navegador({
+  sizes,
+  rasgoCss = R.foto3,
+  className,
+}: {
+  sizes: string;
+  rasgoCss?: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`${s.navegador} ${className ?? ""}`}
+      style={v("--rasgo", rasgoCss)}
+    >
+      <div className={s.navBarra} aria-hidden>
+        <span className={s.navPontos}>
+          <i />
+          <i />
+          <i />
+        </span>
+        <span className={s.navCampo}>
+          {agencia.dominio ?? "Studio Clareira · landing page"}
+        </span>
+      </div>
+      <div className={s.navTela}>
+        <Image
+          src="/lp/colagem-hero.jpg"
+          alt="Topo desta própria landing page: Presença não é só postar, é ser lembrado, com o lobo-chama sobre o muro laranja"
+          fill
+          sizes={sizes}
+          style={{ objectFit: "cover", objectPosition: "50% 0%" }}
+        />
+      </div>
+    </div>
   );
 }
 

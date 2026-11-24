@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Adesivo from "./Adesivo";
-import { Fita, Padrao, Peca, R, v } from "./pecas";
+import { Fita, Padrao, Peca, R, agencia, v } from "./pecas";
 import s from "./page.module.css";
 
 const POST = "Post do feed da agência";
@@ -26,8 +26,17 @@ export default function Pratica() {
           />
           <p className={s.prNotaTxt}>
             A identidade do Studio Clareira em uso e peças do feed da agência.
-            Os projetos de clientes entram aqui com a autorização de cada um.
           </p>
+          {agencia.instagram ? (
+            <a
+              className={s.prInsta}
+              href={agencia.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver o feed completo no Instagram
+            </a>
+          ) : null}
           <Fita rasgoCss={R.fitaB} className={s.fitaNota} />
         </div>
       </header>

@@ -7,7 +7,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 const nada = () => () => {};
 const useHidratado = () => useSyncExternalStore(nada, () => true, () => false);
 import s from "./page.module.css";
-import { FONE, WHATS } from "./dados";
+import { agencia, FONE, WHATS } from "./dados";
 
 
 /* RASCUNHO: entregas dos três serviços (serviços confirmados pelo dono; entregas a aprovar) */
@@ -100,8 +100,9 @@ function Navegador({
           <i />
           <i />
         </span>
-        {/* RASCUNHO: endereço ainda a confirmar */}
-        <span className={s.janelaEndereco}>studioclareira.com.br [a confirmar]</span>
+        <span className={s.janelaEndereco}>
+          {agencia.dominio ?? "Studio Clareira · landing page"}
+        </span>
       </div>
       <div className={s.janelaTela}>
         <Image src={src} alt={alt} fill sizes={sizes} style={{ objectFit: "cover", objectPosition: "50% 0%" }} />

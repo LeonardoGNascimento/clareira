@@ -11,7 +11,9 @@ import Perguntas from "./Perguntas";
 import Final from "./Final";
 import Rodape from "./Rodape";
 import Flutuante from "./Flutuante";
-import { Fita, R, WHATS, v } from "./pecas";
+import Diagnostico from "./Diagnostico";
+import Projetos from "./Projetos";
+import { Fita, Navegador, R, WHATS, agencia, quiz, v, waLink } from "./pecas";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -50,6 +52,14 @@ const SERVICOS = {
     adesivo: "/brand/brasa-bezier.svg",
     giro: -8,
   },
+  landing: {
+    nome: "Design de landing pages",
+    foto: "",
+    pos: "50% 50%",
+    alt: "",
+    adesivo: "/brand/brasa-cursor.svg",
+    giro: 7,
+  },
   producao: {
     nome: "Marketing digital",
     foto: "/posts/post-ponte.jpg",
@@ -60,11 +70,12 @@ const SERVICOS = {
   },
 } as const;
 
+/* RASCUNHO: títulos e textos das respostas. Rótulo, serviço e mensagem do WhatsApp vêm de `quiz` (agencia.ts). */
 const ALTERNATIVAS = [
   {
     id: "a",
     letra: "A",
-    rotulo: "Constância de postar",
+    q: quiz.A,
     titulo: "Um ritmo que cabe na sua semana.",
     texto:
       "Constância não vem de força de vontade, vem de calendário. A gente desenha o ritmo de publicação que a sua rotina aguenta.",
@@ -73,7 +84,7 @@ const ALTERNATIVAS = [
   {
     id: "b",
     letra: "B",
-    rotulo: "Estratégia e ideias de conteúdo",
+    q: quiz.B,
     titulo: "Primeiro a estratégia, depois o post.",
     texto:
       "Antes de postar, a gente decide o que dizer, para quem e por quê. Cada peça passa a ter uma função.",
@@ -82,7 +93,7 @@ const ALTERNATIVAS = [
   {
     id: "c",
     letra: "C",
-    rotulo: "Criatividade para criar",
+    q: quiz.C,
     titulo: "Ideia que nasce da sua marca.",
     texto:
       "Quando a marca tem identidade, a ideia não depende da tendência da semana. A gente cria dentro de uma voz e de um visual que são só seus.",
@@ -91,11 +102,20 @@ const ALTERNATIVAS = [
   {
     id: "d",
     letra: "D",
-    rotulo: "Tempo para produzir",
+    q: quiz.D,
     titulo: "Você toca o negócio, a agência produz.",
     texto:
       "Planejar, desenhar e deixar pronto para publicar é o nosso trabalho. O seu tempo volta para o que só você faz.",
     servico: SERVICOS.producao,
+  },
+  {
+    id: "e",
+    letra: "E",
+    q: quiz.E,
+    titulo: "Visita sem conversa é vitrine sem porta.",
+    texto:
+      "O perfil mostra a marca; a landing page explica a oferta e leva a pessoa a chamar. É para onde apontam a bio, os anúncios e os links que você manda.",
+    servico: SERVICOS.landing,
   },
 ] as const;
 
@@ -185,7 +205,10 @@ export default function Colagem() {
             />
             <div className={s.folhaTxt}>
               <p className={s.ident}>
-                <strong>Agência de marketing digital em Curitiba</strong>
+                <strong>
+                  Agência de marketing digital em Curitiba
+                  {agencia.publico ? ` para ${agencia.publico}` : ""}
+                </strong>
                 <span className={s.identPonto}> · </span>
                 <span className={s.identSub}>
                   marketing digital, design gráfico e landing pages
@@ -213,9 +236,10 @@ export default function Colagem() {
                   </Adesivo>
                 </span>
               </h1>
+              {/* RASCUNHO: promessa do hero (R1) */}
               <p className={s.lide}>
-                Frequência enche o feed. Estratégia enche a memória do cliente.
-                Nosso trabalho começa na diferença entre as duas.
+                Marketing digital, design gráfico e landing pages para a sua
+                marca ser encontrada e, para quem encontrar, chamar.
               </p>
               <a
                 className={s.botao}
@@ -225,6 +249,10 @@ export default function Colagem() {
               >
                 Conversar sobre a sua marca
               </a>
+              {/* RASCUNHO: confirmar com o dono que a primeira conversa não tem custo */}
+              <p className={s.micro}>
+                A primeira conversa é pelo WhatsApp e não tem custo.
+              </p>
             </div>
             <Fita rasgoCss={R.fitaA} className={s.fitaA} />
             <Fita rasgoCss={R.fitaB} className={s.fitaB} />
@@ -322,7 +350,7 @@ export default function Colagem() {
                       style={v("--rasgo", R.opcoes[i])}
                     >
                       <span className={s.letra}>{a.letra}.</span>
-                      <span className={s.opcaoTxt}>{a.rotulo}</span>
+                      <span className={s.opcaoTxt}>{a.q.opcao}</span>
                     </label>
                   ))}
                 </div>
@@ -342,25 +370,34 @@ export default function Colagem() {
                     key={a.id}
                     className={`${s.resposta} ${s[`resp_${a.id}` as keyof typeof s]}`}
                   >
-                    <div className={s.fotoWrap}>
-                      <div className={s.foto} style={v("--rasgo", R.foto)}>
-                        <Image
-                          src={a.servico.foto}
-                          alt={a.servico.alt}
-                          fill
-                          sizes="(min-width: 900px) 40vw, 90vw"
-                          style={{
-                            objectFit: "cover",
-                            objectPosition: a.servico.pos,
-                          }}
+                    <div
+                      className={`${s.fotoWrap} ${a.id === "e" ? s.fotoWrapNav : ""}`}
+                    >
+                      {a.id === "e" ? (
+                        <Navegador
+                          className={s.fotoNav}
+                          sizes="(min-width: 900px) 36vw, 90vw"
                         />
-                      </div>
+                      ) : (
+                        <div className={s.foto} style={v("--rasgo", R.foto)}>
+                          <Image
+                            src={a.servico.foto}
+                            alt={a.servico.alt}
+                            fill
+                            sizes="(min-width: 900px) 40vw, 90vw"
+                            style={{
+                              objectFit: "cover",
+                              objectPosition: a.servico.pos,
+                            }}
+                          />
+                        </div>
+                      )}
                       <Image
                         src={a.servico.adesivo}
                         alt=""
                         width={160}
                         height={160}
-                        className={s.respAdesivo}
+                        className={`${s.respAdesivo} ${a.id === "e" ? s.respAdesivoE : ""}`}
                         style={v("--r", `${a.servico.giro}deg`)}
                       />
                     </div>
@@ -375,16 +412,16 @@ export default function Colagem() {
                         />
                         <span className={s.servicoTxt}>
                           <span className={s.servicoRot}>Serviço: </span>
-                          {a.servico.nome}
+                          {a.q.servico}
                         </span>
                       </p>
                       <a
                         className={s.botao}
-                        href={WHATS}
+                        href={waLink(a.q.mensagem)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Falar com a agência
+                        Falar sobre isso no WhatsApp
                       </a>
                     </div>
                   </article>
@@ -397,7 +434,9 @@ export default function Colagem() {
 
         <Servicos />
         <Metodo />
+        <Diagnostico />
         <Pratica />
+        <Projetos />
         <Sobre />
         <Perguntas />
         <Final />

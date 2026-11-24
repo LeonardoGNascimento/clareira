@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { FONE, TEL, WHATS } from "./pecas";
+import { FONE, TEL, WHATS, agencia } from "./pecas";
 import s from "./page.module.css";
 
 const LINKS = [
   ["Serviços", "#servicos"],
   ["Método", "#metodo"],
   ["Na prática", "#trabalho"],
+  ...(agencia.cases.length > 0 ? [["Projetos", "#projetos"]] : []),
   ["Sobre", "#sobre"],
   ["Perguntas", "#perguntas"],
 ];
@@ -45,12 +46,22 @@ export default function Rodape() {
             </a>{" "}
             <a href={TEL}>{FONE}</a>
           </p>
-          {/* RASCUNHO: ainda não temos o Instagram; trocar o href quando o dono confirmar */}
-          <p>
-            <a href="#" aria-label="Instagram (a confirmar)">
-              Instagram (a confirmar)
-            </a>
-          </p>
+          {agencia.instagram ? (
+            <p>
+              <a
+                href={agencia.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {agencia.instagramArroba ?? "Instagram"}
+              </a>
+            </p>
+          ) : null}
+          {agencia.email ? (
+            <p>
+              <a href={`mailto:${agencia.email}`}>{agencia.email}</a>
+            </p>
+          ) : null}
         </address>
       </div>
       <p className={s.rCopy}>© 2026 Studio Clareira</p>

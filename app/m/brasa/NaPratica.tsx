@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { agencia } from "./dados";
 import x from "./secoes.module.css";
 
 type Peca = {
@@ -102,10 +103,21 @@ export default function NaPratica() {
         <h2 id="pratica-titulo" className={`${x.h2} ${x.praticaTitulo}`}>
           A gente aplica primeiro na própria marca.
         </h2>
-        <p className={x.praticaTexto}>
-          A identidade do Studio Clareira em uso e peças do feed da agência. Os projetos de
-          clientes entram aqui com a autorização de cada um.
-        </p>
+        <div className={x.praticaLado}>
+          <p className={x.praticaTexto}>
+            A identidade do Studio Clareira em uso e peças do feed da agência.
+          </p>
+          {agencia.instagram ? (
+            <a
+              className={x.praticaInsta}
+              href={agencia.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver o feed completo no Instagram
+            </a>
+          ) : null}
+        </div>
       </header>
 
       <div className={x.mural} role="region" aria-label="Peças da agência" tabIndex={0}>

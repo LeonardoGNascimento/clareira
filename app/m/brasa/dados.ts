@@ -1,7 +1,8 @@
-export const WHATS =
-  "https://wa.me/5541984079112?text=" +
-  encodeURIComponent(
-    "Olá, vim pelo site do Studio Clareira e quero conversar sobre a minha marca.",
-  );
+import { agencia as agenciaBase, quiz, waLink } from "../_comum/agencia";
 
-export const FONE = "41 98407-9112";
+/** Dados da agência (campos vazios = nada aparece na página). */
+export const agencia = agenciaBase;
+export { quiz, waLink };
+
+export const WHATS = waLink();
+export const FONE = agencia.whatsappVisivel;

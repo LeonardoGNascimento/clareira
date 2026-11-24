@@ -9,7 +9,7 @@ As três têm as mesmas seções e o mesmo texto ([`CONTEUDO.md`](CONTEUDO.md)),
 
 - topo com âncoras
 - hero
-- "o que trava o seu perfil?"
+- "o que trava o seu perfil?": cinco alternativas, e cada uma abre o WhatsApp com o problema escolhido já escrito
 - serviços, com o que cada um entrega: marketing digital, design gráfico e design de landing pages (este último mostra a própria página numa moldura de navegador)
 - método: conversa, compreender, planejar e construir
 - a marca e o feed do estúdio na prática
@@ -28,14 +28,34 @@ acordeão foram testados no navegador, e a página fica legível sem JavaScript.
 | **C · Brasa** `/m/brasa` | ![](prints/lp-brasa-desktop.jpg) | ![](prints/lp-brasa-celular.jpg) |
 | **D · Colagem** `/m/colagem` | ![](prints/lp-colagem-desktop.jpg) | ![](prints/lp-colagem-celular.jpg) |
 
-**Antes de publicar, o Alisson precisa confirmar:**
-- o que entra em cada serviço (as entregas listadas são rascunho) e se faz anúncios/tráfego pago;
-- se o estúdio tem Instagram e e-mail;
-- se atende fora de Curitiba;
-- uma foto dele para a seção "Sobre".
+**Pronto para os dados do Alisson.** Tudo que depende dele mora em [`app/m/_comum/agencia.ts`](app/m/_comum/agencia.ts).
+Enquanto um campo está vazio, a página não mostra nada no lugar dele, nem placeholder nem "[a confirmar]". Quando o campo é
+preenchido, o dado aparece nas três páginas:
 
-Até lá, as entregas dos serviços, as respostas das perguntas e o texto sobre ele ficam como rascunho, marcados `RASCUNHO`
-no código.
+| Campo | O que liga |
+|---|---|
+| `cases` | Seção **Projetos** (imagem, cliente, segmento, serviços, o que foi feito, resultado) |
+| `fotoAlisson`, `historiaAlisson` | Foto e história no **Sobre** |
+| `instagram`, `email` | Links no rodapé e "Ver o feed completo no Instagram" |
+| `publico` | "Agência de marketing digital em Curitiba **para {público}**" no hero |
+| `precoReferencia` | Frase de preço na pergunta "Quanto custa?" |
+| `diagnosticoGratuito: true` | Bloco "Mande o seu @ e receba 3 pontos de melhoria do seu perfil" |
+| `dominio` | Endereço na moldura de navegador do serviço de landing page |
+
+Assim ficam as seções condicionais com dados de teste (1440):
+
+| | Diagnóstico | Projetos | Sobre com foto |
+|---|---|---|---|
+| **B · Cartaz** | ![](prints/com-dados/cartaz-1440-diag.jpg) | ![](prints/com-dados/cartaz-1440-proj.jpg) | ![](prints/com-dados/cartaz-1440-sobre.jpg) |
+| **C · Brasa** | ![](prints/com-dados/brasa-1440-diag.jpg) | ![](prints/com-dados/brasa-1440-proj.jpg) | ![](prints/com-dados/brasa-1440-sobre.jpg) |
+| **D · Colagem** | ![](prints/com-dados/colagem-1440-diag.jpg) | ![](prints/com-dados/colagem-1440-proj.jpg) | ![](prints/com-dados/colagem-1440-sobre.jpg) |
+
+Também estão marcados `RASCUNHO` no código, e o Alisson precisa aprovar antes de publicar, porque são promessas que só ele
+pode garantir:
+- "A primeira conversa é pelo WhatsApp e não tem custo."
+- O "Você recebe:" de cada etapa do método.
+- As entregas de cada serviço.
+- As respostas das perguntas.
 
 ---
 

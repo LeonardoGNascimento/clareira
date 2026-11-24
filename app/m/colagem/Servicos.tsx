@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Adesivo from "./Adesivo";
-import { Fita, Padrao, Peca, R, v } from "./pecas";
+import { Fita, Navegador, Padrao, Peca, R, v } from "./pecas";
 import s from "./page.module.css";
 
 /* RASCUNHO: entregas dos três serviços e a frase de abertura (CONTEUDO.md, seção 3).
@@ -195,27 +195,7 @@ export default function Servicos() {
               } as CSSProperties
             }
           >
-            <div className={s.navegador} style={v("--rasgo", R.foto3)}>
-              <div className={s.navBarra} aria-hidden>
-                <span className={s.navPontos}>
-                  <i />
-                  <i />
-                  <i />
-                </span>
-                <span className={s.navCampo}>
-                  studioclareira.com.br <small>[a confirmar]</small>
-                </span>
-              </div>
-              <div className={s.navTela}>
-                <Image
-                  src="/lp/colagem-hero.jpg"
-                  alt="Topo desta própria landing page: Presença não é só postar, é ser lembrado, com o lobo-chama sobre o muro laranja"
-                  fill
-                  sizes="(min-width: 900px) 36vw, 90vw"
-                  style={{ objectFit: "cover", objectPosition: "50% 0%" }}
-                />
-              </div>
-            </div>
+            <Navegador sizes="(min-width: 900px) 36vw, 90vw" />
             <figcaption className={s.legenda}>
               <span
                 className={s.legendaFundo}

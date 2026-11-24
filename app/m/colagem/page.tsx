@@ -17,43 +17,46 @@ import s from "./page.module.css";
 export const metadata: Metadata = {
   title: "Studio Clareira · Direção D, Colagem",
   description:
-    "Studio Clareira, de Curitiba (PR): identidade visual, conteúdo e redes sociais, posicionamento e presença digital para marcas que querem ser lembradas.",
+    "Studio Clareira, agência de marketing digital em Curitiba (PR): marketing digital, design gráfico e landing pages para marcas que querem ser encontradas e lembradas.",
   robots: { index: false },
 };
 
-/* RASCUNHO: confirmar serviços e as respostas com o dono.
-   Mapa: A constância e D tempo → Conteúdo e redes sociais; B estratégia → Posicionamento e
-   presença digital; C criatividade → Identidade visual. A foto é a aplicação real daquele serviço. */
+/* RASCUNHO: confirmar o mapa e as respostas com o dono.
+   Mapa: A constância → Marketing digital; B estratégia e ideias → Marketing digital (planejamento);
+   C criatividade → Design gráfico; D tempo para produzir → Marketing digital (a agência produz).
+   Três respostas de marketing, três fotos: tablet, um post real e outro post real. */
 const SERVICOS = {
-  conteudo: {
-    nome: "Conteúdo e redes sociais",
+  tablet: {
+    nome: "Marketing digital",
     foto: "/posts/mockup-1.jpg",
-    w: 2000,
-    h: 1116,
     pos: "66% 50%",
     alt: "Uma mão inclina um tablet que mostra a capa laranja do Studio Clareira",
     adesivo: "/brand/brasa-balao.svg",
     giro: 6,
   },
-  posicionamento: {
-    nome: "Posicionamento e presença digital",
-    foto: "/posts/mockup-2.jpg",
-    w: 2000,
-    h: 1333,
-    pos: "58% 55%",
-    alt: "Cartão laranja do Studio Clareira com o lobo, o nome e a frase Studio de design gráfico",
-    adesivo: "/brand/brasa-pena.svg",
+  planejamento: {
+    nome: "Marketing digital (planejamento)",
+    foto: "/posts/post-presenca.jpg",
+    pos: "50% 52%",
+    alt: "Post do feed da agência: Presença não é só postar, é ser lembrado, em uma folha de papel rasgada sobre fundo laranja",
+    adesivo: "/brand/brasa-balao.svg",
     giro: -6,
   },
-  identidade: {
-    nome: "Identidade visual",
+  grafico: {
+    nome: "Design gráfico",
     foto: "/posts/mockup-5.jpg",
-    w: 2000,
-    h: 1500,
     pos: "50% 50%",
     alt: "Duas canecas esmaltadas, uma laranja e uma branca com borda verde, sobre o padrão do lobo-chama",
     adesivo: "/brand/brasa-bezier.svg",
     giro: -8,
+  },
+  producao: {
+    nome: "Marketing digital",
+    foto: "/posts/post-ponte.jpg",
+    pos: "50% 56%",
+    alt: "Post do feed da agência: um lobo atravessa uma ponte pendurada sob um triângulo de luz, com a frase entre quem você é e quem precisa te encontrar",
+    adesivo: "/brand/brasa-pena.svg",
+    giro: 7,
   },
 } as const;
 
@@ -65,7 +68,7 @@ const ALTERNATIVAS = [
     titulo: "Um ritmo que cabe na sua semana.",
     texto:
       "Constância não vem de força de vontade, vem de calendário. A gente desenha o ritmo de publicação que a sua rotina aguenta.",
-    servico: SERVICOS.conteudo,
+    servico: SERVICOS.tablet,
   },
   {
     id: "b",
@@ -74,7 +77,7 @@ const ALTERNATIVAS = [
     titulo: "Primeiro a estratégia, depois o post.",
     texto:
       "Antes de postar, a gente decide o que dizer, para quem e por quê. Cada peça passa a ter uma função.",
-    servico: SERVICOS.posicionamento,
+    servico: SERVICOS.planejamento,
   },
   {
     id: "c",
@@ -83,16 +86,16 @@ const ALTERNATIVAS = [
     titulo: "Ideia que nasce da sua marca.",
     texto:
       "Quando a marca tem identidade, a ideia não depende da tendência da semana. A gente cria dentro de uma voz e de um visual que são só seus.",
-    servico: SERVICOS.identidade,
+    servico: SERVICOS.grafico,
   },
   {
     id: "d",
     letra: "D",
     rotulo: "Tempo para produzir",
-    titulo: "Você toca o negócio, a gente produz.",
+    titulo: "Você toca o negócio, a agência produz.",
     texto:
       "Planejar, desenhar e deixar pronto para publicar é o nosso trabalho. O seu tempo volta para o que só você faz.",
-    servico: SERVICOS.conteudo,
+    servico: SERVICOS.producao,
   },
 ] as const;
 
@@ -181,6 +184,13 @@ export default function Colagem() {
               aria-hidden
             />
             <div className={s.folhaTxt}>
+              <p className={s.ident}>
+                <strong>Agência de marketing digital em Curitiba</strong>
+                <span className={s.identPonto}> · </span>
+                <span className={s.identSub}>
+                  marketing digital, design gráfico e landing pages
+                </span>
+              </p>
               <h1 id="titulo" className={s.h1}>
                 <span className={s.h1Linha}>Presença</span>
                 <span className={s.h1Linha}>não é só postar,</span>
@@ -374,7 +384,7 @@ export default function Colagem() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Falar com o estúdio
+                        Falar com a agência
                       </a>
                     </div>
                   </article>

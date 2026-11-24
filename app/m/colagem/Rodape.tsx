@@ -23,7 +23,7 @@ export default function Rodape() {
             className={s.rLogo}
           />
           <p className={s.rLema}>
-            Identidade visual, conteúdo e presença digital.
+            Agência de marketing digital, design gráfico e landing pages.
           </p>
         </div>
 

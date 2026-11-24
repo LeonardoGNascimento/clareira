@@ -7,25 +7,25 @@ const TRAVAS = [
     l: "A",
     nome: "Constância de postar",
     /* RASCUNHO: resposta curta */
-    resp: "Quando falta tempo, o perfil para. A produção segue andando.",
+    resp: "Marketing digital: a produção segue andando, mesmo quando falta tempo.",
   },
   {
     l: "B",
     nome: "Estratégia e ideias de conteúdo",
     /* RASCUNHO: resposta curta */
-    resp: "Cada peça com um motivo, dentro de uma linha editorial.",
+    resp: "Marketing digital: planejamento, para cada peça ter um motivo.",
   },
   {
     l: "C",
     nome: "Criatividade para criar",
     /* RASCUNHO: resposta curta */
-    resp: "Feed, carrossel e stories criados a partir da identidade da marca.",
+    resp: "Design gráfico: peças criadas a partir da identidade da marca.",
   },
   {
     l: "D",
     nome: "Tempo para produzir",
     /* RASCUNHO: resposta curta */
-    resp: "Você cuida do negócio. O estúdio cuida do que vai ao ar.",
+    resp: "Marketing digital: você cuida do negócio, a agência produz o que vai ao ar.",
   },
 ] as const;
 

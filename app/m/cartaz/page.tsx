@@ -6,9 +6,9 @@ import { rasgo } from "./rasgo";
 import { ZapFlutuante } from "./ZapFlutuante";
 
 export const metadata: Metadata = {
-  title: "Studio Clareira · Identidade visual, conteúdo e presença digital",
+  title: "Studio Clareira · Agência de marketing digital em Curitiba",
   description:
-    "Estúdio de design de Curitiba. Identidade visual, conteúdo para redes sociais e posicionamento para marcas que querem ser encontradas e lembradas.",
+    "Agência de marketing digital em Curitiba. Marketing digital, design gráfico e design de landing pages para marcas que querem ser encontradas e lembradas.",
 };
 
 const WHATS =
@@ -56,7 +56,7 @@ const SOBRE = {
   pessoa: FOLHA(223),
 };
 const PILAR = [229, 233, 239].map((s) => rasgo(s, { t: 9, b: 9, l: 2.4, r: 2.4, sx: 4, sy: 25 }));
-const PERG = Array.from({ length: 6 }, (_, i) => rasgo(241 + i * 2, { t: 14, b: 14, l: 0.6, r: 0.6, sx: 3, sy: 25 }));
+const PERG = Array.from({ length: 7 }, (_, i) => rasgo(241 + i * 2, { t: 14, b: 14, l: 0.6, r: 0.6, sx: 3, sy: 25 }));
 const FIM = {
   marca: rasgo(257, { t: 7, b: 7, l: 2.4, r: 2.4, sx: 3, sy: 25 }),
   penhascoE: rasgo(263, { t: 22, b: 0, l: 0, r: 9, sx: 5, sy: 8 }),
@@ -106,39 +106,43 @@ function Fita({ rasgoCss, className }: { rasgoCss: string; className: string }) 
   return <span aria-hidden className={`${styles.fita} ${className}`} style={v("--rasgo", rasgoCss)} />;
 }
 
-/* RASCUNHO: confirmar serviços e as respostas com o dono. */
+/* RASCUNHO: confirmar as respostas e os serviços a que apontam com o dono. */
 const ALTERNATIVAS = [
   {
     id: "a",
     letra: "A",
     rotulo: "Constância de postar",
+    servico: "Marketing digital",
     titulo: "Um ritmo que cabe na sua semana.",
     texto:
-      "Constância não vem de força de vontade, vem de calendário. A gente desenha o ritmo de publicação que a sua rotina aguenta, para o perfil não depender do seu humor.",
+      "Constância não vem de força de vontade, vem de calendário. No marketing digital da agência, o ritmo de publicação é desenhado para a sua rotina aguentar, e o perfil não depende do seu humor.",
   },
   {
     id: "b",
     letra: "B",
     rotulo: "Estratégia e ideias de conteúdo",
+    servico: "Marketing digital · planejamento",
     titulo: "Primeiro a estratégia, depois o post.",
     texto:
-      "Antes de postar, a gente decide o que dizer, para quem e por quê. Cada peça passa a ter uma função, e o feed deixa de ser um monte de posts soltos.",
+      "Antes de postar, o planejamento decide o que dizer, para quem e por quê. Cada peça ganha uma função, e o feed deixa de ser um monte de posts soltos.",
   },
   {
     id: "c",
     letra: "C",
     rotulo: "Criatividade para criar",
+    servico: "Design gráfico",
     titulo: "Ideia que nasce da sua marca.",
     texto:
-      "Quando a marca tem identidade, a ideia não depende da tendência da semana. A gente cria dentro de uma voz e de um visual que são só seus.",
+      "Quando a marca tem identidade, a ideia não depende da tendência da semana. O design gráfico da agência cria dentro de uma voz e de um visual que são só seus.",
   },
   {
     id: "d",
     letra: "D",
     rotulo: "Tempo para produzir",
-    titulo: "Você toca o negócio, a gente cuida do conteúdo.",
+    servico: "Marketing digital · a agência produz",
+    titulo: "Você toca o negócio, a agência cuida do conteúdo.",
     texto:
-      "Planejar, desenhar e deixar pronto para publicar é o nosso trabalho. O seu tempo volta para o que só você faz.",
+      "Planejar, desenhar e deixar pronto para publicar é o trabalho da agência. O seu tempo volta para o que só você faz.",
   },
 ];
 
@@ -176,28 +180,13 @@ const SERVICOS = [
   {
     id: "a",
     n: "01",
-    nome: "Identidade visual",
-    frase: "Uma marca que dá para reconhecer de longe e que funciona em qualquer lugar.",
+    nome: "Marketing digital",
+    frase: "Estratégia antes do post: cada conteúdo sabe o que está fazendo no feed.",
     entregas: [
-      "Diagnóstico da marca",
-      "Símbolo e logotipo, com versões principal, horizontal e só o símbolo",
-      "Paleta e tipografia",
-      "Elementos de apoio",
-      "Manual de marca",
-      "Aplicações (redes, papelaria, embalagem)",
-    ],
-    foto: { src: "/posts/mockup-5.jpg", w: 2000, h: 1500, alt: "Duas canecas esmaltadas, uma laranja e uma branca, com a marca do Studio Clareira" },
-    adesivo: { src: "/brand/icone-bezier.svg", caixa: CAIXA.bezier },
-  },
-  {
-    id: "b",
-    n: "02",
-    nome: "Conteúdo e redes sociais",
-    frase: "Constância com intenção: cada post sabe o que está fazendo no feed.",
-    entregas: [
-      "Estratégia e linha editorial",
+      "Planejamento e estratégia",
+      "Gestão de redes sociais",
       "Calendário de publicações",
-      "Criação das peças (feed, carrossel, stories)",
+      "Criação de posts, carrosséis, stories e reels",
       "Textos e legendas",
       "Produção contínua, para o perfil não parar quando falta tempo",
     ],
@@ -205,20 +194,60 @@ const SERVICOS = [
     adesivo: { src: "/brand/balao.svg", caixa: CAIXA.balao },
   },
   {
+    id: "b",
+    n: "02",
+    nome: "Design gráfico",
+    frase: "Uma marca que dá para reconhecer de longe e que funciona em qualquer lugar.",
+    entregas: [
+      "Identidade visual: logotipo, paleta, tipografia e manual de marca",
+      "Peças para redes sociais",
+      "Materiais impressos e papelaria",
+      "Apresentações",
+      "Aplicações: embalagem, brindes e sinalização",
+    ],
+    foto: { src: "/posts/mockup-5.jpg", w: 2000, h: 1500, alt: "Duas canecas esmaltadas, uma laranja e uma branca, com a marca do Studio Clareira" },
+    adesivo: { src: "/brand/icone-bezier.svg", caixa: CAIXA.bezier },
+  },
+  {
     id: "c",
     n: "03",
-    nome: "Posicionamento e presença digital",
-    frase: "Uma ponte entre quem você é e quem precisa te encontrar.",
+    nome: "Design de landing pages",
+    frase: "Uma página feita para transformar visita em conversa.",
     entregas: [
-      "Leitura de como a marca é percebida hoje",
-      "Mensagem e tom de voz",
-      "Perfil organizado (bio, destaques, links)",
-      "Direção para que identidade e conteúdo digam a mesma coisa",
+      "Estrutura e texto da página",
+      "Design próprio, no visual da marca",
+      "Versão para celular",
+      "Botão de WhatsApp e formulário de contato",
+      "Página no ar, pronta para receber anúncios e links da bio",
     ],
-    foto: { src: "/posts/mockup-2.jpg", w: 2000, h: 1333, alt: "Cartão laranja do Studio Clareira sobre um fundo de luz e sombra" },
-    adesivo: { src: "/brand/icone-pena.svg", caixa: CAIXA.pena },
+    foto: null,
+    adesivo: { src: "/brand/cursor.svg", caixa: CAIXA.cursor },
   },
 ];
+
+/* Moldura de navegador desenhada em CSS, com o print do hero desta própria página dentro. */
+function Navegador() {
+  return (
+    <div className={styles.nav}>
+      <div className={styles.navBarra} aria-hidden>
+        <span className={styles.navPontos}>
+          <i />
+          <i />
+          <i />
+        </span>
+        {/* RASCUNHO: endereço a confirmar */}
+        <span className={styles.navEndereco}>studioclareira.com.br [a confirmar]</span>
+      </div>
+      <Image
+        src="/lp/cartaz-hero.jpg"
+        alt="Primeira tela da landing page do Studio Clareira: o título “Presença não é só postar, é ser lembrado” sobre papel rasgado, com o lobo ao lado"
+        width={1440}
+        height={900}
+        sizes="(min-width: 900px) 30vw, 80vw"
+      />
+    </div>
+  );
+}
 
 const PASSOS = [
   {
@@ -238,23 +267,23 @@ const PASSOS = [
   },
 ];
 
-/* Só peças reais do estúdio. Nunca as capas de clientes não confirmados. */
+/* Só peças reais da agência. Nunca as capas de clientes não confirmados. */
 const PECAS = [
   {
     id: "quem",
     src: "/posts/post-quem-somos.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: Studio Clareira, quem somos, com o lobo em meio-tom diante de uma lua laranja",
-    legenda: "Post do feed do estúdio",
+    alt: "Post do feed da agência: Studio Clareira, quem somos, com o lobo em meio-tom diante de uma lua laranja",
+    legenda: "Post do feed da agência",
   },
   {
     id: "presenca",
     src: "/posts/post-presenca.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: Presença não é só postar, é ser lembrado, em papel rasgado sobre fundo laranja",
-    legenda: "Post do feed do estúdio",
+    alt: "Post do feed da agência: Presença não é só postar, é ser lembrado, em papel rasgado sobre fundo laranja",
+    legenda: "Post do feed da agência",
   },
   {
     id: "fone",
@@ -262,15 +291,15 @@ const PECAS = [
     w: 2000,
     h: 1336,
     alt: "Estojo de fones de ouvido laranja com a marca do Studio Clareira",
-    legenda: "Aplicação da marca do estúdio: fone",
+    legenda: "Aplicação da marca da agência: fone",
   },
   {
     id: "ponte",
     src: "/posts/post-ponte.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: o que o seu negócio precisa é de uma ponte, com um lobo atravessando uma ponte de corda",
-    legenda: "Post do feed do estúdio",
+    alt: "Post do feed da agência: o que o seu negócio precisa é de uma ponte, com um lobo atravessando uma ponte de corda",
+    legenda: "Post do feed da agência",
   },
   {
     id: "garrafa",
@@ -278,15 +307,15 @@ const PECAS = [
     w: 1600,
     h: 2000,
     alt: "Garrafa branca com a marca do Studio Clareira apoiada em um sofá laranja",
-    legenda: "Aplicação da marca do estúdio: garrafa",
+    legenda: "Aplicação da marca da agência: garrafa",
   },
   {
     id: "travar",
     src: "/posts/post-travar-perfil.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: o que você acha que pode travar seu perfil, com as alternativas A a D",
-    legenda: "Post do feed do estúdio",
+    alt: "Post do feed da agência: o que você acha que pode travar seu perfil, com as alternativas A a D",
+    legenda: "Post do feed da agência",
   },
 ];
 
@@ -300,7 +329,7 @@ const PERGUNTAS = [
   },
   {
     q: "Quanto custa?",
-    a: "Depende do que a marca precisa: identidade, conteúdo, posicionamento ou uma combinação. O valor sai na proposta, depois da primeira conversa.",
+    a: "Depende do que a marca precisa: marketing digital, design, landing page ou uma combinação. O valor sai na proposta, depois da primeira conversa.",
   },
   {
     q: "Quanto tempo leva?",
@@ -316,7 +345,11 @@ const PERGUNTAS = [
   },
   {
     q: "Dá para contratar só uma parte?",
-    a: "Dá. Identidade, conteúdo e posicionamento funcionam juntos, mas cada um pode ser contratado separado.",
+    a: "Dá. Marketing digital, design gráfico e landing page funcionam juntos, mas cada um pode ser contratado separado.",
+  },
+  {
+    q: "Por que ter uma landing page se eu já tenho Instagram?",
+    a: "O perfil mostra a marca; a landing page explica a oferta e leva a pessoa a chamar. É para onde apontam a bio, os anúncios e os links que você manda.",
   },
 ];
 
@@ -357,6 +390,11 @@ export default function Cartaz() {
 
           <div className={styles.folhaWrap}>
             <div className={styles.folha} style={v("--rasgo", R.folha)}>
+              {/* identificação: diz o que a empresa é (CONTEUDO.md, seção 1) */}
+              <p className={styles.id}>
+                <strong>Agência de marketing digital em Curitiba</strong>
+                <span>marketing digital, design gráfico e landing pages</span>
+              </p>
               <h1 id="titulo" className={styles.h1}>
                 <span className={styles.h1Linha}>Presença</span>
                 <span className={styles.h1Linha}>não é só postar,</span>
@@ -391,11 +429,10 @@ export default function Cartaz() {
             <Fita rasgoCss={R.fitaC} className={styles.fitaPrint} />
           </figure>
 
-          {/* RASCUNHO: confirmar serviços */}
           <ul className={styles.servicos}>
-            <li>Identidade visual</li>
-            <li>Conteúdo e redes sociais</li>
-            <li>Posicionamento e presença digital</li>
+            <li>Marketing digital</li>
+            <li>Design gráfico</li>
+            <li>Design de landing pages</li>
           </ul>
         </section>
 
@@ -435,7 +472,7 @@ export default function Cartaz() {
 
               <div className={styles.opcoesWrap}>
                 <div className={styles.opcoes} style={v("--rasgo", R.opcoes)}>
-                  <p className={styles.dica}>Escolha uma alternativa e veja como o estúdio resolve.</p>
+                  <p className={styles.dica}>Escolha uma alternativa e veja como a agência resolve.</p>
                   {ALTERNATIVAS.map((a, i) => (
                     <Fragment key={a.id}>
                       <label
@@ -452,10 +489,11 @@ export default function Cartaz() {
                           className={`${styles.inline} ${styles[`inl_${a.id}` as keyof typeof styles]}`}
                           style={v("--rasgo", R.resposta)}
                         >
+                          <p className={styles.inlineServico}>{a.servico}</p>
                           <h3 className={styles.inlineTitulo}>{a.titulo}</h3>
                           <p className={styles.inlineTexto}>{a.texto}</p>
                           <a className={styles.botao} href={WHATS}>
-                            Falar com o estúdio
+                            Falar com a agência
                           </a>
                         </div>
                       </div>
@@ -469,11 +507,11 @@ export default function Cartaz() {
                 <div className={styles.respostaFolha} style={v("--rasgo", R.resposta)}>
                   {ALTERNATIVAS.map((a) => (
                     <article key={a.id} className={`${styles.resposta} ${styles[`resp_${a.id}` as keyof typeof styles]}`}>
-                      <p className={styles.respostaQuem}>O estúdio responde</p>
+                      <p className={styles.respostaQuem}>A agência responde · {a.servico}</p>
                       <h3 className={styles.respostaTitulo}>{a.titulo}</h3>
                       <p className={styles.respostaTexto}>{a.texto}</p>
                       <a className={styles.botao} href={WHATS}>
-                        Falar com o estúdio
+                        Falar com a agência
                       </a>
                     </article>
                   ))}
@@ -492,12 +530,12 @@ export default function Cartaz() {
           <Recorte src="/brand/selo-lobo.svg" caixa={CAIXA.selo} className={styles.svSelo} />
           <div className={styles.svTopo}>
             <h2 id="t-servicos" className={styles.svH}>
-              <span className={styles.svH1}>Do símbolo</span>
-              <span className={styles.svH2}>ao feed.</span>
+              <span className={styles.svH1}>Da marca</span>
+              <span className={styles.svH2}>ao clique.</span>
             </h2>
             {/* RASCUNHO: abertura */}
             <p className={styles.svAbertura}>
-              Três frentes que trabalham juntas. Dá para começar por uma e somar as outras quando fizer sentido.
+              Marketing, design e landing page trabalhando juntos. Dá para começar por um e somar os outros quando fizer sentido.
             </p>
           </div>
 
@@ -519,15 +557,24 @@ export default function Cartaz() {
                 </div>
                 <figure className={styles.svFoto}>
                   <div className={styles.svPrint} style={v("--rasgo", SVFOTO[i])}>
-                    <Image
-                      src={s.foto.src}
-                      alt={s.foto.alt}
-                      width={s.foto.w}
-                      height={s.foto.h}
-                      sizes="(min-width: 900px) 30vw, 80vw"
-                    />
+                    {s.foto ? (
+                      <Image
+                        src={s.foto.src}
+                        alt={s.foto.alt}
+                        width={s.foto.w}
+                        height={s.foto.h}
+                        sizes="(min-width: 900px) 30vw, 80vw"
+                      />
+                    ) : (
+                      <Navegador />
+                    )}
                   </div>
                   <Fita rasgoCss={i === 1 ? R.fitaB : R.fitaC} className={styles.svFita} />
+                  {!s.foto && (
+                    <figcaption className={styles.svLegenda} style={v("--rasgo", LEGENDA)}>
+                      A landing page da própria agência
+                    </figcaption>
+                  )}
                 </figure>
                 <Recorte src={s.adesivo.src} caixa={s.adesivo.caixa} className={styles.svAdesivo} />
               </article>
@@ -542,7 +589,7 @@ export default function Cartaz() {
               <span className={styles.mtH1}>Primeiro o cenário.</span>
               <span className={styles.mtH2}>Depois o caminho.</span>
             </h2>
-            <p className={styles.mtLide}>Compreender, planejar e construir. É assim que o estúdio conduz cada projeto.</p>
+            <p className={styles.mtLide}>Compreender, planejar e construir. É assim que a agência conduz cada projeto.</p>
           </div>
 
           <div className={styles.trilhaWrap}>
@@ -575,7 +622,7 @@ export default function Cartaz() {
           </div>
         </section>
 
-        {/* ───────── Na prática: o mural do estúdio ───────── */}
+        {/* ───────── Na prática: o mural da agência ───────── */}
         <section
           id="trabalho"
           className={`${styles.campo} ${styles.noite} ${styles.pr}`}
@@ -591,7 +638,7 @@ export default function Cartaz() {
             <p className={styles.muralDica} aria-hidden>
               Role para o lado
             </p>
-            <div className={styles.mural} role="region" aria-label="Peças e aplicações do estúdio" tabIndex={0}>
+            <div className={styles.mural} role="region" aria-label="Peças e aplicações da agência" tabIndex={0}>
               <ul>
                 {PECAS.map((p, i) => (
                   <li key={p.id} className={`${styles.peca} ${styles[`peca_${p.id}` as keyof typeof styles]}`}>
@@ -618,7 +665,7 @@ export default function Cartaz() {
             <div className={styles.prNota}>
               <div className={styles.prNotaFolha} style={v("--rasgo", NOTA)}>
                 <p>
-                  A identidade do Studio Clareira em uso e peças do feed do estúdio. Os projetos de clientes entram aqui
+                  A identidade do Studio Clareira em uso e peças do feed da agência. Os projetos de clientes entram aqui
                   com a autorização de cada um.
                 </p>
               </div>
@@ -642,7 +689,7 @@ export default function Cartaz() {
             <div className={styles.sbFolha} style={v("--rasgo", SOBRE.texto)}>
               <p className={styles.sbP1}>
                 O Studio Clareira nasce da metáfora da clareira na floresta: um espaço onde a luz atravessa as árvores,
-                a visão se amplia e o caminho se torna claro. O estúdio existe para transformar a complexidade do
+                a visão se amplia e o caminho se torna claro. A agência existe para transformar a complexidade do
                 mercado em estratégia, direção e crescimento para as marcas.
               </p>
               <p className={styles.sbP2}>
@@ -674,8 +721,8 @@ export default function Cartaz() {
           {/* RASCUNHO: apresentação do Alisson */}
           <div className={styles.sbPessoa}>
             <p className={styles.sbPessoaFolha} style={v("--rasgo", SOBRE.pessoa)}>
-              À frente do estúdio está <strong>Alisson Barros Narloch</strong>, designer. O Studio Clareira é o passo do
-              trabalho dele como designer para uma marca estruturada, pronta para crescer junto com os clientes.
+              À frente da agência está <strong>Alisson Barros Narloch</strong>. O Studio Clareira junta marketing digital,
+              design gráfico e landing pages num lugar só, para a marca do cliente crescer com direção.
             </p>
           </div>
 
@@ -771,7 +818,7 @@ export default function Cartaz() {
         <div className={styles.rpGrade}>
           <div className={styles.rpMarca}>
             <Recorte src="/brand/logo-vertical-branco.svg" caixa={CAIXA.vertical} className={styles.rpLogo} />
-            <p className={styles.rpLinha}>Identidade visual, conteúdo e presença digital.</p>
+            <p className={styles.rpLinha}>Agência de marketing digital, design gráfico e landing pages.</p>
           </div>
           <nav className={styles.rpNav} aria-label="Rodapé">
             <ul>

@@ -1,6 +1,7 @@
 # Studio Clareira: landing page
 
-Todas as direções foram construídas a partir do manual de marca: Chunk + Poppins, paleta oficial, lobo e elementos de apoio.
+O Studio Clareira é uma **agência de marketing** com três serviços: **marketing digital, design gráfico e design de landing
+pages**. Todas as direções foram construídas a partir do manual de marca: Chunk + Poppins, paleta oficial, lobo e elementos de apoio.
 **B · Cartaz, C · Brasa e D · Colagem já são landing pages completas.** A · Clareira ficou só na primeira dobra.
 
 ## Páginas completas: B, C e D
@@ -9,7 +10,7 @@ As três têm as mesmas seções e o mesmo texto ([`CONTEUDO.md`](CONTEUDO.md)),
 - topo com âncoras
 - hero
 - "o que trava o seu perfil?"
-- serviços, com o que cada um entrega
+- serviços, com o que cada um entrega: marketing digital, design gráfico e design de landing pages (este último mostra a própria página numa moldura de navegador)
 - método: conversa, compreender, planejar e construir
 - a marca e o feed do estúdio na prática
 - sobre: o conceito clareira/lobo e o Alisson
@@ -28,7 +29,7 @@ acordeão foram testados no navegador, e a página fica legível sem JavaScript.
 | **D · Colagem** `/m/colagem` | ![](prints/lp-colagem-desktop.jpg) | ![](prints/lp-colagem-celular.jpg) |
 
 **Antes de publicar, o Alisson precisa confirmar:**
-- quais serviços ele oferece hoje;
+- o que entra em cada serviço (as entregas listadas são rascunho) e se faz anúncios/tráfego pago;
 - se o estúdio tem Instagram e e-mail;
 - se atende fora de Curitiba;
 - uma foto dele para a seção "Sobre".

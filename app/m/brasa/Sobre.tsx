@@ -48,7 +48,7 @@ export default function Sobre() {
         <div className={x.sobreTexto}>
           <p className={x.sobreLide}>
             O Studio Clareira nasce da metáfora da clareira na floresta: um espaço onde a luz
-            atravessa as árvores, a visão se amplia e o caminho se torna claro. O estúdio existe
+            atravessa as árvores, a visão se amplia e o caminho se torna claro. A agência existe
             para transformar a complexidade do mercado em estratégia, direção e crescimento para
             as marcas.
           </p>
@@ -58,13 +58,13 @@ export default function Sobre() {
           </p>
           {/* RASCUNHO: parágrafo sobre o Alisson */}
           <p className={`${x.sobreP} ${x.sobrePessoa}`}>
-            À frente do estúdio está <strong>Alisson Barros Narloch</strong>, designer. O Studio
-            Clareira é o passo do trabalho dele como designer para uma marca estruturada, pronta
-            para crescer junto com os clientes.
+            À frente da agência está <strong>Alisson Barros Narloch</strong>. O Studio Clareira
+            junta marketing digital, design gráfico e landing pages num lugar só, para a marca do
+            cliente crescer com direção.
           </p>
         </div>
 
-        <ul className={x.pilares} aria-label="Pilares do estúdio">
+        <ul className={x.pilares} aria-label="Pilares da agência">
           <li>Estratégia</li>
           <li>Criatividade</li>
           <li>Clareza</li>

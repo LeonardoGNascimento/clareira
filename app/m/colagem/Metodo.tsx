@@ -36,7 +36,7 @@ export default function Metodo() {
           <span>Primeiro o cenário.</span> <span>Depois o caminho.</span>
         </h2>
         <p className={s.metLide}>
-          Compreender, planejar e construir. É assim que o estúdio conduz cada
+          Compreender, planejar e construir. É assim que a agência conduz cada
           projeto.
         </p>
       </header>

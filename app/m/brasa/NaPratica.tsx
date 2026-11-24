@@ -17,8 +17,8 @@ const A: Peca[] = [
     src: "/posts/post-presenca.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: Presença não é só postar, é ser lembrado, sobre papel rasgado em fundo laranja",
-    cap: "Post do feed do estúdio",
+    alt: "Post do feed da agência: Presença não é só postar, é ser lembrado, sobre papel rasgado em fundo laranja",
+    cap: "Post do feed da agência",
     r: -1.4,
     tam: "g",
     fita: true,
@@ -28,7 +28,7 @@ const A: Peca[] = [
     w: 2000,
     h: 1336,
     alt: "Estojo de fones de ouvido laranja com o lobo e o nome Studio Clareira, sobre fundo laranja",
-    cap: "Aplicação da marca do estúdio: fone",
+    cap: "Aplicação da marca da agência: fone",
     r: 1,
     tam: "g",
   },
@@ -38,8 +38,8 @@ const B: Peca[] = [
     src: "/posts/post-ponte.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: O que o seu negócio precisa é de uma ponte, com um lobo atravessando uma ponte",
-    cap: "Post do feed do estúdio",
+    alt: "Post do feed da agência: O que o seu negócio precisa é de uma ponte, com um lobo atravessando uma ponte",
+    cap: "Post do feed da agência",
     r: 1.2,
     tam: "m",
   },
@@ -48,7 +48,7 @@ const B: Peca[] = [
     w: 1600,
     h: 2000,
     alt: "Garrafa branca com o nome Studio Clareira e o lobo, apoiada em um sofá laranja",
-    cap: "Aplicação da marca do estúdio: garrafa",
+    cap: "Aplicação da marca da agência: garrafa",
     r: -1,
     tam: "m",
   },
@@ -58,8 +58,8 @@ const C: Peca[] = [
     src: "/posts/post-quem-somos.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: Studio Clareira, quem somos, com o rosto de um lobo em meio-tom",
-    cap: "Post do feed do estúdio",
+    alt: "Post do feed da agência: Studio Clareira, quem somos, com o rosto de um lobo em meio-tom",
+    cap: "Post do feed da agência",
     r: -1.6,
     tam: "p",
   },
@@ -67,8 +67,8 @@ const C: Peca[] = [
     src: "/posts/post-travar-perfil.jpg",
     w: 1080,
     h: 1350,
-    alt: "Post do feed do estúdio: O que você acha que pode travar seu perfil, com quatro alternativas de A a D",
-    cap: "Post do feed do estúdio",
+    alt: "Post do feed da agência: O que você acha que pode travar seu perfil, com quatro alternativas de A a D",
+    cap: "Post do feed da agência",
     r: 1.4,
     tam: "p",
     fita: true,
@@ -103,12 +103,12 @@ export default function NaPratica() {
           A gente aplica primeiro na própria marca.
         </h2>
         <p className={x.praticaTexto}>
-          A identidade do Studio Clareira em uso e peças do feed do estúdio. Os projetos de
+          A identidade do Studio Clareira em uso e peças do feed da agência. Os projetos de
           clientes entram aqui com a autorização de cada um.
         </p>
       </header>
 
-      <div className={x.mural} role="region" aria-label="Peças do estúdio" tabIndex={0}>
+      <div className={x.mural} role="region" aria-label="Peças da agência" tabIndex={0}>
         <div className={`${x.col} ${x.colA}`}>
           {A.map((p) => (
             <Item key={p.src} p={p} />

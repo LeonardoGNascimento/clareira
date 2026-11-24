@@ -3,8 +3,8 @@ import Adesivo from "./Adesivo";
 import { Fita, Padrao, Peca, R, v } from "./pecas";
 import s from "./page.module.css";
 
-const POST = "Post do feed do estúdio";
-const APLICA = "Aplicação da marca do estúdio";
+const POST = "Post do feed da agência";
+const APLICA = "Aplicação da marca da agência";
 
 export default function Pratica() {
   return (
@@ -25,7 +25,7 @@ export default function Pratica() {
             aria-hidden
           />
           <p className={s.prNotaTxt}>
-            A identidade do Studio Clareira em uso e peças do feed do estúdio.
+            A identidade do Studio Clareira em uso e peças do feed da agência.
             Os projetos de clientes entram aqui com a autorização de cada um.
           </p>
           <Fita rasgoCss={R.fitaB} className={s.fitaNota} />
@@ -36,7 +36,7 @@ export default function Pratica() {
         <Peca
           className={`${s.m1} ${s.cola}`}
           src="/posts/post-presenca.jpg"
-          alt="Post do feed do estúdio: Presença não é só postar, é ser lembrado"
+          alt="Post do feed da agência: Presença não é só postar, é ser lembrado"
           sizes="(min-width: 900px) 30vw, 92vw"
           ar="4 / 5"
           rasgoCss={R.foto1}
@@ -61,7 +61,7 @@ export default function Pratica() {
         <Peca
           className={`${s.m3} ${s.cola}`}
           src="/posts/post-quem-somos.jpg"
-          alt="Post do feed do estúdio: Studio Clareira, Quem somos?, com o lobo em preto e branco"
+          alt="Post do feed da agência: Studio Clareira, Quem somos?, com o lobo em preto e branco"
           sizes="(min-width: 900px) 22vw, 46vw"
           ar="4 / 5"
           rasgoCss={R.foto5}
@@ -74,7 +74,7 @@ export default function Pratica() {
         <Peca
           className={`${s.m4} ${s.cola}`}
           src="/posts/post-ponte.jpg"
-          alt="Post do feed do estúdio: O que o seu negócio precisa é de uma ponte, com um lobo sobre uma ponte pendurada"
+          alt="Post do feed da agência: O que o seu negócio precisa é de uma ponte, com um lobo sobre uma ponte pendurada"
           sizes="(min-width: 900px) 27vw, 56vw"
           ar="4 / 5"
           rasgoCss={R.foto6}
@@ -96,7 +96,7 @@ export default function Pratica() {
         <Peca
           className={`${s.m6} ${s.cola}`}
           src="/posts/post-travar-perfil.jpg"
-          alt="Post do feed do estúdio: O que você acha que pode travar seu perfil? com as alternativas A a D"
+          alt="Post do feed da agência: O que você acha que pode travar seu perfil? com as alternativas A a D"
           sizes="(min-width: 900px) 20vw, 44vw"
           ar="4 / 5"
           rasgoCss={R.foto3}

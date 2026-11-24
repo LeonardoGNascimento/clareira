@@ -10,72 +10,111 @@ import s from "./page.module.css";
 import { FONE, WHATS } from "./dados";
 
 
-/* RASCUNHO: confirmar serviços (deduzidos do material da marca) */
+/* RASCUNHO: entregas dos três serviços (serviços confirmados pelo dono; entregas a aprovar) */
 const SERVICOS = [
   {
     n: "01",
-    titulo: "Identidade visual",
-    texto:
-      "Uma marca que dá para reconhecer de longe e que funciona em qualquer lugar.",
+    titulo: "Marketing digital",
+    texto: "Estratégia antes do post: cada conteúdo sabe o que está fazendo no feed.",
     entregas: [
-      "Diagnóstico da marca",
-      "Símbolo e logotipo, com versões principal, horizontal e só o símbolo",
-      "Paleta e tipografia",
-      "Elementos de apoio",
-      "Manual de marca",
-      "Aplicações (redes, papelaria, embalagem)"
-    ],
-    foto: "/posts/mockup-5.jpg",
-    w: 2000,
-    h: 1500,
-    pos: "50% 50%",
-    alt: "Duas canecas esmaltadas, uma laranja e uma branca com borda verde, sobre o padrão do lobo-chama do Studio Clareira",
-    legenda: "Canecas",
-    adesivo: "/brand/brasa-bezier.svg",
-    giro: -8,
-  },
-  {
-    n: "02",
-    titulo: "Conteúdo e redes sociais",
-    texto:
-      "Constância com intenção: cada post sabe o que está fazendo no feed.",
-    entregas: [
-      "Estratégia e linha editorial",
+      "Planejamento e estratégia",
+      "Gestão de redes sociais",
       "Calendário de publicações",
-      "Criação das peças (feed, carrossel, stories)",
+      "Criação de posts, carrosséis, stories e reels",
       "Textos e legendas",
-      "Produção contínua, para o perfil não parar quando falta tempo"
+      "Produção contínua, para o perfil não parar quando falta tempo",
     ],
+    tipo: "foto",
     foto: "/posts/mockup-1.jpg",
     w: 2000,
     h: 1116,
     pos: "50% 55%",
     alt: "Uma mão inclina um tablet que mostra a capa laranja do Studio Clareira",
-    legenda: "Tablet",
+    legenda: "Aplicação da marca da agência: tablet",
     adesivo: "/brand/brasa-balao.svg",
     giro: 6,
   },
   {
-    n: "03",
-    titulo: "Posicionamento e presença digital",
-    texto:
-      "Uma ponte entre quem você é e quem precisa te encontrar.",
+    n: "02",
+    titulo: "Design gráfico",
+    texto: "Uma marca que dá para reconhecer de longe e que funciona em qualquer lugar.",
     entregas: [
-      "Leitura de como a marca é percebida hoje",
-      "Mensagem e tom de voz",
-      "Perfil organizado (bio, destaques, links)",
-      "Direção para que identidade e conteúdo digam a mesma coisa"
+      "Identidade visual (logotipo, paleta, tipografia, manual de marca)",
+      "Peças para redes sociais",
+      "Materiais impressos e papelaria",
+      "Apresentações",
+      "Aplicações (embalagem, brindes, sinalização)",
     ],
-    foto: "/posts/mockup-2.jpg",
+    tipo: "foto",
+    foto: "/posts/mockup-5.jpg",
     w: 2000,
-    h: 1333,
-    pos: "58% 55%",
-    alt: "Cartão laranja do Studio Clareira com o lobo, o nome e a frase Studio de design gráfico, sobre fundo preto e branco",
-    legenda: "Cartão",
-    adesivo: "/brand/brasa-pena.svg",
-    giro: -5,
+    h: 1500,
+    pos: "50% 50%",
+    alt: "Duas canecas esmaltadas, uma laranja e uma branca com borda verde, sobre o padrão do lobo-chama do Studio Clareira",
+    legenda: "Aplicação da marca da agência: canecas",
+    adesivo: "/brand/brasa-bezier.svg",
+    giro: -8,
+  },
+  {
+    n: "03",
+    titulo: "Design de landing pages",
+    texto: "Uma página feita para transformar visita em conversa.",
+    entregas: [
+      "Estrutura e texto da página",
+      "Design próprio, no visual da marca",
+      "Versão para celular",
+      "Botão de WhatsApp e formulário de contato",
+      "Página no ar, pronta para receber anúncios e links da bio",
+    ],
+    tipo: "navegador",
+    foto: "/lp/brasa-hero.jpg",
+    w: 1440,
+    h: 900,
+    pos: "50% 0%",
+    alt: "Print do início desta própria página, com o título Presença não é só postar, é ser lembrado, dentro de uma janela de navegador",
+    legenda: "A landing page da própria agência",
+    adesivo: "/brand/brasa-cursor.svg",
+    giro: 8,
   },
 ] as const;
+
+/* Moldura de navegador desenhada em CSS: barra, três pontos e campo de endereço. */
+function Navegador({
+  src,
+  alt,
+  sizes,
+  className,
+  ligado,
+}: {
+  src: string;
+  alt: string;
+  sizes: string;
+  className?: string;
+  ligado?: boolean;
+}) {
+  const janela = (
+    <div className={s.janela}>
+      <div className={s.janelaBarra} aria-hidden="true">
+        <span className={s.janelaPontos}>
+          <i />
+          <i />
+          <i />
+        </span>
+        {/* RASCUNHO: endereço ainda a confirmar */}
+        <span className={s.janelaEndereco}>studioclareira.com.br [a confirmar]</span>
+      </div>
+      <div className={s.janelaTela}>
+        <Image src={src} alt={alt} fill sizes={sizes} style={{ objectFit: "cover", objectPosition: "50% 0%" }} />
+      </div>
+    </div>
+  );
+  if (!className) return janela;
+  return (
+    <div className={className} data-on={ligado}>
+      {janela}
+    </div>
+  );
+}
 
 export default function Servicos() {
   const [ativo, setAtivo] = useState(0);
@@ -105,14 +144,14 @@ export default function Servicos() {
           <p className={s.rotulo}>Serviços</p>
           {/* RASCUNHO: abertura da seção */}
           <p className={s.servAbertura}>
-            Três frentes que trabalham juntas. Dá para começar por uma e somar as outras quando
-            fizer sentido.
+            Marketing, design e landing page trabalhando juntos. Dá para começar por um e somar os
+            outros quando fizer sentido.
           </p>
         </div>
         <h2 id="serv-titulo" className={s.servTitulo}>
-          Do símbolo
+          Da marca
           <br />
-          ao feed
+          ao clique.
         </h2>
       </header>
 
@@ -141,15 +180,19 @@ export default function Servicos() {
 
               {/* telas estreitas e sem JS: a aplicação vem dentro do item */}
               <figure className={s.dentro}>
-                <div className={s.dentroFoto}>
-                  <Image
-                    src={x.foto}
-                    alt={x.alt}
-                    fill
-                    sizes="100vw"
-                    style={{ objectFit: "cover", objectPosition: x.pos }}
-                  />
-                </div>
+                {x.tipo === "navegador" ? (
+                  <Navegador src={x.foto} alt={x.alt} sizes="100vw" />
+                ) : (
+                  <div className={s.dentroFoto}>
+                    <Image
+                      src={x.foto}
+                      alt={x.alt}
+                      fill
+                      sizes="100vw"
+                      style={{ objectFit: "cover", objectPosition: x.pos }}
+                    />
+                  </div>
+                )}
                 <Image
                   src={x.adesivo}
                   alt=""
@@ -158,9 +201,7 @@ export default function Servicos() {
                   className={s.dentroAdesivo}
                   style={{ ["--r" as string]: `${x.giro}deg` }}
                 />
-                <figcaption className={s.legenda}>
-                  Aplicação da marca do estúdio: {x.legenda.toLowerCase()}
-                </figcaption>
+                <figcaption className={s.legenda}>{x.legenda}</figcaption>
               </figure>
             </li>
           ))}
@@ -183,19 +224,30 @@ export default function Servicos() {
             className={s.palcoPadrao}
           />
           <div className={s.palcoMiolo}>
-            <div className={s.moldura}>
-              {SERVICOS.map((x, i) => (
-                <Image
-                  key={x.n}
-                  src={x.foto}
-                  alt=""
-                  fill
-                  sizes="56vw"
-                  className={s.foto}
-                  data-on={ativo === i}
-                  style={{ objectFit: "cover", objectPosition: x.pos }}
-                />
-              ))}
+            <div className={s.moldura} data-nav={SERVICOS[ativo].tipo === "navegador"}>
+              {SERVICOS.map((x, i) =>
+                x.tipo === "navegador" ? (
+                  <Navegador
+                    key={x.n}
+                    src={x.foto}
+                    alt=""
+                    sizes="56vw"
+                    className={s.fotoNav}
+                    ligado={ativo === i}
+                  />
+                ) : (
+                  <Image
+                    key={x.n}
+                    src={x.foto}
+                    alt=""
+                    fill
+                    sizes="56vw"
+                    className={s.foto}
+                    data-on={ativo === i}
+                    style={{ objectFit: "cover", objectPosition: x.pos }}
+                  />
+                ),
+              )}
             </div>
             {SERVICOS.map((x, i) => (
               <Image
@@ -209,9 +261,7 @@ export default function Servicos() {
                 style={{ ["--r" as string]: `${x.giro}deg` }}
               />
             ))}
-            <p className={s.palcoLegenda}>
-              Aplicação da marca do estúdio: {SERVICOS[ativo].legenda.toLowerCase()}
-            </p>
+            <p className={s.palcoLegenda}>{SERVICOS[ativo].legenda}</p>
           </div>
         </div>
       </div>

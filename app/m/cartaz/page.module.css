@@ -1,5 +1,5 @@
 /* Direção B · Cartaz
-   Ideia: o site é o muro onde o estúdio cola os cartazes dele. Cada tela é uma colagem:
+   Ideia: o site é o muro onde a agência cola os cartazes dela. Cada tela é uma colagem:
    papel rasgado, fita, o lobo em meio-tom e a frase com marca-texto, na voz dos posts reais.
    Tier: showcase (escala de tipo com vw até 2560, uma ideia de movimento: "colar"). */
 
@@ -164,6 +164,26 @@
 }
 .folha {
   padding: 36px 24px 36px;
+}
+
+/* Linha de identificação: diz o que a empresa é, perto do título. */
+.id {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--noite);
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--noite);
+}
+.id strong,
+.id span {
+  display: block;
+}
+.id strong {
+  font-weight: 700;
+}
+.id span {
+  font-weight: 500;
 }
 
 .h1 {
@@ -682,6 +702,12 @@
     display: block;
     animation: resposta 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+  .inlineServico {
+    margin: 0 0 8px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.3;
+  }
   .inlineTitulo {
     margin: 0;
     font-family: var(--font-display);
@@ -774,6 +800,10 @@
   .folha {
     padding: 20px 24px 20px;
   }
+  .id {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
   .h1 {
     font-size: min(30px, 7.6svh);
   }
@@ -843,6 +873,11 @@
   }
   .folha {
     padding: 2.8vw 3.6vw 2.8vw;
+  }
+  .id {
+    margin-bottom: 1.4vw;
+    padding-bottom: 0.9vw;
+    font-size: max(14px, 1.05vw);
   }
   .h1 {
     font-size: 4.5vw;
@@ -1294,6 +1329,66 @@
   right: 14px;
   width: 60px;
   rotate: 9deg;
+}
+
+/* Moldura de navegador (serviço 03): barra com três pontos e o endereço, o print da própria landing dentro. */
+.nav {
+  background: var(--noite);
+}
+.navBarra {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+}
+.navPontos {
+  display: flex;
+  flex: none;
+  gap: 5px;
+}
+.navPontos i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brasa);
+}
+.navPontos i:nth-child(2) {
+  background: var(--papel);
+}
+.navPontos i:nth-child(3) {
+  background: color-mix(in srgb, var(--papel) 45%, var(--noite));
+}
+.navEndereco {
+  flex: 1;
+  min-width: 0;
+  padding: 3px 10px;
+  background: var(--linho);
+  color: var(--noite);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.nav img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.svLegenda {
+  position: absolute;
+  left: -6px;
+  bottom: -16px;
+  max-width: 92%;
+  padding: 7px 14px 8px 12px;
+  background: var(--linho);
+  color: var(--noite);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.25;
+  clip-path: var(--rasgo);
+}
+.sv_c .svFoto {
+  width: 88%;
 }
 
 /* ───────── Método ───────── */
@@ -2438,6 +2533,35 @@
   .sv_b .svAdesivo {
     left: auto;
     right: -2.8vw;
+  }
+  .sv_c .svFoto {
+    right: -9vw;
+    top: 7vw;
+    width: 29vw;
+  }
+  .sv_c .svFolha {
+    padding-right: 22vw;
+  }
+  .navBarra {
+    gap: 0.8vw;
+    padding: 0.6vw 0.8vw;
+  }
+  .navPontos {
+    gap: 0.4vw;
+  }
+  .navPontos i {
+    width: max(9px, 0.7vw);
+    height: max(9px, 0.7vw);
+  }
+  .navEndereco {
+    padding: 0.2vw 0.8vw;
+    font-size: max(14px, 0.95vw);
+  }
+  .svLegenda {
+    left: -0.6vw;
+    bottom: -1.4vw;
+    padding: 0.5vw 1.1vw 0.6vw 1vw;
+    font-size: max(14px, 0.95vw);
   }
 
   /* — Método — */

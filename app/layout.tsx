@@ -21,7 +21,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Studio Clareira",
   description:
-    "Identidade visual, estratégia e conteúdo para marcas que querem ser encontradas e lembradas.",
+    "Agência de marketing digital em Curitiba: marketing digital, design gráfico e landing pages.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

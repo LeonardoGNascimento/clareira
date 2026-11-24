@@ -29,7 +29,7 @@ export default function Sobre() {
             <p className={s.sP}>
               O Studio Clareira nasce da metáfora da clareira na floresta: um
               espaço onde a luz atravessa as árvores, a visão se amplia e o
-              caminho se torna claro. O estúdio existe para transformar a
+              caminho se torna claro. A agência existe para transformar a
               complexidade do mercado em estratégia, direção e crescimento para
               as marcas.
             </p>
@@ -40,12 +40,12 @@ export default function Sobre() {
             </p>
             {/* RASCUNHO: apresentação do Alisson (CONTEUDO.md, seção 6) */}
             <p className={s.sP}>
-              À frente do estúdio está <strong>Alisson Barros Narloch</strong>,
-              designer. O Studio Clareira é o passo do trabalho dele como
-              designer para uma marca estruturada, pronta para crescer junto com
-              os clientes.
+              À frente da agência está <strong>Alisson Barros Narloch</strong>.
+              O Studio Clareira junta marketing digital, design gráfico e
+              landing pages num lugar só, para a marca do cliente crescer com
+              direção.
             </p>
-            <ul className={s.pilares} aria-label="Pilares do estúdio">
+            <ul className={s.pilares} aria-label="Pilares da agência">
               {PILARES.map((p, i) => (
                 <li key={p} className={s.pilar}>
                   <span
@@ -94,7 +94,7 @@ export default function Sobre() {
         <Peca
           className={`${s.lua} ${s.cola}`}
           src="/posts/lobo-lua.jpg"
-          alt="Lobo em meio-tom com uma lua laranja ao fundo, arte do estúdio"
+          alt="Lobo em meio-tom com uma lua laranja ao fundo, arte da agência"
           sizes="(min-width: 900px) 26vw, 50vw"
           ar="3 / 4"
           rasgoCss={R.foto4}

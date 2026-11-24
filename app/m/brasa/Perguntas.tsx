@@ -9,7 +9,7 @@ const PERGUNTAS = [
   {
     q: "Quanto custa?",
     /* RASCUNHO: resposta */
-    a: "Depende do que a marca precisa: identidade, conteúdo, posicionamento ou uma combinação. O valor sai na proposta, depois da primeira conversa.",
+    a: "Depende do que a marca precisa: marketing digital, design, landing page ou uma combinação. O valor sai na proposta, depois da primeira conversa.",
   },
   {
     q: "Quanto tempo leva?",
@@ -29,7 +29,12 @@ const PERGUNTAS = [
   {
     q: "Dá para contratar só uma parte?",
     /* RASCUNHO: resposta */
-    a: "Dá. Identidade, conteúdo e posicionamento funcionam juntos, mas cada um pode ser contratado separado.",
+    a: "Dá. Marketing digital, design gráfico e landing page funcionam juntos, mas cada um pode ser contratado separado.",
+  },
+  {
+    q: "Por que ter uma landing page se eu já tenho Instagram?",
+    /* RASCUNHO: resposta */
+    a: "O perfil mostra a marca; a landing page explica a oferta e leva a pessoa a chamar. É para onde apontam a bio, os anúncios e os links que você manda.",
   },
 ] as const;
 

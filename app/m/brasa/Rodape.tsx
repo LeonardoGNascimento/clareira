@@ -15,7 +15,7 @@ export default function Rodape() {
             sizes="(min-width: 1024px) 20vw, 60vw"
             className={x.rodLogo}
           />
-          <p className={x.rodTag}>Identidade visual, conteúdo e presença digital.</p>
+          <p className={x.rodTag}>Agência de marketing digital, design gráfico e landing pages.</p>
         </div>
 
         <div className={x.rodCol}>

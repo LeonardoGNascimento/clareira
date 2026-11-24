@@ -4,7 +4,7 @@ Fase atual: **3 direções de primeira tela** para o dono escolher. Cada direç�
 (App Router), com conteúdo e assets reais. Nada de página inteira ainda.
 
 ## Quem é
-**Studio Clareira** — estúdio de design e presença digital. Nasceu da transição do designer **Alisson Barros
+**Studio Clareira** — **agência de marketing**: marketing digital, design gráfico e design de landing pages (confirmado pelo dono em 2026-11-24). Nasceu da transição do designer **Alisson Barros
 Narloch** de pessoa física para marca estruturada. DDD 41 (Curitiba e região). WhatsApp: **41 98407-9112**
 (aparece nos posts oficiais). Instagram/e-mail: **não temos** → placeholder marcado `[a confirmar]`.
 

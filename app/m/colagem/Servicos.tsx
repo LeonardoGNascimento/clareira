@@ -1,30 +1,33 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Adesivo from "./Adesivo";
 import { Fita, Padrao, Peca, R, v } from "./pecas";
 import s from "./page.module.css";
 
-/* RASCUNHO: entregas dos três serviços e a frase de abertura (CONTEUDO.md, seção 3). */
+/* RASCUNHO: entregas dos três serviços e a frase de abertura (CONTEUDO.md, seção 3).
+   Sem anúncios/tráfego pago nem relatórios até o dono confirmar. */
 const ENTREGAS = {
-  identidade: [
-    "Diagnóstico da marca",
-    "Símbolo e logotipo, com versões principal, horizontal e só o símbolo",
-    "Paleta e tipografia",
-    "Elementos de apoio",
-    "Manual de marca",
-    "Aplicações (redes, papelaria, embalagem)",
-  ],
-  conteudo: [
-    "Estratégia e linha editorial",
+  marketing: [
+    "Planejamento e estratégia",
+    "Gestão de redes sociais",
     "Calendário de publicações",
-    "Criação das peças (feed, carrossel, stories)",
+    "Criação de posts, carrosséis, stories e reels",
     "Textos e legendas",
     "Produção contínua, para o perfil não parar quando falta tempo",
   ],
-  posicionamento: [
-    "Leitura de como a marca é percebida hoje",
-    "Mensagem e tom de voz",
-    "Perfil organizado (bio, destaques, links)",
-    "Direção para que identidade e conteúdo digam a mesma coisa",
+  grafico: [
+    "Identidade visual: logotipo, paleta, tipografia e manual de marca",
+    "Peças para redes sociais",
+    "Materiais impressos e papelaria",
+    "Apresentações",
+    "Aplicações: embalagem, brindes e sinalização",
+  ],
+  landing: [
+    "Estrutura e texto da página",
+    "Design próprio, no visual da marca",
+    "Versão para celular",
+    "Botão de WhatsApp e formulário de contato",
+    "Página no ar, pronta para receber anúncios e links da bio",
   ],
 };
 
@@ -37,8 +40,8 @@ export default function Servicos() {
 
       <header className={s.servCab}>
         <h2 id="t-servicos" className={s.servTitulo}>
-          <span>Do símbolo</span>
-          <span>ao feed.</span>
+          <span>Da marca</span>
+          <span>ao clique.</span>
         </h2>
         <Adesivo className={`${s.adesivo} ${s.stBezier}`}>
           <Image
@@ -57,15 +60,15 @@ export default function Servicos() {
             aria-hidden
           />
           <p className={s.aberturaTxt}>
-            Três frentes que trabalham juntas. Dá para começar por uma e somar
-            as outras quando fizer sentido.
+            Marketing, design e landing page trabalhando juntos. Dá para
+            começar por um e somar os outros quando fizer sentido.
           </p>
           <Fita rasgoCss={R.fitaD} className={s.fitaAbertura} />
         </div>
       </header>
 
       <ol className={s.servLista}>
-        {/* 01: folha alta à esquerda, garrafa colada na borda direita */}
+        {/* 01: folha alta à esquerda, post real colado na borda direita */}
         <li className={`${s.item} ${s.i1}`}>
           <div className={s.iFolha}>
             <div className={s.papel} style={v("--rasgo", R.s1)} aria-hidden />
@@ -73,13 +76,13 @@ export default function Servicos() {
               <p className={s.num} aria-hidden>
                 01
               </p>
-              <h3 className={s.iTitulo}>Identidade visual</h3>
+              <h3 className={s.iTitulo}>Marketing digital</h3>
               <p className={s.iLide}>
-                Uma marca que dá para reconhecer de longe e que funciona em
-                qualquer lugar.
+                Estratégia antes do post: cada conteúdo sabe o que está fazendo
+                no feed.
               </p>
               <ul className={s.entregas}>
-                {ENTREGAS.identidade.map((e) => (
+                {ENTREGAS.marketing.map((e) => (
                   <li key={e}>{e}</li>
                 ))}
               </ul>
@@ -87,27 +90,37 @@ export default function Servicos() {
           </div>
           <Peca
             className={`${s.iMidia} ${s.cola}`}
-            src="/posts/mockup-3.jpg"
-            alt="Garrafa branca com o logotipo do Studio Clareira, apoiada em um sofá laranja"
+            src="/posts/post-presenca.jpg"
+            alt="Post do feed da agência: Presença não é só postar, é ser lembrado"
             sizes="(min-width: 900px) 30vw, 70vw"
             ar="4 / 5"
             arM="1 / 1"
-            pos="50% 60%"
+            pos="50% 46%"
             rasgoCss={R.foto1}
             giro={2.4}
           >
             <Fita rasgoCss={R.fitaE} className={s.fitaMidia} />
           </Peca>
+          <Adesivo className={`${s.adesivo} ${s.stBalaoS}`}>
+            <Image
+              src="/brand/brasa-balao.svg"
+              alt=""
+              width={160}
+              height={160}
+              draggable={false}
+            />
+          </Adesivo>
         </li>
 
-        {/* 02: o post real à esquerda; entregas como tarjas direto no muro */}
+        {/* 02: a aplicação da marca à esquerda; entregas como tarjas direto no muro */}
         <li className={`${s.item} ${s.i2}`}>
           <Peca
             className={`${s.iMidia} ${s.cola}`}
-            src="/posts/post-travar-perfil.jpg"
-            alt="Post do feed do estúdio: O que você acha que pode travar seu perfil? com as alternativas A a D"
+            src="/posts/mockup-3.jpg"
+            alt="Garrafa branca com o logotipo do Studio Clareira, apoiada em um sofá laranja"
             sizes="(min-width: 900px) 26vw, 56vw"
             ar="4 / 5"
+            pos="50% 60%"
             rasgoCss={R.foto2}
             giro={-3}
           >
@@ -118,14 +131,14 @@ export default function Servicos() {
               <p className={s.num} aria-hidden>
                 02
               </p>
-              <h3 className={s.iTitulo}>Conteúdo e redes sociais</h3>
+              <h3 className={s.iTitulo}>Design gráfico</h3>
             </div>
             <p className={s.iLide}>
-              Constância com intenção: cada post sabe o que está fazendo no
-              feed.
+              Uma marca que dá para reconhecer de longe e que funciona em
+              qualquer lugar.
             </p>
             <ul className={s.tiras}>
-              {ENTREGAS.conteudo.map((e, i) => (
+              {ENTREGAS.grafico.map((e, i) => (
                 <li key={e} className={s.tira}>
                   <span
                     className={s.tiraFundo}
@@ -137,9 +150,18 @@ export default function Servicos() {
               ))}
             </ul>
           </div>
+          <Adesivo className={`${s.adesivo} ${s.stPenaS}`}>
+            <Image
+              src="/brand/brasa-pena.svg"
+              alt=""
+              width={120}
+              height={180}
+              draggable={false}
+            />
+          </Adesivo>
         </li>
 
-        {/* 03: faixa larga, cartão pendurado na quina, quatro entregas numeradas */}
+        {/* 03: faixa larga, a landing da própria agência numa moldura de navegador, cinco entregas */}
         <li className={`${s.item} ${s.i3}`}>
           <div className={s.iFolha}>
             <div className={s.papel} style={v("--rasgo", R.s3)} aria-hidden />
@@ -147,12 +169,12 @@ export default function Servicos() {
               <p className={s.num} aria-hidden>
                 03
               </p>
-              <h3 className={s.iTitulo}>Posicionamento e presença digital</h3>
+              <h3 className={s.iTitulo}>Design de landing pages</h3>
               <p className={s.iLide}>
-                Uma ponte entre quem você é e quem precisa te encontrar.
+                Uma página feita para transformar visita em conversa.
               </p>
               <ol className={s.passos4}>
-                {ENTREGAS.posicionamento.map((e, i) => (
+                {ENTREGAS.landing.map((e, i) => (
                   <li key={e}>
                     <span className={s.n4} aria-hidden>
                       {i + 1}
@@ -163,26 +185,58 @@ export default function Servicos() {
               </ol>
             </div>
           </div>
-          <Peca
-            className={`${s.iMidia} ${s.cola}`}
-            src="/posts/mockup-2.jpg"
-            alt="Cartão laranja do Studio Clareira com o lobo, o nome e a frase Studio de design gráfico"
-            sizes="(min-width: 900px) 34vw, 78vw"
-            ar="3 / 2"
-            arM="3 / 2"
-            pos="55% 50%"
-            rasgoCss={R.foto3}
-            giro={-3.5}
-          />
-          <Adesivo className={`${s.adesivo} ${s.stPena}`}>
-            <Image
-              src="/brand/brasa-pena.svg"
-              alt=""
-              width={120}
-              height={180}
-              draggable={false}
-            />
-          </Adesivo>
+          <figure
+            className={`${s.peca2} ${s.iMidia} ${s.cola} ${s.navFig}`}
+            style={
+              {
+                "--r": "-2.6deg",
+                "--ar": "16 / 10",
+                "--ar-m": "16 / 10",
+              } as CSSProperties
+            }
+          >
+            <div className={s.navegador} style={v("--rasgo", R.foto3)}>
+              <div className={s.navBarra} aria-hidden>
+                <span className={s.navPontos}>
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className={s.navCampo}>
+                  studioclareira.com.br <small>[a confirmar]</small>
+                </span>
+              </div>
+              <div className={s.navTela}>
+                <Image
+                  src="/lp/colagem-hero.jpg"
+                  alt="Topo desta própria landing page: Presença não é só postar, é ser lembrado, com o lobo-chama sobre o muro laranja"
+                  fill
+                  sizes="(min-width: 900px) 36vw, 90vw"
+                  style={{ objectFit: "cover", objectPosition: "50% 0%" }}
+                />
+              </div>
+            </div>
+            <figcaption className={s.legenda}>
+              <span
+                className={s.legendaFundo}
+                style={v("--rasgo", R.legenda)}
+                aria-hidden
+              />
+              <span className={s.legendaTxt}>
+                A landing page da própria agência
+              </span>
+            </figcaption>
+            <Fita rasgoCss={R.fitaE} className={s.fitaMidia} />
+            <Adesivo className={`${s.adesivo} ${s.stCursorS}`}>
+              <Image
+                src="/brand/brasa-cursor.svg"
+                alt=""
+                width={100}
+                height={125}
+                draggable={false}
+              />
+            </Adesivo>
+          </figure>
         </li>
       </ol>
     </section>

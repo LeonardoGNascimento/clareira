@@ -17,9 +17,9 @@ import s from "./page.module.css";
 import x from "./secoes.module.css";
 
 export const metadata: Metadata = {
-  title: "Studio Clareira · Direção C, Brasa",
+  title: "Studio Clareira · Agência de marketing digital · Direção C, Brasa",
   description:
-    "Studio Clareira, em Curitiba: identidade visual, conteúdo e presença digital para a sua marca ser encontrada e lembrada.",
+    "Studio Clareira, agência de marketing digital em Curitiba: estratégia, design gráfico e landing pages para a sua marca ser encontrada e lembrada.",
   robots: { index: false },
 };
 
@@ -91,6 +91,7 @@ export default function Brasa() {
 
         <div id="inicio" className={s.principal}>
           <div className={s.texto}>
+            <p className={s.kicker}>Agência de marketing digital em Curitiba</p>
             <h1 className={s.titulo}>
               <span className={s.linha}>Presença não é</span>
               <span className={s.linha}>só postar, é</span>
@@ -109,8 +110,8 @@ export default function Brasa() {
               </span>
             </h1>
             <p className={s.apoio}>
-              Studio de design gráfico: identidade visual, conteúdo e posicionamento para a sua
-              marca ser encontrada.
+              Agência de marketing digital: estratégia, design gráfico e landing pages para a sua
+              marca ser encontrada e lembrada.
             </p>
             <div className={s.acoes}>
               <a className={s.botao} href={WHATS} target="_blank" rel="noopener noreferrer">
@@ -145,7 +146,7 @@ export default function Brasa() {
         </div>
 
         <div className={s.rodape}>
-          <ul className={s.pilares} aria-label="Pilares do estúdio">
+          <ul className={s.pilares} aria-label="Pilares da agência">
             <li>Estratégia</li>
             <li>Criatividade</li>
             <li>Clareza</li>

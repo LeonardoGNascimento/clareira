@@ -1,5 +1,9 @@
 # CONTEÚDO DA LANDING PAGE: Studio Clareira
 
+**Posicionamento (confirmado pelo dono em 2026-11-24): o Studio Clareira é uma AGÊNCIA DE MARKETING.** Faz três coisas:
+**marketing digital, design gráfico e design de landing pages.** "Studio Clareira" é o nome da marca e não muda; no texto
+descritivo, chame de **agência** (não "estúdio de design"). Ex.: "a agência responde", "o trabalho da agência".
+
 Fonte única de texto para as direções B (Cartaz), C (Brasa) e D (Colagem). As três dizem as mesmas coisas, cada uma
 no seu visual. Os trechos marcados **[RASCUNHO]** foram deduzidos do material ou escritos por nós e precisam de
 aprovação do dono. No código, cada bloco de texto rascunho leva o comentário `{/* RASCUNHO: … */}`.
@@ -19,9 +23,13 @@ Logo · âncoras: **Serviços** (`#servicos`), **Método** (`#metodo`), **Sobre*
 botão **WhatsApp**. No celular: logo + botão de WhatsApp (as âncoras podem ir num menu simples ou sumir: decida pelo pixel;
 se fizer menu, `<details>`/botão acessível, foco e Esc).
 
-## 1. Hero (já existe em cada direção: manter)
+## 1. Hero (já existe em cada direção: manter a composição)
 "Presença não é só postar, **é ser lembrado**."
 Apoio: "Frequência enche o feed. Estratégia enche a memória do cliente. Nosso trabalho começa na diferença entre as duas."
+Linha de identificação (obrigatória, perto do título, pequena; é o que diz O QUE a empresa é):
+"**Agência de marketing digital em Curitiba** · marketing digital, design gráfico e landing pages."
+(Onde o hero já tinha uma frase tipo "Studio de design gráfico: identidade visual, conteúdo e posicionamento…", ela vira:
+"Agência de marketing digital: estratégia, design gráfico e landing pages para a sua marca ser encontrada e lembrada.")
 Botão: "Conversar sobre a sua marca".
 
 ## 2. Identificação: o que trava o seu perfil (quiz; já existe em B e D)
@@ -31,31 +39,36 @@ Respostas [RASCUNHO] (manter as que já existem no código de cada direção, se
 Na C (Brasa), que não tem quiz: entra uma versão desta seção no visual da Brasa (pode ser o quiz ou as quatro linhas
 com a resposta curta ao lado). Não repetir a lista de serviços aqui.
 
-## 3. Serviços `#servicos`
-Título: "Do símbolo ao feed." (a C já usa; B e D podem usar o mesmo)
-Abertura [RASCUNHO]: "Três frentes que trabalham juntas. Dá para começar por uma e somar as outras quando fizer sentido."
+## 3. Serviços `#servicos` (os três serviços são CONFIRMADOS; as entregas são [RASCUNHO])
+Título: "**Da marca ao clique.**" (substitui "Do símbolo ao feed.", que deixava a landing page de fora)
+Abertura [RASCUNHO]: "Marketing, design e landing page trabalhando juntos. Dá para começar por um e somar os outros quando
+fizer sentido."
 
-**01 Identidade visual** [RASCUNHO nas entregas]
-"Uma marca que dá para reconhecer de longe e que funciona em qualquer lugar."
-Entregas: diagnóstico da marca · símbolo e logotipo, com versões principal, horizontal e só o símbolo · paleta e
-tipografia · elementos de apoio · manual de marca · aplicações (redes, papelaria, embalagem).
-Foto: `posts/mockup-*` (canecas / cartão). Adesivo: bezier.
-
-**02 Conteúdo e redes sociais** [RASCUNHO nas entregas]
-"Constância com intenção: cada post sabe o que está fazendo no feed."
-Entregas: estratégia e linha editorial · calendário de publicações · criação das peças (feed, carrossel, stories) ·
-textos e legendas · produção contínua, para o perfil não parar quando falta tempo.
+**01 Marketing digital**
+"Estratégia antes do post: cada conteúdo sabe o que está fazendo no feed."
+Entregas [RASCUNHO]: planejamento e estratégia · gestão de redes sociais · calendário de publicações · criação de posts,
+carrosséis, stories e reels · textos e legendas · produção contínua, para o perfil não parar quando falta tempo.
+(Anúncios/tráfego pago e relatórios: NÃO citar até o dono confirmar.)
 Foto: tablet ou um post real (`posts/post-*`). Adesivo: balão.
 
-**03 Posicionamento e presença digital** [RASCUNHO nas entregas]
-"Uma ponte entre quem você é e quem precisa te encontrar."
-Entregas: leitura de como a marca é percebida hoje · mensagem e tom de voz · perfil organizado (bio, destaques, links) ·
-direção para que identidade e conteúdo digam a mesma coisa.
-Foto: cartão. Adesivo: pena.
+**02 Design gráfico**
+"Uma marca que dá para reconhecer de longe e que funciona em qualquer lugar."
+Entregas [RASCUNHO]: identidade visual (logotipo, paleta, tipografia, manual de marca) · peças para redes sociais ·
+materiais impressos e papelaria · apresentações · aplicações (embalagem, brindes, sinalização).
+Foto: `posts/mockup-*` (canecas / cartão / garrafa). Adesivo: bezier ou pena.
+
+**03 Design de landing pages**
+"Uma página feita para transformar visita em conversa."
+Entregas [RASCUNHO]: estrutura e texto da página · design próprio, no visual da marca · versão para celular ·
+botão de WhatsApp e formulário de contato · página no ar, pronta para receber anúncios e links da bio.
+Visual: uma **moldura de navegador** (desenhada em CSS: barra com três pontos e um campo de endereço, endereço
+"studioclareira.com.br [a confirmar]") com o print desta própria landing dentro (`prints/<direção>-desk-1.jpg`, copie para
+`public/` se precisar; ou um recorte do hero). Legenda honesta: "A landing page da própria agência". Adesivo: cursor.
+**Não** inventar landing page de cliente.
 
 ## 4. Método `#metodo`
 Título: "Primeiro o cenário. Depois o caminho."
-Lide (manual): "Compreender, planejar e construir. É assim que o estúdio conduz cada projeto."
+Lide (manual): "Compreender, planejar e construir. É assim que a agência conduz cada projeto."
 - **Começa com uma conversa** [RASCUNHO]: "Pelo WhatsApp. Você conta o momento da marca e a gente entende se e como pode ajudar."
 - **01 Compreender**: "Ler o cenário antes de desenhar: quem é a marca, para quem ela fala e onde precisa ser encontrada."
 - **02 Planejar**: "Escolher o caminho. Posicionamento, direção visual e o que a marca diz, antes de produzir qualquer peça."
@@ -64,12 +77,12 @@ Visual: numeração grande em Chunk, uma linha que liga os passos (trilha/fita/f
 
 ## 5. Na prática: a marca e o feed `#trabalho`
 Título [RASCUNHO]: "A gente aplica primeiro na própria marca."
-Texto [RASCUNHO]: "A identidade do Studio Clareira em uso e peças do feed do estúdio. Os projetos de clientes entram aqui
+Texto [RASCUNHO]: "A identidade do Studio Clareira em uso e peças do feed da agência. Os projetos de clientes entram aqui
 com a autorização de cada um."
-Peças (todas reais, do estúdio):
+Peças (todas reais, da agência):
 - Posts do feed: `posts/post-presenca.jpg`, `post-quem-somos.jpg`, `post-ponte.jpg`, `post-travar-perfil.jpg` (1080x1350).
 - Aplicações: `posts/mockup-1..5.jpg` (cartão, tablet, garrafa, fone, caneca; veja qual é qual antes de legendar).
-Legendas honestas: "Post do feed do estúdio", "Aplicação da marca do estúdio: caneca". **Nunca** "case de cliente".
+Legendas honestas: "Post do feed da agência", "Aplicação da marca da agência: caneca". **Nunca** "case de cliente".
 **Não** usar as capas `capa-versatil|granja|terreiro` (clientes não confirmados).
 Composição: grade editorial/mural com tamanhos diferentes (não uma grade uniforme de cards iguais), legível no celular
 (carrossel com rolagem horizontal e snap é aceitável SÓ dentro de um contêiner próprio, com indicação visual de que rola,
@@ -79,12 +92,12 @@ sem gerar rolagem lateral da página).
 Título: "Studio Clareira. Quem somos?" (frase do post real "Quem somos?")
 Texto (manual de marca, real):
 "O Studio Clareira nasce da metáfora da clareira na floresta: um espaço onde a luz atravessa as árvores, a visão se
-amplia e o caminho se torna claro. O estúdio existe para transformar a complexidade do mercado em estratégia, direção e
+amplia e o caminho se torna claro. A agência existe para transformar a complexidade do mercado em estratégia, direção e
 crescimento para as marcas."
 "O lobo é a nossa essência: inteligência, percepção e planejamento. Mais do que força, a capacidade de entender o cenário,
 encontrar o melhor caminho e agir com precisão."
-Pessoa [RASCUNHO]: "À frente do estúdio está **Alisson Barros Narloch**, designer. O Studio Clareira é o passo do trabalho
-dele como designer para uma marca estruturada, pronta para crescer junto com os clientes."
+Pessoa [RASCUNHO]: "À frente da agência está **Alisson Barros Narloch**. O Studio Clareira junta marketing digital, design
+gráfico e landing pages num lugar só, para a marca do cliente crescer com direção."
 Pilares (reais): **Estratégia · Criatividade · Clareza**.
 Foto do Alisson: **não temos** → espaço marcado (moldura da direção com o símbolo do lobo e a legenda visível pequena
 "Foto do Alisson [a confirmar]"), `alt` honesto. Não usar foto de banco como se fosse ele.
@@ -94,14 +107,16 @@ Visual possível: `posts/lobo-lua.jpg` ou o lobo vetorial; uma foto de floresta 
 Acordeão acessível (`<details>/<summary>` nativo é suficiente; marcador próprio, não o triângulo padrão).
 1. **Como começa?** "Com uma conversa pelo WhatsApp. Você conta o momento da marca e o que está travando. Se fizer sentido
    seguir, a gente monta uma proposta para o seu caso."
-2. **Quanto custa?** "Depende do que a marca precisa: identidade, conteúdo, posicionamento ou uma combinação. O valor sai na
-   proposta, depois da primeira conversa."
+2. **Quanto custa?** "Depende do que a marca precisa: marketing digital, design, landing page ou uma combinação. O valor sai
+   na proposta, depois da primeira conversa."
 3. **Quanto tempo leva?** "Cada projeto tem um cronograma combinado no planejamento, antes de começar a produzir."
 4. **Preciso ter uma marca pronta para fazer o conteúdo?** "Não. Se a identidade ainda não existe ou não representa a marca
    hoje, dá para começar por ela. Se já existe, o conteúdo parte do que você tem."
 5. **Vocês atendem fora de Curitiba?** "Sim, o trabalho é feito online, com conversas por vídeo e WhatsApp." (hipótese: confirmar)
-6. **Dá para contratar só uma parte?** "Dá. Identidade, conteúdo e posicionamento funcionam juntos, mas cada um pode ser
-   contratado separado."
+6. **Dá para contratar só uma parte?** "Dá. Marketing digital, design gráfico e landing page funcionam juntos, mas cada um
+   pode ser contratado separado."
+7. **Por que ter uma landing page se eu já tenho Instagram?** "O perfil mostra a marca; a landing page explica a oferta e leva
+   a pessoa a chamar. É para onde apontam a bio, os anúncios e os links que você manda."
 
 ## 8. Chamada final
 "O que o seu negócio precisa é de **uma ponte**."
@@ -111,7 +126,7 @@ Visual: o post `post-ponte.jpg` é a referência de clima (lobo na ponte, triân
 isso no visual da direção, sem colar o post inteiro como fundo.
 
 ## 9. Rodapé
-Logo · "Identidade visual, conteúdo e presença digital." · Curitiba, PR · WhatsApp 41 98407-9112 · Instagram [a confirmar] ·
+Logo · "Agência de marketing digital, design gráfico e landing pages." · Curitiba, PR · WhatsApp 41 98407-9112 · Instagram [a confirmar] ·
 âncoras · "© 2026 Studio Clareira". Sem CNPJ (não temos).
 
 ## 10. WhatsApp flutuante (só celular e tablet)

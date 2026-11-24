@@ -41,7 +41,7 @@ export default function Metodo() {
           Depois o caminho.
         </h2>
         <p className={x.lide}>
-          Compreender, planejar e construir. É assim que o estúdio conduz cada projeto.
+          Compreender, planejar e construir. É assim que a agência conduz cada projeto.
         </p>
       </header>
 

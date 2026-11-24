@@ -3,7 +3,7 @@ import Adesivo from "./Adesivo";
 import { Fita, Padrao, R, v } from "./pecas";
 import s from "./page.module.css";
 
-/* RASCUNHO: todas as respostas (CONTEUDO.md, seção 7). A 5 é hipótese: confirmar se atendem online. */
+/* RASCUNHO: todas as respostas (CONTEUDO.md, seção 7; a 7ª é nova). A 5 é hipótese: confirmar se atendem online. */
 const FAQ = [
   {
     q: "Como começa?",
@@ -11,7 +11,7 @@ const FAQ = [
   },
   {
     q: "Quanto custa?",
-    a: "Depende do que a marca precisa: identidade, conteúdo, posicionamento ou uma combinação. O valor sai na proposta, depois da primeira conversa.",
+    a: "Depende do que a marca precisa: marketing digital, design, landing page ou uma combinação. O valor sai na proposta, depois da primeira conversa.",
   },
   {
     q: "Quanto tempo leva?",
@@ -27,7 +27,11 @@ const FAQ = [
   },
   {
     q: "Dá para contratar só uma parte?",
-    a: "Dá. Identidade, conteúdo e posicionamento funcionam juntos, mas cada um pode ser contratado separado.",
+    a: "Dá. Marketing digital, design gráfico e landing page funcionam juntos, mas cada um pode ser contratado separado.",
+  },
+  {
+    q: "Por que ter uma landing page se eu já tenho Instagram?",
+    a: "O perfil mostra a marca; a landing page explica a oferta e leva a pessoa a chamar. É para onde apontam a bio, os anúncios e os links que você manda.",
   },
 ];
 
